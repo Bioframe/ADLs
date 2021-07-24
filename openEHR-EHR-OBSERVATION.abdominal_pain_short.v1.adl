@@ -1,0 +1,338 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.abdominal_pain_short.v1
+
+concept
+	[at0000]	-- Abdominal Pain
+language
+	original_language = <[ISO_639-1::pt]>
+	translations = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			author = <
+				["name"] = <"?">
+			>
+		>
+	>
+description
+	original_author = <
+		["name"] = <"">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"*Descrever a dor abdominal como um sintoma gastrointestinal(pt)">
+			use = <"*aplicado à seção SIntomas Gastrointestinais(pt)">
+			misuse = <"*(pt)">
+			copyright = <"*(pt)">
+		>
+		["pt"] = <
+			language = <[ISO_639-1::pt]>
+			purpose = <"Descrever a dor abdominal como um sintoma gastrointestinal">
+			use = <"aplicado à seção SIntomas Gastrointestinais">
+			misuse = <"">
+			copyright = <"">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <"Dr. Rodrigo Bonacin", "Dra. Mariangela Dametto">
+	other_details = <
+		["MD5-CAM-1.0.1"] = <"6EE0277A48B0322343A96D569F468436">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- Abdominal Pain
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									CLUSTER[at0004] occurrences matches {0..1} matches {	-- Abdominal Pain
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0005] occurrences matches {0..1} matches {	-- Associated symptom
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0006, 	-- YES
+															at0007]	-- NO
+														}
+													}
+												}
+											}
+											ELEMENT[at0008] occurrences matches {0..1} matches {	-- Gastrointestinal Symptom
+												value matches {
+													DV_TEXT matches {*}
+												}
+											}
+											ELEMENT[at0009] occurrences matches {0..1} matches {	-- Upper Abdominal Pain
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0010, 	-- YES
+															at0011]	-- NO
+														}
+													}
+												}
+											}
+											ELEMENT[at0012] occurrences matches {0..1} matches {	-- Lower Abdominal Pain
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {[local::]}
+													}
+												}
+											}
+											CLUSTER[at0013] occurrences matches {0..1} matches {	-- Medical Examination
+												items cardinality matches {1..*; unordered} matches {
+													ELEMENT[at0014] occurrences matches {0..1} matches {	-- Physical Examination
+														value matches {
+															DV_TEXT matches {*}
+														}
+													}
+													ELEMENT[at0015] occurrences matches {0..1} matches {	-- Pathologic Examination
+														value matches {
+															DV_TEXT matches {*}
+														}
+													}
+													ELEMENT[at0018] occurrences matches {0..1} matches {	-- Tumor Examination
+														value matches {
+															DV_TEXT matches {*}
+														}
+													}
+													ELEMENT[at0022] occurrences matches {0..1} matches {	-- Newborn Examination
+														value matches {
+															DV_TEXT matches {*}
+														}
+													}
+													ELEMENT[at0024] occurrences matches {0..1} matches {	-- Maternal-Fetal Examination
+														value matches {
+															DV_TEXT matches {*}
+														}
+													}
+													ELEMENT[at0026] occurrences matches {0..1} matches {	-- External Examination
+														value matches {
+															DV_TEXT matches {*}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["pt"] = <
+			items = <
+				["at0000"] = <
+					text = <"Abdominal Pain">
+					description = <"Archetype that describe abdominla pain as a archetype that describes abdominal pain as a symptom">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Abdominal Pain">
+					description = <"CUI: C0000737 SNOMEDCT_US: 21522001, NCI: C26682, ICD10CM: R10.9, ICD9CM: 789.00">
+				>
+				["at0005"] = <
+					text = <"Associated symptom
+">
+					description = <"Associated symptom C0521989, 
+SNOMEDCT_US: 
+102483000, 
+NCI: C168433, The signs and symptoms present with the chief complaint. (NCI)
+Symptoms and signs present with the chief complaint. (NCI)">
+				>
+				["at0006"] = <
+					text = <"YES">
+					description = <"Yes - Presence findings, C1298907, SNOMEDCT_US: 373066001">
+				>
+				["at0007"] = <
+					text = <"NO">
+					description = <"no CUI: C1298908; SNOMED_CT: 373067005; NCI: C49487">
+				>
+				["at0008"] = <
+					text = <"Gastrointestinal Symptom">
+					description = <"Gastrointestinal symptom 	C0426576	SNOMEDCT_US	267045008
+">
+				>
+				["at0009"] = <
+					text = <"Upper Abdominal Pain">
+					description = <"Upper abdominal pain, CUI: C0232492; 
+SNOMEDCT_US: 
+83132003, 
+ICD10: 
+R10.1">
+				>
+				["at0010"] = <
+					text = <"YES">
+					description = <"Yes - Presence findings, C1298907, SNOMEDCT_US: 373066001">
+				>
+				["at0011"] = <
+					text = <"NO">
+					description = <"no CUI: C1298908; SNOMED_CT: 373067005; NCI: C49487">
+				>
+				["at0012"] = <
+					text = <"Lower Abdominal Pain">
+					description = <"Lower abdominal pain, CUI: C0232495, 
+SNOMEDCT_US: 
+54586004, NCI: 
+C35272, ICD10CM: R10.30">
+				>
+				["at0013"] = <
+					text = <"Medical Examination">
+					description = <"Medical Examination, C0582103, SNOMEDCT_US: 225886003, NCI: C25305   An appraisal or evaluation of a patient's condition by a clinician that is based on a physical exam, medical history, and the patient's account of symptoms. (NCI)
+An appraisal or evaluation of a patient's condition by a physician or registered nurse, based on clinical and laboratory data, medical history, and the patient's account of symptoms. Check for \"https://www.cancer.gov/about-cancer/treatment/clinical-trials/intervention/C25305\" active clinical trials using this agent. (\"http://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NCI%20Thesaurus&code=C25305\" NCI Thesaurus) (PDQ)">
+				>
+				["at0014"] = <
+					text = <"Physical Examination">
+					description = <"Physical Examination, CUI: C0031809, SNOMEDCT_US: 81375008; SNOMEDCT_US: 5880005; SNOMEDCT_US: 302199004; NCI: C20989; ICD9CM: 89.7">
+				>
+				["at0015"] = <
+					text = <"Pathologic Examination">
+					description = <"Pathologic Examination;	C4086729	NCI	C125006">
+				>
+				["at0018"] = <
+					text = <"Tumor Examination">
+					description = <"Tumor Examination	C2983686	NCI	\"
+C90479\"	\"An assessment or evaluation of a neoplastic mass. (NCI) (NCI)
+An assessment or evaluation of a neoplastic mass. (NCI)\"">
+				>
+				["at0022"] = <
+					text = <"Newborn Examination">
+					description = <"Newborn Examination	 C2827500	NCI	C84749	A general assessment of the overall health of a newborn. (NCI)">
+				>
+				["at0024"] = <
+					text = <"Maternal-Fetal Examination">
+					description = <"Maternal-Fetal Examination	C4086565	NCI	C124597	\"An assessment of the shared maternal-fetal structures. (NCI)
+An assessment of the shared maternal and fetal tissues including amniotic fluid, umbilical cord and placenta. (NCI)\"">
+				>
+				["at0026"] = <
+					text = <"External Examination">
+					description = <"C4086289 NCI:
+C124596">
+				>
+			>
+		>
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Abdominal Pain">
+					description = <"*Archetype that describe abdominla pain as a archetype that describes abdominal pain as a symptom(pt)">
+				>
+				["at0001"] = <
+					text = <"*Event Series(pt)">
+					description = <"*@ internal @(pt)">
+				>
+				["at0002"] = <
+					text = <"*Any event(pt)">
+					description = <"**(pt)">
+				>
+				["at0003"] = <
+					text = <"*Tree(pt)">
+					description = <"*@ internal @(pt)">
+				>
+				["at0004"] = <
+					text = <"*Abdominal Pain(pt)">
+					description = <"*CUI: C0000737 SNOMEDCT_US: 21522001, NCI: C26682, ICD10CM: R10.9, ICD9CM: 789.00(pt)">
+				>
+				["at0005"] = <
+					text = <"*Associated symptom
+(pt)">
+					description = <"*Associated symptom C0521989, 
+SNOMEDCT_US: 
+102483000, 
+NCI: C168433, The signs and symptoms present with the chief complaint. (NCI)
+Symptoms and signs present with the chief complaint. (NCI)(pt)">
+				>
+				["at0006"] = <
+					text = <"*YES(pt)">
+					description = <"*Yes - Presence findings, C1298907, SNOMEDCT_US: 373066001(pt)">
+				>
+				["at0007"] = <
+					text = <"*NO(pt)">
+					description = <"*no CUI: C1298908; SNOMED_CT: 373067005; NCI: C49487(pt)">
+				>
+				["at0008"] = <
+					text = <"*Gastrointestinal Symptom(pt)">
+					description = <"*Gastrointestinal symptom 	C0426576	SNOMEDCT_US	267045008
+(pt)">
+				>
+				["at0009"] = <
+					text = <"*Upper Abdominal Pain(pt)">
+					description = <"*Upper abdominal pain, CUI: C0232492; 
+SNOMEDCT_US: 
+83132003, 
+ICD10: 
+R10.1(pt)">
+				>
+				["at0010"] = <
+					text = <"*YES(pt)">
+					description = <"*Yes - Presence findings, C1298907, SNOMEDCT_US: 373066001(pt)">
+				>
+				["at0011"] = <
+					text = <"*NO(pt)">
+					description = <"*no CUI: C1298908; SNOMED_CT: 373067005; NCI: C49487(pt)">
+				>
+				["at0012"] = <
+					text = <"*Lower Abdominal Pain(pt)">
+					description = <"*Lower abdominal pain, CUI: C0232495, 
+SNOMEDCT_US: 
+54586004, NCI: 
+C35272, ICD10CM: R10.30(pt)">
+				>
+				["at0013"] = <
+					text = <"*Medical Examination(pt)">
+					description = <"*Medical Examination, C0582103, SNOMEDCT_US: 225886003, NCI: C25305   An appraisal or evaluation of a patient's condition by a clinician that is based on a physical exam, medical history, and the patient's account of symptoms. (NCI)
+An appraisal or evaluation of a patient's condition by a physician or registered nurse, based on clinical and laboratory data, medical history, and the patient's account of symptoms. Check for \"https://www.cancer.gov/about-cancer/treatment/clinical-trials/intervention/C25305\" active clinical trials using this agent. (\"http://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NCI%20Thesaurus&code=C25305\" NCI Thesaurus) (PDQ)(pt)">
+				>
+				["at0014"] = <
+					text = <"*Physical Examination(pt)">
+					description = <"*Physical Examination, CUI: C0031809, SNOMEDCT_US: 81375008; SNOMEDCT_US: 5880005; SNOMEDCT_US: 302199004; NCI: C20989; ICD9CM: 89.7(pt)">
+				>
+				["at0015"] = <
+					text = <"*Pathologic Examination(pt)">
+					description = <"*Pathologic Examination;	C4086729	NCI	C125006(pt)">
+				>
+				["at0018"] = <
+					text = <"*Tumor Examination(pt)">
+					description = <"*Tumor Examination	C2983686	NCI	\"
+C90479\"	\"An assessment or evaluation of a neoplastic mass. (NCI) (NCI)
+An assessment or evaluation of a neoplastic mass. (NCI)\"(pt)">
+				>
+				["at0022"] = <
+					text = <"*Newborn Examination(pt)">
+					description = <"*Newborn Examination	 C2827500	NCI	C84749	A general assessment of the overall health of a newborn. (NCI)(pt)">
+				>
+				["at0024"] = <
+					text = <"*Maternal-Fetal Examination(pt)">
+					description = <"*Maternal-Fetal Examination	C4086565	NCI	C124597	\"An assessment of the shared maternal-fetal structures. (NCI)
+An assessment of the shared maternal and fetal tissues including amniotic fluid, umbilical cord and placenta. (NCI)\"(pt)">
+				>
+				["at0026"] = <
+					text = <"*Externo(pt)">
+					description = <"*C4086289 NCI:
+C124596(pt)">
+				>
+			>
+		>
+	>

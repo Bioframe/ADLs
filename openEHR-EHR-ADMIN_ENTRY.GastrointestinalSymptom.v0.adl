@@ -1,0 +1,553 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-ADMIN_ENTRY.gastrointestinalsymptom.v0
+
+concept
+	[at0000]	-- *Sintomas gastrointestinais(pt)
+language
+	original_language = <[ISO_639-1::pt]>
+	translations = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			author = <
+				["name"] = <"?">
+			>
+		>
+	>
+description
+	original_author = <
+		["name"] = <"">
+	>
+	details = <
+		["pt"] = <
+			language = <[ISO_639-1::pt]>
+			purpose = <"Definir os conceitos relacionados a Sintomas Gastrointestinal">
+			use = <"Associação dos Sintomas Gastrointestinais - definir melhor depois">
+			misuse = <"">
+			copyright = <"">
+		>
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"*Definir os conceitos relacionados a Sintomas Gastrointestinal(pt)">
+			use = <"*Associação dos Sintomas Gastrointestinais - definir melhor depois(pt)">
+			misuse = <"*(pt)">
+			copyright = <"*(pt)">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <>
+	other_details = <
+		["MD5-CAM-1.0.1"] = <"BE42A6FC2B6D86A1747C345CB5DB3B2B">
+	>
+
+definition
+	ADMIN_ENTRY[at0000] matches {	-- *Sintomas gastrointestinais(pt)
+		data matches {
+			ITEM_TREE[at0001] matches {	-- *Tree(pt)
+				items cardinality matches {0..*; unordered} matches {
+					CLUSTER[at0002] occurrences matches {0..1} matches {	-- *Sintomas Gastrointestinais(pt)
+						items cardinality matches {1..*; unordered} matches {
+							ELEMENT[at0003] occurrences matches {0..1} matches {	-- *>= 2 semanas(pt)
+								value matches {
+									DV_CODED_TEXT matches {
+										defining_code matches {
+											[local::
+											at0004, 	-- *SIM(pt)
+											at0005]	-- *NÃO(pt)
+										}
+									}
+								}
+							}
+							ELEMENT[at0006] occurrences matches {0..1} matches {	-- *>= 4 semanas(pt)
+								value matches {
+									DV_CODED_TEXT matches {
+										defining_code matches {
+											[local::
+											at0007, 	-- *SIM(pt)
+											at0008]	-- *NÃO(pt)
+										}
+									}
+								}
+							}
+							ELEMENT[at0009] occurrences matches {0..1} matches {	-- *<= 2 dias(pt)
+								value matches {
+									DV_CODED_TEXT matches {
+										defining_code matches {
+											[local::
+											at0010, 	-- *SIM(pt)
+											at0011]	-- *NÃO(pt)
+										}
+									}
+								}
+							}
+							ELEMENT[at0012] occurrences matches {0..1} matches {	-- *<= 7 dias(pt)
+								value matches {
+									DV_CODED_TEXT matches {
+										defining_code matches {
+											[local::
+											at0013, 	-- *SIM(pt)
+											at0014]	-- *NÃO(pt)
+										}
+									}
+								}
+							}
+							ELEMENT[at0015] occurrences matches {0..1} matches {	-- *Sintoma Associado(pt)
+								name matches {
+									DV_CODED_TEXT matches {
+										defining_code matches {
+											[local::
+											at0027, 	-- *SIM(pt)
+											at0028]	-- *Não(pt)
+										}
+									}
+								}
+							}
+							ELEMENT[at0016] occurrences matches {0..1} matches {	-- *ODINOFAGIA(pt)
+								value matches {
+									DV_CODED_TEXT matches {
+										defining_code matches {
+											[local::
+											at0017, 	-- *SIM(pt)
+											at0018]	-- *NÃO(pt)
+										}
+									}
+								}
+							}
+							ELEMENT[at0019] occurrences matches {0..1} matches {	-- *CONSTIPAÇÃO(pt)
+								value matches {
+									DV_TEXT matches {*}
+								}
+							}
+							ELEMENT[at0020] occurrences matches {0..1} matches {	-- *INAPETÊNCIA(pt)
+								value matches {
+									DV_CODED_TEXT matches {
+										defining_code matches {
+											[local::
+											at0021, 	-- *SIM(pt)
+											at0022]	-- *NÃO(pt)
+										}
+									}
+								}
+							}
+							ELEMENT[at0023] occurrences matches {0..1} matches {	-- *APETÊNCIA(pt)
+								value matches {
+									DV_TEXT matches {*}
+								}
+							}
+							ELEMENT[at0024] occurrences matches {0..1} matches {	-- *XEROSTOMIA(pt)
+								value matches {
+									DV_TEXT matches {*}
+								}
+							}
+							ELEMENT[at0025] occurrences matches {0..1} matches {	-- *AZIA | REFLUXO(pt)
+								value matches {
+									DV_TEXT matches {*}
+								}
+							}
+							ELEMENT[at0026] occurrences matches {0..1} matches {	-- *LESÕES ORAIS(pt)
+								value matches {
+									DV_TEXT matches {*}
+								}
+							}
+							ELEMENT[at0029] occurrences matches {0..1} matches {	-- *Náusea(pt)
+								value matches {
+									DV_TEXT matches {*}
+								}
+							}
+							ELEMENT[at0030] occurrences matches {0..1} matches {	-- *Náusea e Vômito(pt)
+								value matches {
+									DV_TEXT matches {*}
+								}
+							}
+							ELEMENT[at0031] occurrences matches {0..1} matches {	-- *Vômito(pt)
+								value matches {
+									DV_TEXT matches {*}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["pt"] = <
+			items = <
+				["at0000"] = <
+					text = <"Sintomas gastrointestinais">
+					description = <"Arquétipo que define, de modo resumido e compactado os Sintomas Gastrointestinais">
+				>
+				["at0001"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Sintomas Gastrointestinais">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <">= 2 semanas">
+					description = <"C4526586	NCI	\"
+MSAS-7-12 / C136324 O período de 48 horas ocorrendo pouco antes do tempo presente.  (NCI)">
+				>
+				["at0004"] = <
+					text = <"SIM">
+					description = <"Yes - Presence findings C1298907 \"
+SNOMEDCT_US\" \"
+373066001\"">
+				>
+				["at0005"] = <
+					text = <"NÃO">
+					description = <"no, No (qualifier value) C1298908 SNOMEDCT_US \"
+373067005\"">
+				>
+				["at0006"] = <
+					text = <">= 4 semanas">
+					description = <"Past 4 Weeks / Past 4 Weeks / Last 4 Weeks	C3828653	SNOMEDCT_US	MOS / C110986 Um período de tempo que consiste em 28 dias antes do presente. (NCI)">
+				>
+				["at0007"] = <
+					text = <"SIM">
+					description = <"Yes - Presence findings	C1298907	\"
+SNOMEDCT_US\"	\"
+373066001\"	N/A">
+				>
+				["at0008"] = <
+					text = <"NÃO">
+					description = <"no, No (qualifier value)	C1298908	SNOMEDCT_US	\"
+373067005\"	\"The non-affirmative response to a question. (NCI) (NCI)
+The non-affirmative response to a question. (NCI)
+Word pronounced incorrectly (LNC)
+(J0400=1 thru 4) (LNC)\"">
+				>
+				["at0009"] = <
+					text = <"<= 2 dias">
+					description = <"Last 2 days / Last 2 Days / Last Two Days / Past 2 Days / Past Two Days	C4526586	NCI	\"
+MSAS-7-12 / C136324\"	O período de 48 horas ocorrendo pouco antes do tempo presente. ... (NCI)">
+				>
+				["at0010"] = <
+					text = <"SIM">
+					description = <"Yes - Presence findings	C1298907 \"
+SNOMEDCT_US\"	\"
+373066001\"">
+				>
+				["at0011"] = <
+					text = <"NÃO">
+					description = <"no, No (qualifier value)	C1298908	SNOMEDCT_US	\"
+373067005\"">
+				>
+				["at0012"] = <
+					text = <"<= 7 dias">
+					description = <"In the last 7 days 	C3843296	LNC	LA14692-0	
+">
+				>
+				["at0013"] = <
+					text = <"SIM">
+					description = <"Yes - Presence findings	C1298907	\"
+SNOMEDCT_US\"	\"
+373066001\"">
+				>
+				["at0014"] = <
+					text = <"NÃO">
+					description = <"no, No (qualifier value)	C1298908	SNOMEDCT_US	\"
+373067005\"	\"The non-affirmative response to a question. (NCI) (NCI)
+The non-affirmative response to a question. (NCI)
+Word pronounced incorrectly (LNC)
+(J0400=1 thru 4) (LNC)\"">
+				>
+				["at0015"] = <
+					text = <"Sintoma Associado">
+					description = <"Associated symptom	C0521989	SNOMEDCT_US	\"
+102483000\"
+\"
+NCI\"	\"
+C168433\"
+\"The signs and symptoms present with the chief complaint. (NCI)
+Symptoms and signs present with the chief complaint. (NCI)\"">
+				>
+				["at0016"] = <
+					text = <"ODINOFAGIA">
+					description = <"Swallowing painful / Swallowing painful (finding) / Odynophagia / Pain on swallowing / Painful swallowing	C0221150	SNOMEDCT_US	30233002		\"Dor experimentada ao engolir. [] (HPO)
+Dor ao engolir. (NCI)\"">
+				>
+				["at0017"] = <
+					text = <"SIM">
+					description = <"Yes - Presence findings	C1298907	\"
+SNOMEDCT_US\"	\"
+373066001\"">
+				>
+				["at0018"] = <
+					text = <"NÃO">
+					description = <"no, No (qualifier value)	C1298908	SNOMEDCT_US	\"
+373067005\"">
+				>
+				["at0019"] = <
+					text = <"CONSTIPAÇÃO">
+					description = <"Constipation / Constipation (finding) / Difficult passing motion / Difficulty defecating / Difficulty opening bowels / Difficulty passing stool	C0009806	SNOMEDCT_US	14760008		\"Evacuação infrequente ou difícil de FECES. Esses sintomas estão associados a uma variedade de causas, incluindo baixa ingestão de FIBRA ALIMENTAR, distúrbios emocionais ou nervosos, distúrbios sistêmicos e estruturais, agravamento induzido por drogas e infecções. (MSH)
+Evacuação infrequente ou difícil de fezes. [HPO: probinson] (HPO)
+Evacuação irregular e infrequente ou difícil dos intestinos. (NCI)
+Distúrbio caracterizado por evacuação irregular e infrequente ou difícil dos intestinos. (NCI)
+Condição em que as fezes ficam duras, secas e difíceis de evacuar, e os movimentos intestinais não acontecem com muita frequência. Outros sintomas podem incluir evacuações dolorosas e sensação de inchaço, desconforto e lentidão. (NCI)
+Constipação significa que uma pessoa tem três ou menos evacuações por semana. As fezes podem estar duras e secas. Às vezes é doloroso passar. Em um momento ou outro, quase todo mundo fica constipado. Na maioria dos casos, dura pouco e não é grave.
+
+Há muitas coisas que você pode fazer para prevenir a constipação. Eles incluem
+
+Comer mais frutas, vegetais e grãos, que são ricos em fibras
+Beber muita água e outros líquidos
+Fazendo bastante exercício
+Reserve um tempo para evacuar quando você precisar
+Usar laxantes apenas se o seu médico disser que você deve
+Perguntar ao seu médico se os medicamentos que você toma podem causar prisão de ventre
+Não é importante que você evacue todos os dias. Se seus hábitos intestinais mudarem, no entanto, verifique com seu médico.
+
+NIH: Instituto Nacional de Diabetes e Doenças Digestivas e Renais
+
+(MEDLINEPLUS)
+Passagem difícil de fezes duras e secas (CCC)
+Diminuição da frequência normal de defecação acompanhada por passagem difícil ou incompleta de fezes e / ou passagem de fezes secas e excessivamente duras. (NANDA-I)
+Condição em que os movimentos intestinais são infrequentes ou incompletos. (CSP)
+Evacuação difícil ou pouco frequente de FEZES. Esses sintomas estão associados a várias causas, como baixa ingestão de FIBRA ALIMENTAR, distúrbios emocionais ou nervosos, distúrbios sistêmicos e estruturais, agravos induzidos por drogas e infecções. (MSHPOR\"">
+				>
+				["at0020"] = <
+					text = <"INAPETÊNCIA">
+					description = <"Decrease in appetite / Decrease in appetite (finding) / Poor appetite / Reduced appetite / Inappetence / Hyporexia / Decreased appetite 	C0232462	SNOMEDCT_US	64379006">
+				>
+				["at0021"] = <
+					text = <"SIM">
+					description = <"Yes - Presence findings	C1298907	\"
+SNOMEDCT_US\"	\"
+373066001\"">
+				>
+				["at0022"] = <
+					text = <"NÃO">
+					description = <"no, No (qualifier value)	C1298908	SNOMEDCT_US	\"
+373067005\"">
+				>
+				["at0023"] = <
+					text = <"APETÊNCIA">
+					description = <"C0003618">
+				>
+				["at0024"] = <
+					text = <"XEROSTOMIA">
+					description = <"*">
+				>
+				["at0025"] = <
+					text = <"AZIA | REFLUXO">
+					description = <"*">
+				>
+				["at0026"] = <
+					text = <"LESÕES ORAIS">
+					description = <"*">
+				>
+				["at0027"] = <
+					text = <"SIM">
+					description = <"*">
+				>
+				["at0028"] = <
+					text = <"Não">
+					description = <"*">
+				>
+				["at0029"] = <
+					text = <"Náusea">
+					description = <"*">
+				>
+				["at0030"] = <
+					text = <"Náusea e Vômito">
+					description = <"*">
+				>
+				["at0031"] = <
+					text = <"Vômito">
+					description = <"C0042963 ">
+				>
+			>
+		>
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"*Sintomas gastrointestinais(pt)">
+					description = <"*Arquétipo que define, de modo resumido e compactado os Sintomas Gastrointestinais(pt)">
+				>
+				["at0001"] = <
+					text = <"*Tree(pt)">
+					description = <"*@ internal @(pt)">
+				>
+				["at0002"] = <
+					text = <"*Sintomas Gastrointestinais(pt)">
+					description = <"**(pt)">
+				>
+				["at0003"] = <
+					text = <"*>= 2 semanas(pt)">
+					description = <"*C4526586	NCI	\"
+MSAS-7-12 / C136324 O período de 48 horas ocorrendo pouco antes do tempo presente.  (NCI)(pt)">
+				>
+				["at0004"] = <
+					text = <"*SIM(pt)">
+					description = <"*Yes - Presence findings C1298907 \"
+SNOMEDCT_US\" \"
+373066001\"(pt)">
+				>
+				["at0005"] = <
+					text = <"*NÃO(pt)">
+					description = <"*no, No (qualifier value) C1298908 SNOMEDCT_US \"
+373067005\"(pt)">
+				>
+				["at0006"] = <
+					text = <"*>= 4 semanas(pt)">
+					description = <"*Past 4 Weeks / Past 4 Weeks / Last 4 Weeks	C3828653	SNOMEDCT_US	MOS / C110986 Um período de tempo que consiste em 28 dias antes do presente. (NCI)(pt)">
+				>
+				["at0007"] = <
+					text = <"*SIM(pt)">
+					description = <"*Yes - Presence findings	C1298907	\"
+SNOMEDCT_US\"	\"
+373066001\"	N/A(pt)">
+				>
+				["at0008"] = <
+					text = <"*NÃO(pt)">
+					description = <"*no, No (qualifier value)	C1298908	SNOMEDCT_US	\"
+373067005\"	\"The non-affirmative response to a question. (NCI) (NCI)
+The non-affirmative response to a question. (NCI)
+Word pronounced incorrectly (LNC)
+(J0400=1 thru 4) (LNC)\"(pt)">
+				>
+				["at0009"] = <
+					text = <"*<= 2 dias(pt)">
+					description = <"*Last 2 days / Last 2 Days / Last Two Days / Past 2 Days / Past Two Days	C4526586	NCI	\"
+MSAS-7-12 / C136324\"	O período de 48 horas ocorrendo pouco antes do tempo presente. ... (NCI)(pt)">
+				>
+				["at0010"] = <
+					text = <"*SIM(pt)">
+					description = <"*Yes - Presence findings	C1298907 \"
+SNOMEDCT_US\"	\"
+373066001\"(pt)">
+				>
+				["at0011"] = <
+					text = <"*NÃO(pt)">
+					description = <"*no, No (qualifier value)	C1298908	SNOMEDCT_US	\"
+373067005\"(pt)">
+				>
+				["at0012"] = <
+					text = <"*<= 7 dias(pt)">
+					description = <"*In the last 7 days 	C3843296	LNC	LA14692-0	
+(pt)">
+				>
+				["at0013"] = <
+					text = <"*SIM(pt)">
+					description = <"*Yes - Presence findings	C1298907	\"
+SNOMEDCT_US\"	\"
+373066001\"(pt)">
+				>
+				["at0014"] = <
+					text = <"*NÃO(pt)">
+					description = <"*no, No (qualifier value)	C1298908	SNOMEDCT_US	\"
+373067005\"	\"The non-affirmative response to a question. (NCI) (NCI)
+The non-affirmative response to a question. (NCI)
+Word pronounced incorrectly (LNC)
+(J0400=1 thru 4) (LNC)\"(pt)">
+				>
+				["at0015"] = <
+					text = <"*Sintoma Associado(pt)">
+					description = <"*Associated symptom	C0521989	SNOMEDCT_US	\"
+102483000\"
+\"
+NCI\"	\"
+C168433\"
+\"The signs and symptoms present with the chief complaint. (NCI)
+Symptoms and signs present with the chief complaint. (NCI)\"(pt)">
+				>
+				["at0016"] = <
+					text = <"*ODINOFAGIA(pt)">
+					description = <"*Swallowing painful / Swallowing painful (finding) / Odynophagia / Pain on swallowing / Painful swallowing	C0221150	SNOMEDCT_US	30233002		\"Dor experimentada ao engolir. [] (HPO)
+Dor ao engolir. (NCI)\"(pt)">
+				>
+				["at0017"] = <
+					text = <"*SIM(pt)">
+					description = <"*Yes - Presence findings	C1298907	\"
+SNOMEDCT_US\"	\"
+373066001\"(pt)">
+				>
+				["at0018"] = <
+					text = <"*NÃO(pt)">
+					description = <"*no, No (qualifier value)	C1298908	SNOMEDCT_US	\"
+373067005\"(pt)">
+				>
+				["at0019"] = <
+					text = <"*CONSTIPAÇÃO(pt)">
+					description = <"*Constipation / Constipation (finding) / Difficult passing motion / Difficulty defecating / Difficulty opening bowels / Difficulty passing stool	C0009806	SNOMEDCT_US	14760008		\"Evacuação infrequente ou difícil de FECES. Esses sintomas estão associados a uma variedade de causas, incluindo baixa ingestão de FIBRA ALIMENTAR, distúrbios emocionais ou nervosos, distúrbios sistêmicos e estruturais, agravamento induzido por drogas e infecções. (MSH)
+Evacuação infrequente ou difícil de fezes. [HPO: probinson] (HPO)
+Evacuação irregular e infrequente ou difícil dos intestinos. (NCI)
+Distúrbio caracterizado por evacuação irregular e infrequente ou difícil dos intestinos. (NCI)
+Condição em que as fezes ficam duras, secas e difíceis de evacuar, e os movimentos intestinais não acontecem com muita frequência. Outros sintomas podem incluir evacuações dolorosas e sensação de inchaço, desconforto e lentidão. (NCI)
+Constipação significa que uma pessoa tem três ou menos evacuações por semana. As fezes podem estar duras e secas. Às vezes é doloroso passar. Em um momento ou outro, quase todo mundo fica constipado. Na maioria dos casos, dura pouco e não é grave.
+
+Há muitas coisas que você pode fazer para prevenir a constipação. Eles incluem
+
+Comer mais frutas, vegetais e grãos, que são ricos em fibras
+Beber muita água e outros líquidos
+Fazendo bastante exercício
+Reserve um tempo para evacuar quando você precisar
+Usar laxantes apenas se o seu médico disser que você deve
+Perguntar ao seu médico se os medicamentos que você toma podem causar prisão de ventre
+Não é importante que você evacue todos os dias. Se seus hábitos intestinais mudarem, no entanto, verifique com seu médico.
+
+NIH: Instituto Nacional de Diabetes e Doenças Digestivas e Renais
+
+(MEDLINEPLUS)
+Passagem difícil de fezes duras e secas (CCC)
+Diminuição da frequência normal de defecação acompanhada por passagem difícil ou incompleta de fezes e / ou passagem de fezes secas e excessivamente duras. (NANDA-I)
+Condição em que os movimentos intestinais são infrequentes ou incompletos. (CSP)
+Evacuação difícil ou pouco frequente de FEZES. Esses sintomas estão associados a várias causas, como baixa ingestão de FIBRA ALIMENTAR, distúrbios emocionais ou nervosos, distúrbios sistêmicos e estruturais, agravos induzidos por drogas e infecções. (MSHPOR\"(pt)">
+				>
+				["at0020"] = <
+					text = <"*INAPETÊNCIA(pt)">
+					description = <"*Decrease in appetite / Decrease in appetite (finding) / Poor appetite / Reduced appetite / Inappetence / Hyporexia / Decreased appetite 	C0232462	SNOMEDCT_US	64379006(pt)">
+				>
+				["at0021"] = <
+					text = <"*SIM(pt)">
+					description = <"*Yes - Presence findings	C1298907	\"
+SNOMEDCT_US\"	\"
+373066001\"(pt)">
+				>
+				["at0022"] = <
+					text = <"*NÃO(pt)">
+					description = <"*no, No (qualifier value)	C1298908	SNOMEDCT_US	\"
+373067005\"(pt)">
+				>
+				["at0023"] = <
+					text = <"*APETÊNCIA(pt)">
+					description = <"*C0003618(pt)">
+				>
+				["at0024"] = <
+					text = <"*XEROSTOMIA(pt)">
+					description = <"**(pt)">
+				>
+				["at0025"] = <
+					text = <"*AZIA | REFLUXO(pt)">
+					description = <"**(pt)">
+				>
+				["at0026"] = <
+					text = <"*LESÕES ORAIS(pt)">
+					description = <"**(pt)">
+				>
+				["at0027"] = <
+					text = <"*SIM(pt)">
+					description = <"**(pt)">
+				>
+				["at0028"] = <
+					text = <"*Não(pt)">
+					description = <"**(pt)">
+				>
+				["at0029"] = <
+					text = <"*Náusea(pt)">
+					description = <"**(pt)">
+				>
+				["at0030"] = <
+					text = <"*Náusea e Vômito(pt)">
+					description = <"**(pt)">
+				>
+				["at0031"] = <
+					text = <"*Vômito(pt)">
+					description = <"*C0042963 (pt)">
+				>
+			>
+		>
+	>

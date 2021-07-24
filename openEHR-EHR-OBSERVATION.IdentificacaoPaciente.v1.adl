@@ -1,0 +1,411 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.identificacaopaciente.v1
+
+concept
+	[at0000]	-- Identificação do Paciente
+language
+	original_language = <[ISO_639-1::pt]>
+description
+	original_author = <
+		["name"] = <"">
+	>
+	details = <
+		["pt"] = <
+			language = <[ISO_639-1::pt]>
+			purpose = <"Descreve as características de Identificação do Paciente">
+			use = <"Para Identificação dos dados essenciais do paciente
+">
+			misuse = <"">
+			copyright = <"">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <>
+	other_details = <
+		["MD5-CAM-1.0.1"] = <"6593EBC8266EA7F320DF399EEE103BA0">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- Identificação do Paciente
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {1..2; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {	-- Data da Avaliação
+										value matches {
+											DV_DATE matches {*}
+										}
+									}
+									CLUSTER[at0045] occurrences matches {0..1} matches {	-- Identificação do Paciente
+										items cardinality matches {2..*; unordered} matches {
+											ELEMENT[at0007] occurrences matches {0..1} matches {	-- Idade
+												value matches {
+													C_DV_QUANTITY <
+														property = <[openehr::128]>
+														list = <
+															["1"] = <
+																units = <"a">
+																magnitude = <|>=0.0|>
+															>
+														>
+													>
+												}
+											}
+											ELEMENT[at0010] occurrences matches {1..2} matches {	-- Gênero
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0011, 	-- Masculino
+															at0012]	-- Feminino
+														}
+													}
+												}
+											}
+											ELEMENT[at0014] occurrences matches {0..1} matches {	-- Raça | Cor
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0015, 	-- Branca
+															at0016, 	-- Amarelo
+															at0017]	-- Negra
+														}
+													}
+												}
+											}
+											ELEMENT[at0019] occurrences matches {0..1} matches {	-- ESTADOS
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0020, 	-- São Paulo
+															at0021, 	-- Rio de Janeiro
+															at0022, 	-- Minas Gerais
+															at0023, 	-- Espírito Santo
+															at0024, 	-- Paraná
+															at0025]	-- Santa Catarina
+														}
+													}
+												}
+											}
+											ELEMENT[at0031] occurrences matches {0..101} matches {	-- Municípios
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0032, 	-- São Paulo - SP
+															at0033, 	-- São José do Rio Preto - SJRP
+															at0034, 	-- Campinas
+															at0035, 	-- Jundiaí
+															at0036, 	-- Campo Limpo Paulista
+															at0037, 	-- Jairnu
+															at0038, 	-- Guarulhos
+															at0039, 	-- Osasco
+															at0040, 	-- Tanabi
+															at0041, 	-- Hortolândia
+															at0042, 	-- Sumaré
+															at0043, 	-- Franco da Rocha
+															at0044]	-- Mairiporã
+														}
+													}
+												}
+											}
+											ELEMENT[at0030] occurrences matches {0..1} matches {	-- Responsável:
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0069, 	-- Tutor- Legal
+															at0070, 	-- Pai
+															at0071]	-- Mãe
+														}
+													}
+												}
+											}
+											ELEMENT[at0046] occurrences matches {0..1} matches {	-- Nome
+												value matches {
+													DV_TEXT matches {*}
+												}
+											}
+											ELEMENT[at0051] occurrences matches {0..1} matches {	-- Caso Novo
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0052, 	-- Sim
+															at0053, 	-- Não
+															at0072]	-- Reciva-Recorrência
+														}
+													}
+												}
+											}
+											ELEMENT[at0055] occurrences matches {1..4} matches {	-- Tipo Sanguíneo ABO
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0061, 	-- A+
+															at0062, 	-- A -
+															at0063, 	-- AB+
+															at0064, 	-- AB-
+															at0065, 	-- B+
+															at0066, 	-- B-
+															at0073, 	-- O+
+															at0074]	-- O-
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["pt"] = <
+			items = <
+				["at0000"] = <
+					text = <"Identificação do Paciente">
+					description = <"Contém os dados básicos de identificação do paciente.">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Data da Avaliação">
+					description = <"Data da Avaliação nutricional">
+				>
+				["at0007"] = <
+					text = <"Idade">
+					description = <"Age - Idade atual do paciente, CUI: C0001779, SNOMEDCT_US: 424144002 Idade após o nascimento. (FMA)
+O tempo passou desde o nascimento. (NCI)
+Há quanto tempo algo existe; tempo decorrido desde o nascimento. (NCI) (NCI)
+Tempo decorrido após o nascimento. (NCI)
+Há quanto tempo algo existe; tempo decorrido desde o nascimento. (NCI)">
+					comment = <"Patient date of birth - C0421451 - SNOMEDCT_US - 184099003 A data do calendário em que todo o bebê nasceu. (NCI)
+A data do calendário em que uma pessoa nasceu. (NCI)">
+				>
+				["at0010"] = <
+					text = <"Gênero">
+					description = <"Gender, C0079399, SNOMEDCT_US 263495000
+Identidade socialmente construída de homem ou mulher. (MSH)
+O conjunto de propriedades que distinguem as pessoas com base nos papéis sociais esperados para os dois sexos. (NCI)
+Auto-identificação do sujeito com relação ao masculino / feminino. [IOM] Veja também sexo. (NCI)
+">
+				>
+				["at0011"] = <
+					text = <"Masculino">
+					description = <"Male/ Male (finding)/ Male structure / Male structure (body structure) / Male individual / Male, C0086582, SNOMEDCT_US 248153007 / A person who belongs to the sex that normally produces sperm. The term is used to indicate biological sex distinctions, cultural gender role distinctions, or both. (NCI) (NCI)">
+				>
+				["at0012"] = <
+					text = <"Feminino">
+					description = <"Female / Female (finding) / Female structure / Female structure (body structure) / Female individual / Female, C0086287 SNOMEDCT_US 248152002 / 1086007, A person who belongs to the sex that normally produces ova. The term is used to indicate biological sex distinctions, or cultural gender role distinctions, or both. (NCI)">
+				>
+				["at0014"] = <
+					text = <"Raça | Cor">
+					description = <"*">
+				>
+				["at0015"] = <
+					text = <"Branca">
+					description = <"Branca">
+				>
+				["at0016"] = <
+					text = <"Amarelo">
+					description = <"Amarela">
+				>
+				["at0017"] = <
+					text = <"Negra">
+					description = <"Negra">
+				>
+				["at0019"] = <
+					text = <"ESTADOS">
+					description = <"*">
+				>
+				["at0020"] = <
+					text = <"São Paulo">
+					description = <"São Paulo">
+				>
+				["at0021"] = <
+					text = <"Rio de Janeiro">
+					description = <"Rio de Janeiro">
+				>
+				["at0022"] = <
+					text = <"Minas Gerais">
+					description = <"Minas Gerais">
+				>
+				["at0023"] = <
+					text = <"Espírito Santo">
+					description = <"Espírito Santo">
+				>
+				["at0024"] = <
+					text = <"Paraná">
+					description = <"*">
+				>
+				["at0025"] = <
+					text = <"Santa Catarina">
+					description = <"Santa Catarina">
+				>
+				["at0030"] = <
+					text = <"Responsável:">
+					description = <"Parental Consent C0600634 MSH D033282">
+				>
+				["at0031"] = <
+					text = <"Municípios">
+					description = <"*">
+				>
+				["at0032"] = <
+					text = <"São Paulo - SP">
+					description = <"São Paulo - SP">
+				>
+				["at0033"] = <
+					text = <"São José do Rio Preto - SJRP">
+					description = <"São José do Rio Preto - SJRP">
+				>
+				["at0034"] = <
+					text = <"Campinas">
+					description = <"Campinas">
+				>
+				["at0035"] = <
+					text = <"Jundiaí">
+					description = <"Jundiaí">
+				>
+				["at0036"] = <
+					text = <"Campo Limpo Paulista">
+					description = <"Campo Limpo Paulista">
+				>
+				["at0037"] = <
+					text = <"Jairnu">
+					description = <"Jairnu">
+				>
+				["at0038"] = <
+					text = <"Guarulhos">
+					description = <"Guarulhos">
+				>
+				["at0039"] = <
+					text = <"Osasco">
+					description = <"Osasco">
+				>
+				["at0040"] = <
+					text = <"Tanabi">
+					description = <"Tanabi">
+				>
+				["at0041"] = <
+					text = <"Hortolândia">
+					description = <"Hortolândia">
+				>
+				["at0042"] = <
+					text = <"Sumaré">
+					description = <"Sumaré">
+				>
+				["at0043"] = <
+					text = <"Franco da Rocha">
+					description = <"Franco da Rocha">
+				>
+				["at0044"] = <
+					text = <"Mairiporã">
+					description = <"Mairiporã">
+				>
+				["at0045"] = <
+					text = <"Identificação do Paciente">
+					description = <"Cluster que agrupa e identifica o paciente Identificação do Paciente">
+				>
+				["at0046"] = <
+					text = <"Nome">
+					description = <"Name C0027365 SNOMEDCT_US 703503000 Palavra ou conjunto de palavras pelas quais a pessoa e conhecida, endereçadas ou mencionadas. (SNOMEDCT_US)
+Conforme palavras ou unidades de linguagem descascam quais a coisa e conhecida. (NCI) Nomes pessoais, determinados ou nomeados, como características culturais, como etnologia ou mecenato religioso, como indicações da distribuição geográfica das famílias e consanguinidade, etc. A análise de isonímia, com qualidades iguais ou semelhantes, não é útil para estudar a genética da genética populacional. NOMES também são usados ​​para o histórico de nomes ou mudanças de nomes de pessoas jurídicas, como sociedades médicas, universidades, agências governamentais, etc. (MSHPOR)">
+				>
+				["at0051"] = <
+					text = <"Caso Novo">
+					description = <"Case/Case - situation (qualifier value)/ Case - situation/Cases CUI: C0868928 - SNOMEDCT_US (398241000) ">
+				>
+				["at0052"] = <
+					text = <"Sim">
+					description = <"True - Confirmação de Caso Novo">
+				>
+				["at0053"] = <
+					text = <"Não">
+					description = <"False - Recidiva, já teve cancer diagnosticado anteriormente">
+				>
+				["at0055"] = <
+					text = <"Tipo Sanguíneo ABO">
+					description = <"ABO blood group system
+UMLS CUI: C0000778
+Semantic Types: Classification 
+SNOMEDCT_US 
+63915006 A system used to group human blood into different types, based on the presence or absence of certain markers on the surface of red blood cells. The four main blood types are A, B, O, and AB. For a blood transfusion, the ABO blood group system is used to match the blood type of the donor and the person receiving the transfusion. People with blood type O can donate blood to anyone and are called universal donors. People with blood type AB can accept blood from all donors and are called universal recipients. People with type A or B can receive matching blood or type O blood. (NCI) A blood group system based on recognition of inherited differences in the H antigen as expressed on erythrocytes. (NCI) O principal sistema de tipos sanguíneos humanos que depende da [se baseia na] presença ou da [na] ausência de dois antígenos A e B. O tipo O ocorre quando A e B estão ausentes, e o tipo AB ocorre quando ambos estão presentes. Os antígenos A e B são fatores genéticos que determinam a presença de enzimas para a síntese de certas glicoproteínas, principalmente na membrana das hemácias. (MSHPOR)">
+					comment = <"ABO blood grouping - UMLS CUI: C0200499
+Semantic Types: Laboratory Procedure SNOMEDCT_US PT 91315004 ABO blood grouping SNOMEDCT_US PT 269826008
+Definitions: The determination of the blood type of an individual by testing for the presence or absence of A antigen and/or B antigen on the surface of red blood cells. (NCI)
+The characterization of the blood type of an individual by testing for the presence of A antigen and B antigen on the surface of red blood cells. (NCI) ABO typing ">
+				>
+				["at0061"] = <
+					text = <"A+">
+					description = <"Blood group A Rh(D) positive UMLS CUI: C0457313 SNOMEDCT_US: 278149003">
+				>
+				["at0062"] = <
+					text = <"A -">
+					description = <"Blood group A Rh(D) negative UMLS CUI: C0457316 SNOMEDCT_US:278152006">
+				>
+				["at0063"] = <
+					text = <"AB+">
+					description = <"Blood group AB Rh(D) positive, CUI: C0457315, SNOMEDCT_US:278151004">
+				>
+				["at0064"] = <
+					text = <"AB-">
+					description = <"Blood group AB Rh(D) negative UMLS CUI: C0457318 SNOMEDCT_US:278154007">
+				>
+				["at0065"] = <
+					text = <"B+">
+					description = <"Blood group B Rh(D) positive UMLS CUI: C0457314 SNOMEDCT_US:278150003">
+				>
+				["at0066"] = <
+					text = <"B-">
+					description = <"Blood group B Rh(D) negative UMLS CUI: C0457317 SNOMEDCT_US278153001">
+				>
+				["at0069"] = <
+					text = <"Tutor- Legal">
+					description = <"Legal guardian / Legal guardian (person) / Legal custodian, C0023226, SNOMEDCT_US 58626002 A legal concept for individuals who are designated to act on behalf of persons who are considered incapable of acting in their own behalf, e.g., minors and persons found to be not mentally competent. (MSH)">
+				>
+				["at0070"] = <
+					text = <"Pai">
+					description = <"Father / Father (person) C0015671, SNOMEDCT_US 66839005 Male parents, human or animal. (MSH)">
+				>
+				["at0071"] = <
+					text = <"Mãe">
+					description = <"Mother / Mother (person) / Maternal, C0026591, SNOMEDCT_US 72705000, Female parents, human or animal. (MSH)">
+				>
+				["at0072"] = <
+					text = <"Reciva-Recorrência">
+					description = <"Recurrent tumor / Recurrent tumor (finding) / Recurrence of tumor / Recurrent tumour / Recurrence of tumour, C0521158, SNOMEDCT_US NCI 25173007 C4798 ">
+				>
+				["at0073"] = <
+					text = <"O+">
+					description = <"Blood group O Rh(D) positive, CUI:C0457311, SNOMEDCT_US 278147001  ">
+				>
+				["at0074"] = <
+					text = <"O-">
+					description = <"Blood group O Rh(D) negative, CUI: C0457312 SNOMEDCT_US 278148006">
+				>
+			>
+		>
+	>
