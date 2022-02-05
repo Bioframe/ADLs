@@ -1,0 +1,459 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.perineum.v1
+
+concept
+	[at0000]	-- Perineum
+language
+	original_language = <[ISO_639-1::en]>
+description
+	original_author = <
+		["name"] = <"unknown">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"d">
+			use = <"d">
+			misuse = <"d">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <>
+
+definition
+	OBSERVATION[at0000] matches {	-- Perineum
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									CLUSTER[at0054] occurrences matches {0..1} matches {	-- Delivery
+										items cardinality matches {0..*; unordered} matches {
+											ELEMENT[at0029] occurrences matches {0..1} matches {	-- Intact
+												value matches {
+													DV_BOOLEAN matches {
+														value matches {True, False}
+													}
+												}
+											}
+											CLUSTER[at0005] occurrences matches {0..1} matches {	-- Episiotomy
+												items cardinality matches {0..*; unordered} matches {
+													ELEMENT[at0006] occurrences matches {0..1} matches {	-- Performed
+														value matches {
+															DV_BOOLEAN matches {
+																value matches {True, False}
+															}
+														}
+													}
+													ELEMENT[at0026] occurrences matches {0..1} matches {	-- Site
+														value matches {
+															DV_TEXT matches {
+																value matches {"Maternal left mediolateral", "Maternal right mediolateral", "Maternal left lateral", "Maternal right lateral", "J-shaped", "Other", "Median"}
+															}
+														}
+													}
+													ELEMENT[at0027] occurrences matches {0..1} matches {	-- Local Anaesthesia administered
+														value matches {
+															DV_BOOLEAN matches {
+																value matches {True, False}
+															}
+														}
+													}
+													CLUSTER[at0058] occurrences matches {0..1} matches {	-- Local Anasesthetic details
+														items cardinality matches {0..*; unordered} matches {
+															ELEMENT[at0059] occurrences matches {0..*} matches {	-- Anaesthesia drug name
+																value matches {
+																	DV_TEXT matches {*}
+																}
+															}
+															ELEMENT[at0060] occurrences matches {0..1} matches {	-- Volume administered
+																value matches {
+																	C_DV_QUANTITY <
+																		property = <[openehr::129]>
+																		list = <
+																			["1"] = <
+																				units = <"ml">
+																				magnitude = <|>=0.0|>
+																			>
+																		>
+																	>
+																}
+															}
+															ELEMENT[at0063] occurrences matches {0..1} matches {	-- Dosage
+																value matches {
+																	C_DV_QUANTITY <
+																		property = <[openehr::124]>
+																		list = <
+																			["1"] = <
+																				units = <"mg">
+																				magnitude = <|>=0.0|>
+																			>
+																		>
+																	>
+																}
+															}
+														}
+													}
+												}
+											}
+											CLUSTER[at0007] occurrences matches {0..1} matches {	-- Perineal trauma
+												items cardinality matches {0..*; unordered} matches {
+													CLUSTER[at0010] occurrences matches {0..1} matches {	-- Abrasions
+														items cardinality matches {0..*; unordered} matches {
+															ELEMENT[at0009] occurrences matches {0..1} matches {	-- Present
+																value matches {
+																	DV_BOOLEAN matches {
+																		value matches {True, False}
+																	}
+																}
+															}
+															ELEMENT[at0011] occurrences matches {0..1} matches {	-- Degree
+																value matches {
+																	DV_CODED_TEXT matches {
+																		defining_code matches {
+																			[local::
+																			at0013, 	-- Mild
+																			at0014, 	-- Moderate
+																			at0015]	-- Severe
+																		}
+																	}
+																}
+															}
+															ELEMENT[at0016] occurrences matches {0..1} matches {	-- Description
+																value matches {
+																	DV_TEXT matches {*}
+																}
+															}
+														}
+													}
+													CLUSTER[at0017] occurrences matches {0..1} matches {	-- Tear
+														items cardinality matches {0..*; unordered} matches {
+															ELEMENT[at0019] occurrences matches {0..1} matches {	-- Degree
+																value matches {
+																	DV_CODED_TEXT matches {
+																		defining_code matches {
+																			[local::
+																			at0020, 	-- First degree
+																			at0021, 	-- Second degree
+																			at0022, 	-- Third degree - 3a
+																			at0042, 	-- Fourth degree
+																			at0043, 	-- Third degree - 3b
+																			at0044]	-- Third degree - 3c
+																		}
+																	}
+																}
+															}
+															use_node ELEMENT /data[at0001]/events[at0002]/data[at0003]/items[at0054]/items[at0007]/items[at0010]/items[at0009]
+															use_node ELEMENT /data[at0001]/events[at0002]/data[at0003]/items[at0054]/items[at0007]/items[at0010]/items[at0016]
+														}
+													}
+												}
+											}
+										}
+									}
+									CLUSTER[at0036] occurrences matches {0..1} matches {	-- Repair
+										items cardinality matches {0..*; unordered} matches {
+											ELEMENT[at0048] occurrences matches {0..1} matches {	-- Description
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {[local::]}
+													}
+												}
+											}
+											ELEMENT[at0037] occurrences matches {0..1} matches {	-- Time of suturing
+												value matches {
+													DV_DATE_TIME matches {
+														value matches {yyyy-??-??T??:??:??}
+													}
+												}
+											}
+											ELEMENT[at0039] occurrences matches {0..1} matches {	-- Anaesthetic details
+												value matches {
+													DV_TEXT matches {*}
+												}
+											}
+											CLUSTER[at0046] occurrences matches {0..1} matches {	-- Vaginal mucosa
+												items cardinality matches {0..*; unordered} matches {
+													ELEMENT[at0038] occurrences matches {0..1} matches {	-- Material used
+														value matches {
+															DV_TEXT matches {*}
+														}
+													}
+													ELEMENT[at0045] occurrences matches {0..1} matches {	-- Method of suturing
+														value matches {
+															DV_TEXT matches {*}
+														}
+													}
+												}
+											}
+											CLUSTER[at0049] occurrences matches {0..4} matches {	-- Muscles
+												items cardinality matches {0..*; unordered} matches {
+													use_node ELEMENT /data[at0001]/events[at0002]/data[at0003]/items[at0036]/items[at0046]/items[at0038]
+													use_node ELEMENT /data[at0001]/events[at0002]/data[at0003]/items[at0036]/items[at0046]/items[at0045]
+												}
+											}
+											CLUSTER[at0047] occurrences matches {0..1} matches {	-- Skin
+												items cardinality matches {0..*; unordered} matches {
+													use_node ELEMENT /data[at0001]/events[at0002]/data[at0003]/items[at0036]/items[at0046]/items[at0038]
+													use_node ELEMENT /data[at0001]/events[at0002]/data[at0003]/items[at0036]/items[at0046]/items[at0045]
+												}
+											}
+											ELEMENT[at0040] occurrences matches {0..1} matches {	-- Sutured by
+												value matches {
+													DV_TEXT matches {*}
+												}
+											}
+											ELEMENT[at0041] occurrences matches {0..1} matches {	-- Suturing diagram
+												value matches {
+
+
+													DV_MULTIMEDIA matches {
+														media_type matches {
+															[openEHR::
+															425, 
+															426, 
+															427, 
+															428, 
+															429]
+														}
+													}
+												}
+											}
+										}
+									}
+									CLUSTER[at0050] occurrences matches {0..1} matches {	-- Status
+										items cardinality matches {0..*; unordered} matches {
+											ELEMENT[at0055] occurrences matches {0..1} matches {	-- Healed
+												value matches {
+													DV_BOOLEAN matches {
+														value matches {True, False}
+													}
+												}
+											}
+											ELEMENT[at0051] occurrences matches {0..1} matches {	-- State of Healing
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0052, 	-- Partially healed
+															at0053, 	-- Healed
+															at0056, 	-- Infected
+															at0057]	-- Discharge
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					description = <"Details about perineum after completion of second stage
+">
+					text = <"Perineum">
+				>
+				["at0001"] = <
+					description = <"@ internal @">
+					text = <"Event Series">
+				>
+				["at0002"] = <
+					description = <"*">
+					text = <"Any event">
+				>
+				["at0003"] = <
+					description = <"@ internal @">
+					text = <"Tree">
+				>
+				["at0005"] = <
+					description = <"*">
+					text = <"Episiotomy">
+				>
+				["at0006"] = <
+					description = <"Episiotomy performed">
+					text = <"Performed">
+				>
+				["at0007"] = <
+					description = <"*">
+					text = <"Perineal trauma">
+				>
+				["at0009"] = <
+					description = <"*">
+					text = <"Present">
+				>
+				["at0010"] = <
+					description = <"*">
+					text = <"Abrasions">
+				>
+				["at0011"] = <
+					description = <"*">
+					text = <"Degree">
+				>
+				["at0013"] = <
+					description = <"*">
+					text = <"Mild">
+				>
+				["at0014"] = <
+					description = <"*">
+					text = <"Moderate">
+				>
+				["at0015"] = <
+					description = <"*">
+					text = <"Severe">
+				>
+				["at0016"] = <
+					description = <"*">
+					text = <"Description">
+				>
+				["at0017"] = <
+					description = <"*">
+					text = <"Tear">
+				>
+				["at0019"] = <
+					description = <"*">
+					text = <"Degree">
+				>
+				["at0020"] = <
+					description = <"The fourchette and vaginal mucosa are damaged and the underlying muscles exposed but not torn">
+					text = <"First degree">
+				>
+				["at0021"] = <
+					description = <"Injury to the perineum involving perineal muscles but not involving the anal sphincter">
+					text = <"Second degree">
+				>
+				["at0022"] = <
+					description = <"Less than 50% of External Anal Sphincter  thickness torn">
+					text = <"Third degree - 3a">
+				>
+				["at0026"] = <
+					description = <"*">
+					text = <"Site">
+				>
+				["at0027"] = <
+					description = <"*">
+					text = <"Local Anaesthesia administered">
+				>
+				["at0029"] = <
+					description = <"Perineum intact">
+					text = <"Intact">
+				>
+				["at0036"] = <
+					description = <"*">
+					text = <"Repair">
+				>
+				["at0037"] = <
+					description = <"*">
+					text = <"Time of suturing">
+				>
+				["at0038"] = <
+					description = <"Method of suturing eg interrupted; continuous subcutaneous">
+					text = <"Material used">
+				>
+				["at0039"] = <
+					description = <"*">
+					text = <"Anaesthetic details">
+				>
+				["at0040"] = <
+					description = <"*">
+					text = <"Sutured by">
+				>
+				["at0041"] = <
+					description = <"*">
+					text = <"Suturing diagram">
+				>
+				["at0042"] = <
+					description = <"Injury to perineum involving the anal sphincter complex and the rectal mucosa">
+					text = <"Fourth degree">
+				>
+				["at0043"] = <
+					description = <"More  than 50% of External Anal Sphincter  thickness torn">
+					text = <"Third degree - 3b">
+				>
+				["at0044"] = <
+					description = <"Internal Anal Sphincter torn">
+					text = <"Third degree - 3c">
+				>
+				["at0045"] = <
+					description = <"Material used for suturing">
+					text = <"Method of suturing">
+				>
+				["at0046"] = <
+					description = <"*">
+					text = <"Vaginal mucosa">
+				>
+				["at0047"] = <
+					description = <"*">
+					text = <"Skin">
+				>
+				["at0048"] = <
+					description = <"Clinical description of repair">
+					text = <"Description">
+				>
+				["at0049"] = <
+					description = <"*">
+					text = <"Muscles">
+				>
+				["at0050"] = <
+					description = <"*">
+					text = <"Status">
+				>
+				["at0051"] = <
+					description = <"*">
+					text = <"State of Healing">
+				>
+				["at0052"] = <
+					description = <"*">
+					text = <"Partially healed">
+				>
+				["at0053"] = <
+					description = <"*">
+					text = <"Healed">
+				>
+				["at0054"] = <
+					description = <"*">
+					text = <"Delivery">
+				>
+				["at0055"] = <
+					description = <"*">
+					text = <"Healed">
+				>
+				["at0056"] = <
+					description = <"*">
+					text = <"Infected">
+				>
+				["at0057"] = <
+					description = <"*">
+					text = <"Discharge">
+				>
+				["at0058"] = <
+					description = <"*">
+					text = <"Local Anasesthetic details">
+				>
+				["at0059"] = <
+					description = <"Name of local anaesthetic">
+					text = <"Anaesthesia drug name">
+				>
+				["at0060"] = <
+					description = <"*">
+					text = <"Volume administered">
+				>
+				["at0063"] = <
+					description = <"*">
+					text = <"Dosage">
+				>
+			>
+		>
+	>
+

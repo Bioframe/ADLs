@@ -1,0 +1,82 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-COMPOSITION.avaliacao_antropometrica.v0
+
+concept
+	[at0000]	-- Avaliacao antropometrica
+language
+	original_language = <[ISO_639-1::pt]>
+description
+	original_author = <
+		["name"] = <"">
+	>
+	details = <
+		["pt"] = <
+			language = <[ISO_639-1::pt]>
+			purpose = <"">
+			use = <"">
+			misuse = <"">
+			copyright = <"">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <>
+	other_details = <
+		["MD5-CAM-1.0.1"] = <"5CF480EEA88BA510BDF70D07AE8CF50B">
+	>
+
+definition
+	COMPOSITION[at0000] matches {	-- Avaliacao antropometrica
+		category matches {
+			DV_CODED_TEXT matches {
+				defining_code matches {[openehr::433]}
+			}
+		}
+		context matches {
+			EVENT_CONTEXT matches {
+				other_context matches {
+					allow_archetype ITEM_TREE matches {
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+		content cardinality matches {0..*; unordered} matches {
+			allow_archetype SECTION[at0002] occurrences matches {0..*} matches {	-- Cabeçalho
+				include
+					archetype_id/value matches {/.*/}
+			}
+			allow_archetype SECTION[at0004] occurrences matches {0..*} matches {	-- Diagnostico
+				include
+					archetype_id/value matches {/.*/}
+			}
+			allow_archetype SECTION[at0005] occurrences matches {0..*} matches {	-- Dados_Antropométricos
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["pt"] = <
+			items = <
+				["at0000"] = <
+					text = <"Avaliacao antropometrica">
+					description = <"unknown">
+				>
+				["at0002"] = <
+					text = <"Cabeçalho">
+					description = <"*">
+				>
+				["at0004"] = <
+					text = <"Diagnostico">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"Dados_Antropométricos">
+					description = <"*">
+				>
+			>
+		>
+	>

@@ -1,0 +1,226 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.faeces.v2
+
+concept
+	[at0000]	-- Faeces
+language
+	original_language = <[ISO_639-1::en]>
+description
+	original_author = <
+		["name"] = <"unknown">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"B">
+			use = <"B">
+			misuse = <"B">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <>
+
+definition
+	OBSERVATION[at0000] matches {	-- Faeces
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {1..*} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0018] occurrences matches {0..1} matches {	-- Clinical description
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {[local::]}
+											}
+										}
+									}
+									ELEMENT[at0004] occurrences matches {0..1} matches {	-- Colour
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0005] occurrences matches {0..1} matches {	-- Consistency
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0006, 	-- Hard
+													at0007, 	-- Soft
+													at0008, 	-- Loose
+													at0009]	    -- Liquid
+												}
+											}
+										}
+									}
+									ELEMENT[at0010] occurrences matches {0..1} matches {	-- Used bowels
+										value matches {
+											DV_BOOLEAN matches {
+												value matches {True, False}
+											}
+										}
+									}
+									ELEMENT[at0020] occurrences matches {0..1} matches {	-- Last opened bowels
+										value matches {
+											DV_DATE_TIME matches {
+												value matches {yyyy-??-??T??:??:??}
+											}
+										}
+									}
+									ELEMENT[at0021] occurrences matches {0..1} matches {	-- Time since last opened bowels
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::128]>
+												list = <
+													["1"] = <
+														units = <"min">
+													>
+													["2"] = <
+														units = <"h">
+													>
+													["3"] = <
+														units = <"d">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0011] occurrences matches {0..1} matches {	-- Amount
+										value matches {
+											0|[local::at0012], 	-- No faeces passed
+											1|[local::at0013], 	-- Very small amount
+											2|[local::at0014], 	-- Small
+											5|[local::at0015], 	-- Usual
+											8|[local::at0016], 	-- Large
+											10|[local::at0017]  -- Very large
+										}
+									}
+									ELEMENT[at0019] occurrences matches {0..1} matches {	-- Volume
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::129]>
+												list = <
+													["1"] = <
+														units = <"ml">
+														magnitude = <|>=0.0|>
+														precision = <|0|>
+													>
+												>
+											>
+											C_DV_QUANTITY <
+												property = <[openehr::124]>
+												list = <
+													["1"] = <
+														units = <"gm">
+														magnitude = <|>=0.0|>
+														precision = <|0|>
+													>
+												>
+											>
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					description = <"For recording faecal output">
+					text = <"Faeces">
+				>
+				["at0001"] = <
+					description = <"@ internal @">
+					text = <"Event Series">
+				>
+				["at0002"] = <
+					description = <"Timing">
+					text = <"Any event">
+				>
+				["at0003"] = <
+					description = <"@ internal @">
+					text = <"Tree">
+				>
+				["at0004"] = <
+					description = <"The colour of the faeces">
+					text = <"Colour">
+				>
+				["at0005"] = <
+					description = <"The consistency of faeces">
+					text = <"Consistency">
+				>
+				["at0006"] = <
+					description = <"Very firm and solid">
+					text = <"Hard">
+				>
+				["at0007"] = <
+					description = <"The faeces are solid (with no liquid) but are not hard">
+					text = <"Soft">
+				>
+				["at0008"] = <
+					description = <"The faeces are semi liquid but contain a significant amount of solid material">
+					text = <"Loose">
+				>
+				["at0009"] = <
+					description = <"The faeces have little solid material">
+					text = <"Liquid">
+				>
+				["at0010"] = <
+					description = <"The person has used bowels">
+					text = <"Used bowels">
+				>
+				["at0011"] = <
+					description = <"The amount as a category">
+					text = <"Amount">
+				>
+				["at0012"] = <
+					description = <"No faeces passed at all">
+					text = <"No faeces passed">
+				>
+				["at0013"] = <
+					description = <"Only a very small amount of faeces passed">
+					text = <"Very small amount">
+				>
+				["at0014"] = <
+					description = <"A small amount of faeces passed">
+					text = <"Small">
+				>
+				["at0015"] = <
+					description = <"A normal amount of faeces passed">
+					text = <"Usual">
+				>
+				["at0016"] = <
+					description = <"A large amount of faeces passed">
+					text = <"Large">
+				>
+				["at0017"] = <
+					description = <"A very large amount of faeces passed">
+					text = <"Very large">
+				>
+				["at0018"] = <
+					description = <"*">
+					text = <"Clinical description">
+				>
+				["at0019"] = <
+					description = <"The volume of faeces passed">
+					text = <"Volume">
+				>
+				["at0020"] = <
+					description = <"Date/Time when last opened bowels">
+					text = <"Last opened bowels">
+				>
+				["at0021"] = <
+					description = <"Amount of time since last opened bowels">
+					text = <"Time since last opened bowels">
+				>
+			>
+		>
+	>

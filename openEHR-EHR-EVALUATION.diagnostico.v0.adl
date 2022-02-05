@@ -1,0 +1,138 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-EVALUATION.diagnostico.v0
+
+concept
+	[at0000]	-- Diagnostico
+language
+	original_language = <[ISO_639-1::pt]>
+description
+	original_author = <
+		["name"] = <"">
+	>
+	details = <
+		["pt"] = <
+			language = <[ISO_639-1::pt]>
+			purpose = <"Descrever o conceito do diagnósticos primário e secundário do Paciente">
+			use = <"Diagnóstico inicial do paciente, por meio da descrição">
+			misuse = <"">
+			copyright = <"">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <>
+	other_details = <
+		["MD5-CAM-1.0.1"] = <"273B3242B296005EC3843C0255897D12">
+	>
+
+definition
+	EVALUATION[at0000] matches {	-- Diagnostico
+		data matches {
+			ITEM_TREE[at0001] matches {	-- Tree
+				items cardinality matches {0..*; ordered} matches {
+					CLUSTER[at0002] occurrences matches {0..1} matches {	-- Diagnóstico
+						items cardinality matches {1..*; unordered} matches {
+							ELEMENT[at0003] occurrences matches {0..1} matches {	-- Comportamento(s)
+								value matches {
+									DV_TEXT matches {*}
+								}
+							}
+							ELEMENT[at0004] occurrences matches {0..1} matches {	-- Sintomas
+								value matches {
+									DV_TEXT matches {*}
+								}
+							}
+							ELEMENT[at0005] occurrences matches {0..1} matches {	-- Exames
+								value matches {
+									DV_TEXT matches {*}
+								}
+							}
+							CLUSTER[at0012] occurrences matches {0..1} matches {	-- Tipo Diagnóstico
+								items cardinality matches {1..*; unordered} matches {
+									ELEMENT[at0013] occurrences matches {0..1} matches {	-- Principal
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {	-- Secundário
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["pt"] = <
+			items = <
+				["at0000"] = <
+					text = <"Diagnostico">
+					description = <"A determinação da natureza de uma doença ou condição, ou a distinção de uma doença ou condição de outra. A avaliação pode ser feita por meio de exame físico, exames laboratoriais ou similares. Programas computadorizados podem ser usados ​​para aprimorar o processo de tomada de decisão. (MSH)
+A investigação, análise e reconhecimento da presença e natureza da doença, condição ou lesão de sinais e sintomas expressos; também, a determinação científica de qualquer tipo; os resultados concisos de tal investigação. (NCI)
+Processo de identificação de uma doença, como o câncer, a partir de seus sinais e sintomas. (NCI)
+A investigação, análise e reconhecimento da presença e natureza da doença, condição ou lesão de sinais e sintomas expressos; também, a determinação científica de qualquer tipo; os resultados concisos ou o resumo de tal investigação. (NCI) (NCI)
+Conjunto de códigos que descrevem doenças e condições clínicas (HL7V3.0)
+Descrição: O ato fonte visa ajudar a estabelecer a presença de uma situação (adversa) descrita pelo ato alvo. Isso não se limita a doenças, mas pode se aplicar a qualquer situação adversa ou condição de natureza médica ou técnica.(HL7V3.0)
+Termo geral para detectar e classificar doenças. (CSP)
+Determinação da natureza de uma doença ou estado, ou uma diferença entre eles. A avaliação pode ser obtida por meio de exame físico, exames laboratoriais ou similares. É possível utilizar software para planejamento ou processo de tomada de decisão. (MSHPOR)">
+				>
+				["at0001"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Diagnóstico">
+					description = <"Diagnosis/ Diagnosis (observable entity) C0011900 SNOMEDCT_US 439401001 A determinação da natureza de uma doença ou condição, ou a distinção de uma doença ou condição de outra. A avaliação pode ser feita por meio de exame físico, exames laboratoriais ou similares. Programas computadorizados podem ser usados ​​para aprimorar o processo de tomada de decisão. (MSH)
+A investigação, análise e reconhecimento da presença e natureza da doença, condição ou lesão de sinais e sintomas expressos; também, a determinação científica de qualquer tipo; os resultados concisos de tal investigação. (NCI)
+Processo de identificação de uma doença, como o câncer, a partir de seus sinais e sintomas. (NCI)
+A investigação, análise e reconhecimento da presença e natureza da doença, condição ou lesão de sinais e sintomas expressos; também, a determinação científica de qualquer tipo; os resultados concisos ou o resumo de tal investigação. (NCI) (NCI)
+Conjunto de códigos que descrevem doenças e condições clínicas (HL7V3.0)
+Descrição: O ato fonte visa ajudar a estabelecer a presença de uma situação (adversa) descrita pelo ato alvo. Isso não se limita a doenças, mas pode se aplicar a qualquer situação adversa ou condição de natureza médica ou técnica.(HL7V3.0)
+Termo geral para detectar e classificar doenças. (CSP)
+Determinação da natureza de uma doença ou estado, ou uma diferença entre eles. A avaliação pode ser obtida por meio de exame físico, exames laboratoriais ou similares. É possível utilizar software para planejamento ou processo de tomada de decisão. (MSHPOR)">
+				>
+				["at0003"] = <
+					text = <"Comportamento(s)">
+					description = <"Behavior finding UMLS CUI: C0004927 SNOMEDCT_US 
+844005 ">
+				>
+				["at0004"] = <
+					text = <"Sintomas">
+					description = <"Signs and Symptoms UMLS CUI: C0037088 SNOMEDCT_US 
+404684003 Clinical, laboratory or molecular evidence, or absence of evidence of disease. (NCI)
+A meaningful interpretation of data or observations resulting from planned evaluations. Compare to conclusion, hypothesis. See also general observation class, intervention, event. (NCI) Manifestações clínicas que podem ser tanto objetivas (quando observadas por médicos) como subjetivas (quando percebidas pelo paciente). (MSHPOR)">
+				>
+				["at0005"] = <
+					text = <"Exames">
+					description = <"Physical Examination
+UMLS CUI: C0031809 SNOMEDCT_US An observation of the body or a body part using one of the five human senses (e.g. inspection, palpation, percussion, auscultation) (SNOMEDCT_US) A systemic evaluation of the body and its functions using visual inspection, palpation, percussion and auscultation. The purpose is to determine the presence or absence of physical signs of disease or abnormality for an individual's health assessment. (NCI)
+A systemic evaluation of the body and its functions using visual inspection, palpation, percussion and auscultation. (NCI) Inspeção sistemática e minuciosa do paciente para sinais físicos de doença ou anormalidade. (MSHPOR)">
+				>
+				["at0012"] = <
+					text = <"Tipo Diagnóstico">
+					description = <"Diagnosis/ Diagnosis (observable entity) C0011900 SNOMEDCT_US 439401001 A determinação da natureza de uma doença ou condição, ou a distinção de uma doença ou condição de outra. A avaliação pode ser feita por meio de exame físico, exames laboratoriais ou similares. Programas computadorizados podem ser usados ​​para aprimorar o processo de tomada de decisão. (MSH)
+A investigação, análise e reconhecimento da presença e natureza da doença, condição ou lesão de sinais e sintomas expressos; também, a determinação científica de qualquer tipo; os resultados concisos de tal investigação. (NCI)
+Processo de identificação de uma doença, como o câncer, a partir de seus sinais e sintomas. (NCI)
+A investigação, análise e reconhecimento da presença e natureza da doença, condição ou lesão de sinais e sintomas expressos; também, a determinação científica de qualquer tipo; os resultados concisos ou o resumo de tal investigação. (NCI) (NCI)
+Conjunto de códigos que descrevem doenças e condições clínicas (HL7V3.0)
+Descrição: O ato fonte visa ajudar a estabelecer a presença de uma situação (adversa) descrita pelo ato alvo. Isso não se limita a doenças, mas pode se aplicar a qualquer situação adversa ou condição de natureza médica ou técnica.(HL7V3.0)
+Termo geral para detectar e classificar doenças. (CSP)
+Determinação da natureza de uma doença ou estado, ou uma diferença entre eles. A avaliação pode ser obtida por meio de exame físico, exames laboratoriais ou similares. É possível utilizar software para planejamento ou processo de tomada de decisão. (MSHPOR)">
+				>
+				["at0013"] = <
+					text = <"Principal">
+					description = <"Principal diagnosis CUI: C0332137 SNOMEDCT_US 8319008">
+				>
+				["at0014"] = <
+					text = <"Secundário">
+					description = <"Secondary diagnosis CUI: C0332138 SNOMEDCT_US: 85097005">
+				>
+			>
+		>
+	>

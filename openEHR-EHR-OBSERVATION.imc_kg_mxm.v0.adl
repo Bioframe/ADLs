@@ -1,0 +1,205 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.imc_kg_mxm.v0
+
+concept
+	[at0000]	-- Imc kg mxm
+language
+	original_language = <[ISO_639-1::pt]>
+description
+	original_author = <
+		["name"] = <"Elaine Barbosa de Figueiredo">
+		["email"] = <"ebfigueiredo@anhembi.br">
+		["organisation"] = <"UNIFACCAMP, CTI Renato Archer e Universidade Anhembi Morumbi (UAM)">
+		["date"] = <"2021-11-15">
+	>
+	details = <
+		["pt"] = <
+			language = <[ISO_639-1::pt]>
+			purpose = <"Define o conceito arquétipo do Índice de Massa Corpórea">
+			use = <"Formulários/Prontuários da Nutrição">
+			misuse = <"">
+			copyright = <"">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <"Rodrigo Bonacin", "Mariangela Dametto", "Ferrúcio Franco Rosa">
+	other_details = <
+		["MD5-CAM-1.0.1"] = <"89A7B0B61005CA87086D8A3DCC51FF4C">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- Imc kg mxm
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									CLUSTER[at0004] occurrences matches {0..1} matches {	-- IMC(kg/m)
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0005] occurrences matches {0..1} matches {	-- IMC(Kg/mxm)
+												value matches {
+													C_DV_QUANTITY <
+														property = <[openehr::349]>
+														list = <
+															["1"] = <
+																units = <"kg/m2">
+																magnitude = <|>=0.0|>
+															>
+														>
+													>
+												}
+											}
+											ELEMENT[at0006] occurrences matches {0..1} matches {	-- Altura|Estatura
+												value matches {
+													C_DV_QUANTITY <
+														property = <[openehr::122]>
+														list = <
+															["1"] = <
+																units = <"m">
+																magnitude = <|>=0.0|>
+															>
+															["2"] = <
+																units = <"cm">
+																magnitude = <|>=0.0|>
+															>
+															["3"] = <
+																units = <"mm">
+																magnitude = <|>=0.0|>
+															>
+														>
+													>
+												}
+											}
+											ELEMENT[at0007] occurrences matches {0..1} matches {	-- Peso
+												value matches {
+													C_DV_QUANTITY <
+														property = <[openehr::124]>
+														list = <
+															["1"] = <
+																units = <"kg">
+																magnitude = <|>=0.0|>
+															>
+															["2"] = <
+																units = <"gm">
+																magnitude = <|>=0.0|>
+															>
+															["3"] = <
+																units = <"mg">
+																magnitude = <|>=0.0|>
+															>
+														>
+													>
+												}
+											}
+											ELEMENT[at0008] occurrences matches {0..1} matches {	-- Idade
+												value matches {
+													C_DV_QUANTITY <
+														property = <[openehr::128]>
+														list = <
+															["1"] = <
+																units = <"a">
+																magnitude = <|>=0.0|>
+															>
+															["2"] = <
+																units = <"mo">
+																magnitude = <|>=0.0|>
+															>
+															["3"] = <
+																units = <"d">
+																magnitude = <|>=0.0|>
+															>
+														>
+													>
+												}
+											}
+											ELEMENT[at0009] occurrences matches {0..1} matches {	-- z-score
+												value matches {
+													C_DV_QUANTITY <
+														property = <[openehr::349]>
+														list = <
+															["1"] = <
+																units = <"kg/m2">
+																magnitude = <|>=0.0|>
+															>
+														>
+													>
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["pt"] = <
+			items = <
+				["at0000"] = <
+					text = <"Imc kg mxm">
+					description = <"unknown">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"IMC(kg/m)">
+					description = <"Body mass index / Body mass index (observable entity) / BMI - Body mass index / Quetelet index	C1305855	SNOMEDCT_US	60621009
+NCI	C16358
+NCI_DISC	\"SDTM-VSTESTCD | 
+SDTM-VSTEST\"
+NCI_NCI-GLOSS	CDR0000531092 | CDR0000455136">
+				>
+				["at0005"] = <
+					text = <"IMC(Kg/mxm)">
+					description = <"DCT_US	60621009
+NCI	C16358
+NCI_DISC	\"SDTM-VSTESTCD | 
+SDTM-VSTEST\"
+NCI_NCI-GLOSS	CDR0000531092 | CDR0000455136">
+				>
+				["at0006"] = <
+					text = <"Altura|Estatura">
+					description = <"Body height measure / Body height measure (observable entity) / Body height	C0005890	SNOMEDCT_US	50373000">
+				>
+				["at0007"] = <
+					text = <"Peso">
+					description = <"Weights / Weights (qualifier value)	C0043100	SNOMEDCT_US	272102008">
+				>
+				["at0008"] = <
+					text = <"Idade">
+					description = <"Current chronological age (observable entity) / Age / Age (qualifier value) / Age - descriptor	C0001779	SNOMEDCT_US	\"
+424144002 / 
+397669002 /  NCI	C25150 NCI_CDISC	\"SEND-STSPRMCD /
+SEND-STSPRM\"
+\"Idade após o nascimento. (FMA)
+O tempo passou desde o nascimento. (NCI)
+Há quanto tempo algo existe; tempo decorrido desde o nascimento. (NCI) (NCI)
+Tempo decorrido após o nascimento. (NCI)
+Há quanto tempo algo existe; tempo decorrido desde o nascimento. (NCI)\"
+">
+				>
+				["at0009"] = <
+					text = <"z-score">
+					description = <"Z Score	C0871421	NCI	C68741
+ (IMCInd-MedIMC)/d">
+				>
+			>
+		>
+	>

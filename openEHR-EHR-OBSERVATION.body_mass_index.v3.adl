@@ -1,0 +1,147 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.body_mass_index.v3
+
+concept
+	[at0000]	-- Body mass index
+language
+	original_language = <[ISO_639-1::en]>
+description
+	original_author = <
+		["name"] = <"Sam Heard">
+		["organisation"] = <"Ocean Informatics">
+		["email"] = <"sam.heard@oceaninformatics.biz">
+		["date"] = <"22/03/2006">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the body mass index. This is index is calculated by dividing the weight in kg by the height in metres squared.">
+			use = <"To record BMI">
+			keywords = <"obesity", "index">
+			misuse = <"">
+		>
+	>
+	lifecycle_state = <"Initial">
+	other_contributors = <"D B Hutchinson NHS CFH", ...>
+	other_details = <
+		["references"] = <"">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- Body mass index
+		data matches {
+			HISTORY[at0001] matches {	-- history
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {1..*} matches {	-- Any event
+						data matches {
+							ITEM_SINGLE[at0003] matches {	-- Single
+								item matches {
+									ELEMENT[at0004] matches {	-- body mass index
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::349]>
+												list = <
+													["1"] = <
+														units = <"kg/m2">
+														magnitude = <|2.0..1000.0|>
+													>
+												>
+											>
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0009, 	-- BMI less than 20
+													at0010, 	-- BMI 20 - 24
+													at0011, 	-- BMI 25 - 29
+													at0012]	-- BMI 30+
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_LIST[at0005] matches {	-- List
+				items cardinality matches {0..*; ordered} matches {
+					ELEMENT[at0006] occurrences matches {0..1} matches {	-- Method
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0007, 	-- Automatic calculation
+									at0008]	-- Direct entry
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	terminologies_available = <"SNOMED-CT", ...>
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Body mass index">
+					description = <"The index indicating obesity">
+				>
+				["at0001"] = <
+					text = <"history">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Any timed recording of BMI">
+				>
+				["at0003"] = <
+					text = <"Single">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"body mass index">
+					description = <"The index calculated from the mass in kg divided by the square of the height in metres">
+				>
+				["at0005"] = <
+					text = <"List">
+					description = <"@ internal @">
+				>
+				["at0006"] = <
+					text = <"Method">
+					description = <"The method of calculating BMI">
+				>
+				["at0007"] = <
+					text = <"Automatic calculation">
+					description = <" Calculation from recorded height and weight">
+				>
+				["at0008"] = <
+					text = <"Direct entry">
+					description = <"Entered directly, calculated from data not in the EHR">
+				>
+				["at0009"] = <
+					text = <"BMI less than 20">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"BMI 20 - 24">
+					description = <"*">
+				>
+				["at0011"] = <
+					text = <"BMI 25 - 29">
+					description = <"*">
+				>
+				["at0012"] = <
+					text = <"BMI 30+">
+					description = <"*">
+				>
+			>
+		>
+	>
+

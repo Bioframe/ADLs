@@ -1,0 +1,143 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.height.v4
+
+concept
+	[at0000]	-- Height
+language
+	original_language = <[ISO_639-1::en]>
+description
+	original_author = <
+		["name"] = <"Sam Heard">
+		["organisation"] = <"Ocean Informatics">
+		["email"] = <"sam.heard@oceaninformatics.biz">
+		["date"] = <"9/03/2006">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"Recording the length of the whole body from crown of head to sole of foot.">
+			use = <"">
+			keywords = <"height", "length">
+			misuse = <"Not to be used for any other length (see OBSERVATION.dimensions.v1)">
+		>
+	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <>
+	other_details = <
+		["references"] = <"">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- Height
+		data matches {
+			HISTORY[at0001] matches {	-- history
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {1..*} matches {	-- Any event
+						data matches {
+							ITEM_SINGLE[at0003] matches {	-- Simple
+								item matches {
+									ELEMENT[at0004] matches {	-- Height
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::122]>
+												list = <
+													["1"] = <
+														units = <"cm">
+														magnitude = <|0.0..1000.0|>
+													>
+													["2"] = <
+														units = <"m">
+													>
+												>
+											>
+										}
+									}
+								}
+							}
+						}
+					}
+					INTERVAL_EVENT[at0009] occurrences matches {0..1} matches {	-- Growth
+						math_function matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {[openehr::147]}
+							}
+						}
+						data matches {
+							use_node ITEM_SINGLE /data[at0001]/events[at0002]/data[at0003]
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0007] matches {	-- protocol structure
+				items cardinality matches {0..*; ordered} matches {
+					ELEMENT[at0008] occurrences matches {0..1} matches {	-- Device
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {[local::at0011]}		-- Stadiometer
+							}
+							DV_TEXT matches {*}
+						}
+					}
+					CLUSTER[at0010] occurrences matches {0..1} matches {	-- Information source
+						items cardinality matches {0..*; unordered} matches {
+							allow_archetype CLUSTER occurrences matches {0..*} matches {
+								include
+									archetype_id/value matches {/checklist_item-care_record_entry_information_source\.v1/}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Height">
+					description = <"Length of the body, in an extended position, from crown of head to sole of foot">
+				>
+				["at0001"] = <
+					text = <"history">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Any timed measurement of height">
+				>
+				["at0003"] = <
+					text = <"Simple">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Height">
+					description = <"The length of the body">
+				>
+				["at0007"] = <
+					text = <"protocol structure">
+					description = <"@ internal @">
+				>
+				["at0008"] = <
+					text = <"Device">
+					description = <"The device used to measure the height">
+				>
+				["at0009"] = <
+					text = <"Growth">
+					description = <"The change in height">
+				>
+				["at0010"] = <
+					text = <"Information source">
+					description = <"*">
+				>
+				["at0011"] = <
+					text = <"Stadiometer">
+					description = <"*">
+				>
+			>
+		>
+	>
+

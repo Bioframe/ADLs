@@ -1,0 +1,40 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-ITEM_SINGLE.teste.v0
+
+concept
+	[at0000]	-- Teste
+language
+	original_language = <[ISO_639-1::pt]>
+description
+	original_author = <
+		["name"] = <"">
+	>
+	details = <
+		["pt"] = <
+			language = <[ISO_639-1::pt]>
+			purpose = <"">
+			use = <"">
+			misuse = <"">
+			copyright = <"">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <>
+	other_details = <
+		["MD5-CAM-1.0.1"] = <"78B45D74A76EF4FA8CD34CB9D606E334">
+	>
+
+definition
+	ITEM_SINGLE[at0000] matches {*}
+
+ontology
+	term_definitions = <
+		["pt"] = <
+			items = <
+				["at0000"] = <
+					text = <"Teste">
+					description = <"unknown">
+				>
+			>
+		>
+	>

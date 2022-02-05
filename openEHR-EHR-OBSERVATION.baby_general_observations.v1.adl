@@ -1,0 +1,456 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.baby_general_observations.v1
+
+concept
+	[at0000]	-- General observations about a baby in postnatal care
+language
+	original_language = <[ISO_639-1::en]>
+description
+	original_author = <
+		["name"] = <"unknown">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"a">
+			use = <"b">
+			misuse = <"c">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <>
+
+definition
+	OBSERVATION[at0000] matches {	-- General observations about a baby in postnatal care
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {	-- Age at this assessment
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::128]>
+												list = <
+													["1"] = <
+														units = <"d">
+													>
+													["2"] = <
+														units = <"h">
+													>
+													["3"] = <
+														units = <"min">
+													>
+												>
+											>
+										}
+									}
+									CLUSTER[at0006] occurrences matches {0..1} matches {	-- Stool
+										items cardinality matches {0..*; unordered} matches {
+											ELEMENT[at0007] occurrences matches {0..1} matches {	-- Bowels opened in 24hrs
+												value matches {
+													DV_COUNT matches {
+														magnitude matches {|>=0|}
+													}
+												}
+											}
+											ELEMENT[at0031] occurrences matches {0..1} matches {	-- Type of stool
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0032, 	-- Meconium
+															at0033, 	-- Changing stool
+															at0034, 	-- Green stool
+															at0035, 	-- Yellow stool
+															at0036, 	-- Seedy stool
+															at0037, 	-- Soft stool
+															at0038, 	-- Watery stool
+															at0039, 	-- Formed brown stool
+															at0040, 	-- Bloodied stool
+															at0041]	-- Mucousy stool
+														}
+													}
+												}
+											}
+											ELEMENT[at0008] occurrences matches {0..1} matches {	-- Stool comments
+												value matches {
+													DV_TEXT matches {*}
+												}
+											}
+											ELEMENT[at0042] occurrences matches {0..1} matches {	-- Offensive
+												value matches {
+													DV_BOOLEAN matches {
+														value matches {True, False}
+													}
+												}
+											}
+										}
+									}
+									CLUSTER[at0010] occurrences matches {0..1} matches {	-- Urine
+										items cardinality matches {0..*; unordered} matches {
+											ELEMENT[at0011] occurrences matches {0..1} matches {	-- Passed urine in 24hrs
+												value matches {
+													DV_BOOLEAN matches {
+														value matches {True, False}
+													}
+												}
+											}
+											ELEMENT[at0012] occurrences matches {0..1} matches {	-- Wet nappies in 24hrs
+												value matches {
+													DV_COUNT matches {
+														magnitude matches {|>=0|}
+													}
+												}
+											}
+											ELEMENT[at0043] occurrences matches {0..1} matches {	-- Blood in urine
+												value matches {
+													DV_BOOLEAN matches {
+														value matches {True, False}
+													}
+												}
+											}
+											ELEMENT[at0044] occurrences matches {0..1} matches {	-- Urates
+												value matches {
+													DV_BOOLEAN matches {
+														value matches {True, False}
+													}
+												}
+											}
+											ELEMENT[at0020] occurrences matches {0..1} matches {	-- Urine comments
+												value matches {
+													DV_TEXT matches {*}
+												}
+											}
+										}
+									}
+									CLUSTER[at0045] occurrences matches {0..1} matches {	-- Genitalia
+										items cardinality matches {0..*; unordered} matches {
+											ELEMENT[at0046] occurrences matches {0..1} matches {	-- Re-confirm genitalia
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0047, 	-- Male
+															at0048, 	-- Female
+															at0049]	-- Indeterminate
+														}
+													}
+												}
+											}
+											CLUSTER[at0051] occurrences matches {0..1} matches {	-- Female genitalia
+												items cardinality matches {0..*; unordered} matches {
+													ELEMENT[at0052] occurrences matches {0..1} matches {	-- Vaginal discharge present
+														value matches {
+															DV_BOOLEAN matches {
+																value matches {True, False}
+															}
+														}
+													}
+													ELEMENT[at0050] occurrences matches {0..1} matches {	-- Vaginal discharge
+														value matches {
+															DV_TEXT matches {*}
+														}
+													}
+												}
+											}
+										}
+									}
+									CLUSTER[at0013] occurrences matches {0..1} matches {	-- Sleeping
+										items cardinality matches {0..*; unordered} matches {
+											ELEMENT[at0014] occurrences matches {0..1} matches {	-- Baby sleeping between feeds
+												value matches {
+													DV_BOOLEAN matches {
+														value matches {True, False}
+													}
+												}
+											}
+											ELEMENT[at0016] occurrences matches {0..1} matches {	-- Sleeping comments
+												value matches {
+													DV_TEXT matches {*}
+												}
+											}
+										}
+									}
+									CLUSTER[at0015] occurrences matches {0..1} matches {	-- Crying
+										items cardinality matches {0..*; unordered} matches {
+											ELEMENT[at0017] occurrences matches {0..1} matches {	-- Excessive or unusual cry reported
+												value matches {
+													DV_BOOLEAN matches {
+														value matches {True, False}
+													}
+												}
+											}
+											ELEMENT[at0018] occurrences matches {0..1} matches {	-- Cry description/comments
+												value matches {
+													DV_TEXT matches {*}
+												}
+											}
+										}
+									}
+									CLUSTER[at0021] occurrences matches {0..1} matches {	-- Mother and baby
+										items cardinality matches {0..*; unordered} matches {
+											ELEMENT[at0022] occurrences matches {0..1} matches {	-- Mother and baby comment
+												value matches {
+													DV_TEXT matches {*}
+												}
+											}
+											ELEMENT[at0023] occurrences matches {0..1} matches {	-- Cause for concern
+												value matches {
+													DV_BOOLEAN matches {
+														value matches {True, False}
+													}
+												}
+											}
+										}
+									}
+									CLUSTER[at0024] occurrences matches {0..1} matches {	-- Eyes
+										items cardinality matches {0..*; unordered} matches {
+											ELEMENT[at0025] occurrences matches {0..1} matches {	-- Left eye
+												value matches {
+													DV_TEXT matches {*}
+												}
+											}
+											ELEMENT[at0026] occurrences matches {0..1} matches {	-- Right eye
+												value matches {
+													DV_TEXT matches {*}
+												}
+											}
+										}
+									}
+									CLUSTER[at0027] occurrences matches {0..1} matches {	-- Mouth
+										items cardinality matches {0..*; unordered} matches {
+											ELEMENT[at0028] occurrences matches {0..1} matches {	-- Comment
+												value matches {
+													DV_TEXT matches {*}
+												}
+											}
+										}
+									}
+									CLUSTER[at0029] occurrences matches {0..1} matches {	-- Umbilical cord
+										items cardinality matches {0..*; unordered} matches {
+											ELEMENT[at0030] occurrences matches {0..1} matches {	-- Comment
+												value matches {
+													DV_TEXT matches {*}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					description = <"To record general observations about a baby in postnatal care">
+					text = <"General observations about a baby in postnatal care">
+				>
+				["at0001"] = <
+					description = <"@ internal @">
+					text = <"Event Series">
+				>
+				["at0002"] = <
+					description = <"*">
+					text = <"Any event">
+				>
+				["at0003"] = <
+					description = <"@ internal @">
+					text = <"Tree">
+				>
+				["at0004"] = <
+					description = <"The age of the baby at this assessment">
+					text = <"Age at this assessment">
+				>
+				["at0006"] = <
+					description = <"*">
+					text = <"Stool">
+				>
+				["at0007"] = <
+					description = <"The number of times the baby's bowels have opened in the last 24 hours">
+					text = <"Bowels opened in 24hrs">
+				>
+				["at0008"] = <
+					description = <"A description of the stool">
+					text = <"Stool comments">
+				>
+				["at0010"] = <
+					description = <"*">
+					text = <"Urine">
+				>
+				["at0011"] = <
+					description = <"True if urine has been passed">
+					text = <"Passed urine in 24hrs">
+				>
+				["at0012"] = <
+					description = <"The number of wet nappies in the past 24hrs">
+					text = <"Wet nappies in 24hrs">
+				>
+				["at0013"] = <
+					description = <"*">
+					text = <"Sleeping">
+				>
+				["at0014"] = <
+					description = <"True or false">
+					text = <"Baby sleeping between feeds">
+				>
+				["at0015"] = <
+					description = <"*">
+					text = <"Crying">
+				>
+				["at0016"] = <
+					description = <"*">
+					text = <"Sleeping comments">
+				>
+				["at0017"] = <
+					description = <"True or false">
+					text = <"Excessive or unusual cry reported">
+				>
+				["at0018"] = <
+					description = <"*">
+					text = <"Cry description/comments">
+				>
+				["at0020"] = <
+					description = <"*">
+					text = <"Urine comments">
+				>
+				["at0021"] = <
+					description = <"*">
+					text = <"Mother and baby">
+				>
+				["at0022"] = <
+					description = <"Some general comments on the interaction between mother and baby, and details of any concerns ">
+					text = <"Mother and baby comment">
+				>
+				["at0023"] = <
+					description = <"True if the clinician feels there is cause for concern">
+					text = <"Cause for concern">
+				>
+				["at0024"] = <
+					description = <"*">
+					text = <"Eyes">
+				>
+				["at0025"] = <
+					description = <"Any comments ">
+					text = <"Left eye">
+				>
+				["at0026"] = <
+					description = <"Any comments">
+					text = <"Right eye">
+				>
+				["at0027"] = <
+					description = <"*">
+					text = <"Mouth">
+				>
+				["at0028"] = <
+					description = <"Any comments about this item">
+					text = <"Comment">
+				>
+				["at0029"] = <
+					description = <"*">
+					text = <"Umbilical cord">
+				>
+				["at0030"] = <
+					description = <"Any comment about the umbilical cord">
+					text = <"Comment">
+				>
+				["at0031"] = <
+					description = <"A list of common types of stool description">
+					text = <"Type of stool">
+				>
+				["at0032"] = <
+					description = <"*">
+					text = <"Meconium">
+				>
+				["at0033"] = <
+					description = <"*">
+					text = <"Changing stool">
+				>
+				["at0034"] = <
+					description = <"*">
+					text = <"Green stool">
+				>
+				["at0035"] = <
+					description = <"*">
+					text = <"Yellow stool">
+				>
+				["at0036"] = <
+					description = <"*">
+					text = <"Seedy stool">
+				>
+				["at0037"] = <
+					description = <"*">
+					text = <"Soft stool">
+				>
+				["at0038"] = <
+					description = <"*">
+					text = <"Watery stool">
+				>
+				["at0039"] = <
+					description = <"*">
+					text = <"Formed brown stool">
+				>
+				["at0040"] = <
+					description = <"*">
+					text = <"Bloodied stool">
+				>
+				["at0041"] = <
+					description = <"*">
+					text = <"Mucousy stool">
+				>
+				["at0042"] = <
+					description = <"True if the stool has an unusually offensive smell">
+					text = <"Offensive">
+				>
+				["at0043"] = <
+					description = <"True if there is blood detected in the urine">
+					text = <"Blood in urine">
+				>
+				["at0044"] = <
+					description = <"True if urates are detected in urine">
+					text = <"Urates">
+				>
+				["at0045"] = <
+					description = <"*">
+					text = <"Genitalia">
+				>
+				["at0046"] = <
+					description = <"*">
+					text = <"Re-confirm genitalia">
+				>
+				["at0047"] = <
+					description = <"*">
+					text = <"Male">
+				>
+				["at0048"] = <
+					description = <"*">
+					text = <"Female">
+				>
+				["at0049"] = <
+					description = <"*">
+					text = <"Indeterminate">
+				>
+				["at0050"] = <
+					description = <"A comment about any vaginal discharge in newborn females">
+					text = <"Vaginal discharge">
+				>
+				["at0051"] = <
+					description = <"*">
+					text = <"Female genitalia">
+				>
+				["at0052"] = <
+					description = <"True if present">
+					text = <"Vaginal discharge present">
+				>
+			>
+		>
+	>

@@ -1,0 +1,117 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.dados_etnograficos.v0
+
+concept
+	[at0000]	-- Dados Básicos do Paciente
+language
+	original_language = <[ISO_639-1::pt]>
+description
+	original_author = <
+		["name"] = <"">
+	>
+	details = <
+		["pt"] = <
+			language = <[ISO_639-1::pt]>
+			purpose = <"Descrever dados básicos dos pacientes para avaliação nutricional">
+			use = <"">
+			misuse = <"">
+			copyright = <"">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <>
+	other_details = <
+		["MD5-CAM-1.0.1"] = <"0CE9D78183078E63BD428ED4118252D2">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- Dados Básicos do Paciente
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {	-- Data Avaliação
+										value matches {
+											DV_DATE_TIME matches {*}
+										}
+									}
+									ELEMENT[at0005] occurrences matches {0..1} matches {	-- Data de Nascimento
+										value matches {
+											DV_DATE_TIME matches {*}
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {	-- Gênero
+										value matches {*}
+									}
+									ELEMENT[at0009] occurrences matches {0..1} matches {	-- Raça|Cor
+										value matches {*}
+									}
+									ELEMENT[at0011] occurrences matches {0..1} matches {	-- Caso Novo
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0012] occurrences matches {0..1} matches {	-- Estado
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["pt"] = <
+			items = <
+				["at0000"] = <
+					text = <"Dados Básicos do Paciente">
+					description = <"Descrição dos Dados Básicos do Pacientes para avaliação Nutricional">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Data Avaliação">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"Data de Nascimento">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"Gênero">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"Raça|Cor">
+					description = <"*">
+				>
+				["at0011"] = <
+					text = <"Caso Novo">
+					description = <"*">
+				>
+				["at0012"] = <
+					text = <"Estado">
+					description = <"*">
+				>
+			>
+		>
+	>

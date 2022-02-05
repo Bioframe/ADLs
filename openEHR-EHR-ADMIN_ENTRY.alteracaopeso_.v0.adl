@@ -1,0 +1,79 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-ADMIN_ENTRY.alteracaopeso_.v0
+
+concept
+	[at0000]	-- Alteracaopeso 
+language
+	original_language = <[ISO_639-1::pt]>
+description
+	original_author = <
+		["name"] = <"">
+	>
+	details = <
+		["pt"] = <
+			language = <[ISO_639-1::pt]>
+			purpose = <"">
+			use = <"">
+			misuse = <"">
+			copyright = <"">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <>
+	other_details = <
+		["MD5-CAM-1.0.1"] = <"1D81E279A45BC64E44CE0519BE046495">
+	>
+
+definition
+	ADMIN_ENTRY[at0000] matches {	-- Alteracaopeso 
+		data matches {
+			ITEM_TREE[at0001] matches {	-- Tree
+				items cardinality matches {0..*; unordered} matches {
+					CLUSTER[at0002] occurrences matches {0..1} matches {	-- Alteração | Peso
+						items cardinality matches {1..*; unordered} matches {
+							ELEMENT[at0003] occurrences matches {0..1} matches {	-- Ganhar Peso
+								value matches {
+									C_DV_QUANTITY <
+									>
+								}
+							}
+							ELEMENT[at0004] occurrences matches {0..1} matches {	-- Perda de Peso
+								value matches {
+									C_DV_QUANTITY <
+									>
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["pt"] = <
+			items = <
+				["at0000"] = <
+					text = <"Alteracaopeso ">
+					description = <"unknown">
+				>
+				["at0001"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Alteração | Peso">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Ganhar Peso">
+					description = <"*">
+				>
+				["at0004"] = <
+					text = <"Perda de Peso">
+					description = <"*">
+				>
+			>
+		>
+	>

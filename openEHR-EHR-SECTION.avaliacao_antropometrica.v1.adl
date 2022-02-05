@@ -1,0 +1,94 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-SECTION.avaliacao_antropometrica.v1
+
+concept
+	[at0000]	-- Avaliacao antropometrica
+language
+	original_language = <[ISO_639-1::pt]>
+description
+	original_author = <
+		["name"] = <"Elaine Barbosa de Figueiredo">
+		["email"] = <"ebfigueiredo@anhembi.br">
+		["organisation"] = <"UNIFACCAMP, CTI Renato Archer e Universidade Anhembi Morumbi">
+		["date"] = <"2021-11-15">
+	>
+	details = <
+		["pt"] = <
+			language = <[ISO_639-1::pt]>
+			purpose = <"Definir as Seções da Avaliação Antropométrica">
+			use = <"Formulários/Prontuários da Nutrição">
+			misuse = <"">
+			copyright = <"">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <"Rodrigo Bonacin", "Mariangela Dametto", "Ferrúcio Franco Rosa">
+	other_details = <
+		["MD5-CAM-1.0.1"] = <"B93B0DEC212DE8F0816DDFA7FFC61410">
+	>
+
+definition
+	SECTION[at0000] matches {	-- Avaliacao antropometrica
+		items cardinality matches {1..*; unordered} matches {
+			SECTION[at0004] occurrences matches {0..1} matches {	-- Cabeçalho
+				items cardinality matches {1..*; unordered} matches {
+					allow_archetype OBSERVATION[at0001] occurrences matches {0..*} matches {	-- Cabeçalho
+						include
+							archetype_id/value matches {/openEHR-EHR-OBSERVATION\.cabecalho(-[a-zA-Z0-9_]+)*\.v1/}
+					}
+				}
+			}
+			SECTION[at0005] occurrences matches {0..1} matches {	-- Diagnóstico
+				items cardinality matches {1..*; unordered} matches {
+					allow_archetype OBSERVATION[at0002] occurrences matches {0..*} matches {	-- Diagnostico
+						include
+							archetype_id/value matches {/openEHR-EHR-OBSERVATION\.aceitacao_dieta(-[a-zA-Z0-9_]+)*\.v0|openEHR-EHR-OBSERVATION\.alteracaopeso(-[a-zA-Z0-9_]+)*\.v1|openEHR-EHR-OBSERVATION\.data(-[a-zA-Z0-9_]+)*\.v0|openEHR-EHR-OBSERVATION\.estado_nutricional(-[a-zA-Z0-9_]+)*\.v0|openEHR-EHR-OBSERVATION\.estatura(-[a-zA-Z0-9_]+)*\.v0|openEHR-EHR-OBSERVATION\.estaturaporidade(-[a-zA-Z0-9_]+)*\.v0|openEHR-EHR-OBSERVATION\.idade(-[a-zA-Z0-9_]+)*\.v0|openEHR-EHR-OBSERVATION\.imc_kg_mxm(-[a-zA-Z0-9_]+)*\.v1|openEHR-EHR-OBSERVATION\.imc_por_idade(-[a-zA-Z0-9_]+)*\.v1|openEHR-EHR-OBSERVATION\.peso(-[a-zA-Z0-9_]+)*\.v1|openEHR-EHR-OBSERVATION\.pesoporidade(-[a-zA-Z0-9_]+)*\.v1|openEHR-EHR-OBSERVATION\.responsavel(-[a-zA-Z0-9_]+)*\.v1|openEHR-EHR-OBSERVATION\.z_score(-[a-zA-Z0-9_]+)*\.v0/}
+					}
+				}
+			}
+			SECTION[at0006] occurrences matches {0..1} matches {	-- Dados Antropométricos
+				items cardinality matches {1..*; unordered} matches {
+					allow_archetype OBSERVATION[at0003] occurrences matches {0..*} matches {	-- Dados_Antropométricos
+						include
+							archetype_id/value matches {/openEHR-EHR-OBSERVATION\.aceitacao_dieta(-[a-zA-Z0-9_]+)*\.v0|openEHR-EHR-OBSERVATION\.alteracaopeso(-[a-zA-Z0-9_]+)*\.v1|openEHR-EHR-OBSERVATION\.data(-[a-zA-Z0-9_]+)*\.v0|openEHR-EHR-OBSERVATION\.estado_nutricional(-[a-zA-Z0-9_]+)*\.v0|openEHR-EHR-OBSERVATION\.estatura(-[a-zA-Z0-9_]+)*\.v0|openEHR-EHR-OBSERVATION\.idade(-[a-zA-Z0-9_]+)*\.v0|openEHR-EHR-OBSERVATION\.imc_kg_mxm(-[a-zA-Z0-9_]+)*\.v1|openEHR-EHR-OBSERVATION\.imc_por_idade(-[a-zA-Z0-9_]+)*\.v1|openEHR-EHR-OBSERVATION\.observacao(-[a-zA-Z0-9_]+)*\.v0|openEHR-EHR-OBSERVATION\.peso(-[a-zA-Z0-9_]+)*\.v1|openEHR-EHR-OBSERVATION\.responsavel(-[a-zA-Z0-9_]+)*\.v1|openEHR-EHR-OBSERVATION\.z_score(-[a-zA-Z0-9_]+)*\.v0/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["pt"] = <
+			items = <
+				["at0000"] = <
+					text = <"Avaliacao antropometrica">
+					description = <"Arquétipo de Seção que organiza a seção, seus respectivos slots contendo todos os miniarquétipos observation do Formulário/Prontuário de Avaliação Antropométrica.">
+				>
+				["at0001"] = <
+					text = <"Cabeçalho">
+					description = <"Slot cabeçalho que contém o Arquétipo Observation de Definição dos itens do cabeçalho">
+				>
+				["at0002"] = <
+					text = <"Diagnostico">
+					description = <"Contém todos os ADL que compõe o diagnóstico nutricional">
+				>
+				["at0003"] = <
+					text = <"Dados_Antropométricos">
+					description = <"Slots Dados Antropométricos que contém todos os arquétipos Observation contidos na seção.">
+				>
+				["at0004"] = <
+					text = <"Cabeçalho">
+					description = <"Seção cabeçalho com o slot cabeçalho contendo o ADL Observation com os dados padrão do cabeçalho">
+				>
+				["at0005"] = <
+					text = <"Diagnóstico">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"Dados Antropométricos">
+					description = <"Seção Dados Antropométricos com o Slot dados Antropométricos.">
+				>
+			>
+		>
+	>

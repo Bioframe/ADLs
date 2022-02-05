@@ -1,133 +1,139 @@
 archetype (adl_version=1.4)
-	openEHR-EHR-OBSERVATION.dor_abdominal.v1
+	openEHR-EHR-ADMIN_ENTRY.dor_abdominal.v0
 
 concept
-	[at0000]	-- Dor Abdominal
+	[at0000]	-- Dor abdominal
 language
 	original_language = <[ISO_639-1::pt]>
 description
 	original_author = <
-		["name"] = <"Elaine Barbosa de Figueiredo">
+		["name"] = <"">
 	>
 	details = <
 		["pt"] = <
 			language = <[ISO_639-1::pt]>
 			purpose = <"Descrever a dor abdominal como um sintoma gastrointestinal">
-			use = <"aplicado à seção Sintomas Gastrointestinais">
+			use = <"aplicado à seção SIntomas Gastrointestinais">
 			misuse = <"">
 			copyright = <"">
 		>
 	>
 	lifecycle_state = <"0">
-	other_contributors = <"Dr. Rodrigo Bonacin", "Dra. Mariangela Dametto">
+	other_contributors = <>
 	other_details = <
-		["MD5-CAM-1.0.1"] = <"D8A4023D5375D23B950A19E37152AB31">
+		["MD5-CAM-1.0.1"] = <"926FD9791A1B2D94A1E1FE468AFE5D84">
 	>
 
 definition
-	OBSERVATION[at0000] matches {	-- Dor Abdominal
+	ADMIN_ENTRY[at0000] matches {	-- Dor abdominal
 		data matches {
-			HISTORY[at0001] matches {	-- Event Series
-				events cardinality matches {1..*; unordered} matches {
-					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
-						data matches {
-							ITEM_TREE[at0003] matches {	-- Tree
-								items cardinality matches {0..*; unordered} matches {
-									CLUSTER[at0004] occurrences matches {0..1} matches {	-- Dor Abdominal
-										items cardinality matches {1..*; unordered} matches {
-											ELEMENT[at0005] occurrences matches {0..1} matches {	-- Sintoma Associado
-												value matches {
-													DV_CODED_TEXT matches {
-														defining_code matches {
-															[local::
-															at0006, 	-- SIM
-															at0007]	-- NÃO
-														}
-													}
-												}
-											}
-											ELEMENT[at0008] occurrences matches {0..1} matches {	-- Sintoma Gastrointestinal
-												value matches {
-													DV_TEXT matches {*}
-												}
-											}
-											ELEMENT[at0009] occurrences matches {0..1} matches {	-- Dor Abdominal Superior
-												value matches {
-													DV_CODED_TEXT matches {
-														defining_code matches {
-															[local::
-															at0010, 	-- SIM
-															at0011]	-- NÃO
-														}
-													}
-												}
-											}
-											ELEMENT[at0012] occurrences matches {0..1} matches {	-- Dor Addominal Inferior
-												value matches {
-													DV_CODED_TEXT matches {
-														defining_code matches {[local::]}
-													}
-												}
-											}
-											CLUSTER[at0013] occurrences matches {0..1} matches {	-- Exame
-												items cardinality matches {1..*; unordered} matches {
-													ELEMENT[at0014] occurrences matches {0..1} matches {	-- Físico
-														value matches {
-															DV_TEXT matches {*}
-														}
-													}
-													ELEMENT[at0015] occurrences matches {0..1} matches {	-- Patológico
-														value matches {
-															DV_TEXT matches {*}
-														}
-													}
-													ELEMENT[at0016] occurrences matches {0..1} matches {	-- Radiológico
-														value matches {
-															DV_TEXT matches {*}
-														}
-													}
-													ELEMENT[at0017] occurrences matches {0..1} matches {	-- Esquelético
-														value matches {
-															DV_TEXT matches {*}
-														}
-													}
-													ELEMENT[at0018] occurrences matches {0..1} matches {	-- Tumor
-														value matches {
-															DV_TEXT matches {*}
-														}
-													}
-													ELEMENT[at0019] occurrences matches {0..1} matches {	-- Visceral
-														value matches {
-															DV_TEXT matches {*}
-														}
-													}
-													ELEMENT[at0020] occurrences matches {0..1} matches {	-- Dental
-														value matches {
-															DV_TEXT matches {*}
-														}
-													}
-													ELEMENT[at0021] occurrences matches {0..1} matches {	-- Exame Oftálmico e Evolução
-														value matches {
-															DV_TEXT matches {*}
-														}
-													}
-													ELEMENT[at0022] occurrences matches {0..1} matches {	-- Recém Nascido
-														value matches {
-															DV_TEXT matches {*}
-														}
-													}
-													ELEMENT[at0023] occurrences matches {0..1} matches {	-- Neurológico
-														value matches {
-															DV_TEXT matches {*}
-														}
-													}
-													ELEMENT[at0024] occurrences matches {0..1} matches {	-- Materno Fetal
-														value matches {
-															DV_TEXT matches {*}
-														}
-													}
-												}
-											}
+			ITEM_TREE[at0001] matches {	-- Tree
+				items cardinality matches {0..*; unordered} matches {
+					CLUSTER[at0003] occurrences matches {0..1} matches {	-- Dor Abdominal
+						items cardinality matches {1..*; unordered} matches {
+							ELEMENT[at0004] occurrences matches {0..1} matches {	-- Sintoma Associado
+								value matches {
+									DV_CODED_TEXT matches {
+										defining_code matches {
+											[local::
+											at0005, 	-- SIM
+											at0006]	-- NÃO
+										}
+									}
+								}
+							}
+							ELEMENT[at0007] occurrences matches {0..1} matches {	-- Sintoma Gastrointestinal
+								value matches {
+									DV_TEXT matches {*}
+								}
+							}
+							ELEMENT[at0008] occurrences matches {0..1} matches {	-- Dor Abdominal Superior
+								value matches {
+									DV_CODED_TEXT matches {
+										defining_code matches {
+											[local::
+											at0009, 	-- SIM
+											at0010]	-- NÃO
+										}
+									}
+								}
+							}
+							ELEMENT[at0011] occurrences matches {0..1} matches {	-- Dor Abdominal Inferior
+								value matches {
+									DV_CODED_TEXT matches {
+										defining_code matches {
+											[local::
+											at0012, 	-- SIM
+											at0013]	-- NÃO
+										}
+									}
+								}
+							}
+							CLUSTER[at0014] occurrences matches {0..1} matches {	-- Exame
+								items cardinality matches {1..7; unordered} matches {
+									ELEMENT[at0015] occurrences matches {0..1} matches {	-- Físico
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {	-- Patológico
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {	-- Radiológico
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0018] occurrences matches {0..1} matches {	-- Esquelético
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0019] occurrences matches {0..1} matches {	-- Tumor
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0020] occurrences matches {0..1} matches {	-- Visceral
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0021] occurrences matches {0..1} matches {	-- Dental
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0022] occurrences matches {0..1} matches {	-- Exame Oftalmico e Evolução
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0023] occurrences matches {0..1} matches {	-- Recém Nascido
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0024] occurrences matches {0..1} matches {	-- Neurológico
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0025] occurrences matches {0..1} matches {	-- Materno-Fetal
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0026] occurrences matches {0..1} matches {	--  Fetal
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0027] occurrences matches {0..1} matches {	-- Externo
+										value matches {
+											DV_TEXT matches {*}
 										}
 									}
 								}
@@ -144,26 +150,18 @@ ontology
 		["pt"] = <
 			items = <
 				["at0000"] = <
-					text = <"Dor Abdominal">
+					text = <"Dor abdominal">
 					description = <"Arquétipo que descreve a dor abdominal como um sintoma gastrointestinal">
 				>
 				["at0001"] = <
-					text = <"Event Series">
-					description = <"@ internal @">
-				>
-				["at0002"] = <
-					text = <"Any event">
-					description = <"*">
-				>
-				["at0003"] = <
 					text = <"Tree">
 					description = <"@ internal @">
 				>
-				["at0004"] = <
+				["at0003"] = <
 					text = <"Dor Abdominal">
 					description = <"CUI: C0000737 SNOMEDCT_US: 21522001, NCI: C26682, ICD10CM: R10.9, ICD9CM: 789.00">
 				>
-				["at0005"] = <
+				["at0004"] = <
 					text = <"Sintoma Associado">
 					description = <"Associated symptom C0521989, 
 SNOMEDCT_US: 
@@ -171,20 +169,20 @@ SNOMEDCT_US:
 NCI: C168433, The signs and symptoms present with the chief complaint. (NCI)
 Symptoms and signs present with the chief complaint. (NCI)">
 				>
-				["at0006"] = <
+				["at0005"] = <
 					text = <"SIM">
 					description = <"Yes - Presence findings, C1298907, SNOMEDCT_US: 373066001">
 				>
-				["at0007"] = <
+				["at0006"] = <
 					text = <"NÃO">
 					description = <"no CUI: C1298908; SNOMED_CT: 373067005; NCI: C49487">
 				>
-				["at0008"] = <
+				["at0007"] = <
 					text = <"Sintoma Gastrointestinal">
 					description = <"Gastrointestinal symptom 	C0426576	SNOMEDCT_US	267045008
 ">
 				>
-				["at0009"] = <
+				["at0008"] = <
 					text = <"Dor Abdominal Superior">
 					description = <"Upper abdominal pain, CUI: C0232492; 
 SNOMEDCT_US: 
@@ -192,53 +190,62 @@ SNOMEDCT_US:
 ICD10: 
 R10.1">
 				>
-				["at0010"] = <
+				["at0009"] = <
 					text = <"SIM">
 					description = <"Yes - Presence findings, C1298907, SNOMEDCT_US: 373066001">
 				>
-				["at0011"] = <
+				["at0010"] = <
 					text = <"NÃO">
 					description = <"no CUI: C1298908; SNOMED_CT: 373067005; NCI: C49487">
 				>
-				["at0012"] = <
-					text = <"Dor Addominal Inferior">
+				["at0011"] = <
+					text = <"Dor Abdominal Inferior">
 					description = <"Lower abdominal pain, CUI: C0232495, 
 SNOMEDCT_US: 
 54586004, NCI: 
 C35272, ICD10CM: R10.30">
 				>
+				["at0012"] = <
+					text = <"SIM">
+					description = <"Yes - Presence findings, C1298907, SNOMEDCT_US: 373066001">
+				>
 				["at0013"] = <
+					text = <"NÃO">
+					description = <"no CUI: C1298908; SNOMED_CT: 373067005; NCI: C49487">
+				>
+				["at0014"] = <
 					text = <"Exame">
 					description = <"Medical Examination, C0582103, SNOMEDCT_US: 225886003, NCI: C25305   An appraisal or evaluation of a patient's condition by a clinician that is based on a physical exam, medical history, and the patient's account of symptoms. (NCI)
 An appraisal or evaluation of a patient's condition by a physician or registered nurse, based on clinical and laboratory data, medical history, and the patient's account of symptoms. Check for \"https://www.cancer.gov/about-cancer/treatment/clinical-trials/intervention/C25305\" active clinical trials using this agent. (\"http://ncit.nci.nih.gov/ncitbrowser/ConceptReport.jsp?dictionary=NCI%20Thesaurus&code=C25305\" NCI Thesaurus) (PDQ)">
 				>
-				["at0014"] = <
-					text = <"Físico">
-					description = <"Physical Examination, CUI: C0031809, SNOMEDCT_US: 81375008; SNOMEDCT_US: 5880005; SNOMEDCT_US: 302199004; NCI: C20989; ICD9CM: 89.7">
-				>
 				["at0015"] = <
-					text = <"Patológico">
-					description = <"Pathologic Examination	C4086729	NCI	C125006">
+					text = <"Físico">
+					description = <"Physical Examination, CUI: C0031809, SNOMEDCT_US: 81375008; SNOMEDCT_US: 5880005; SNOMEDCT_US: 302199004; NCI: C20989; ICD9CM: 89.7 ">
 				>
 				["at0016"] = <
+					text = <"Patológico">
+					description = <"Pathologic Examination	C4086729	NCI	C125006
+">
+				>
+				["at0017"] = <
 					text = <"Radiológico">
 					description = <"Radiologic Examination	C2985535	NCI	C93286">
 				>
-				["at0017"] = <
+				["at0018"] = <
 					text = <"Esquelético">
 					description = <"Skeletal Examination	C4086854	NCI	C124598	An assessment of the bone and cartilage structures. (NCI)">
 				>
-				["at0018"] = <
+				["at0019"] = <
 					text = <"Tumor">
 					description = <"Tumor Examination	C2983686	NCI	\"
 C90479\"	\"An assessment or evaluation of a neoplastic mass. (NCI) (NCI)
 An assessment or evaluation of a neoplastic mass. (NCI)\"">
 				>
-				["at0019"] = <
+				["at0020"] = <
 					text = <"Visceral">
 					description = <"Visceral Examination	C4086954	NCI	C124599	An assessment of the internal soft tissue structures. ... (NCI)">
 				>
-				["at0020"] = <
+				["at0021"] = <
 					text = <"Dental">
 					description = <"Dental examination	C0750862	SNOMEDCT_US	34043003
 ICD10AM	450
@@ -247,8 +254,8 @@ ICD9CM	89.31
 A systematic evaluation of the mouth, face, and neck, which may include tooth counting, cleaning and visual assessment. (NCI)
 A systematic evaluation of the mouth, face, and neck, which may include tooth counting, cleaning and visual assessments for abnormalities such as caries, gum disease, oral cancer, and structural malformations. (NCI)">
 				>
-				["at0021"] = <
-					text = <"Exame Oftálmico e Evolução">
+				["at0022"] = <
+					text = <"Exame Oftalmico e Evolução">
 					description = <"Ophthalmic examination and evaluation	C0200149	SNOMEDCT_US	36228007
 ICD10AM	92021-00
 NCI	C38060
@@ -258,11 +265,11 @@ ICD9CM\"	\"
 An observation, assessment or examination of the eye. (NCI)
 A test performed by an ophthalmologist or optometrist assessing vision and ability to focus on and discern objects, as well as other tests and examinations pertaining to the eyes. (NCI)">
 				>
-				["at0022"] = <
+				["at0023"] = <
 					text = <"Recém Nascido">
 					description = <"Newborn Examination	 C2827500	NCI	C84749	A general assessment of the overall health of a newborn. (NCI)">
 				>
-				["at0023"] = <
+				["at0024"] = <
 					text = <"Neurológico">
 					description = <"Neurologic Examination	C0027853	SNOMEDCT_US	84728005
 SNOMEDCT_US	225398001
@@ -275,10 +282,21 @@ Avaliação das reações e reflexos motores e sensoriais usada para detectar um
 Posouzení senzorických a motorických reakcí a reflexů, které se používá ke stanovení poškození nervového systému. (MSHCZE)
 Vurdering av sensoriske og motoriske responser og reflekser som brukes til å finne ut om det foreligger skade eller dysfunksjon i nervesystemet. (MSHNOR)">
 				>
-				["at0024"] = <
-					text = <"Materno Fetal">
+				["at0025"] = <
+					text = <"Materno-Fetal">
 					description = <"Maternal-Fetal Examination	C4086565	NCI	C124597	\"An assessment of the shared maternal-fetal structures. (NCI)
 An assessment of the shared maternal and fetal tissues including amniotic fluid, umbilical cord and placenta. (NCI)\"">
+				>
+				["at0026"] = <
+					text = <" Fetal">
+					description = <"Fetl Examination	C2985264	NCI	C92714
+">
+				>
+				["at0027"] = <
+					text = <"Externo">
+					description = <"External Examination	C4086289	NCI	C124596
+An assessment of the outside of the body. (NCI)
+An assessment of the outer body structures. (NCI)">
 				>
 			>
 		>

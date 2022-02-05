@@ -1,0 +1,645 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.substance_use-tobacco.v7
+specialize
+	openEHR-EHR-OBSERVATION.substance_use.v5
+
+concept
+	[at0000.1]	-- Tobacco use
+language
+	original_language = <[ISO_639-1::en]>
+description
+	original_author = <
+		["name"] = <"Heather Leslie">
+		["organisation"] = <"Ocean Informatics">
+		["email"] = <"heather.leslie@oceaninformatics.biz">
+		["date"] = <"9/04/2007">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record tobacco use based on information reported by the person.">
+			use = <"">
+			keywords = <"tobacco", "smoking", "cigarette", "cigar", "pipe">
+			misuse = <"">
+		>
+	>
+	lifecycle_state = <"Initial">
+	other_contributors = <"Sam Heard", ...>
+	other_details = <
+		["references"] = <"">
+	>
+
+definition
+	OBSERVATION[at0000.1] matches {	-- Tobacco use
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {	-- Substance name
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0005] occurrences matches {0..1} matches {	-- Status
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0025, 	-- Never smoked
+													at0026, 	-- Ex-smoker
+													at0027, 	-- Current smoker
+													at0.63, 	-- Current non-smoker
+													at0.64, 	-- Non-smoker - history unknown
+													at0.65]	-- Unknown
+												}
+											}
+										}
+									}
+									CLUSTER[at0006] occurrences matches {0..1} matches {	-- Details of Tobacco use
+										items cardinality matches {0..*; unordered} matches {
+											ELEMENT[at0007] occurrences matches {0..1} matches {	-- Form
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0.38, 	-- Cigarette
+															at0.39, 	-- Cigar
+															at0.40]	-- Pipe
+														}
+													}
+												}
+											}
+											ELEMENT[at0238] occurrences matches {0..1} matches {	-- Administration
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0239, 	-- Smoke
+															at0240, 	-- Ingest
+															at0241, 	-- Inject
+															at0242, 	-- Buccal
+															at0243, 	-- Inhale
+															at0244]	-- Absorb
+														}
+													}
+												}
+											}
+											ELEMENT[at0008] occurrences matches {0..1} matches {	-- Regularity of use
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0028, 	-- Regular
+															at0029]	-- Occasional
+														}
+													}
+												}
+											}
+											ELEMENT[at0010] occurrences matches {0..1} matches {	-- Date commenced
+												value matches {
+													DV_DATE matches {
+														value matches {yyyy-??-??}
+													}
+												}
+											}
+											ELEMENT[at0011] occurrences matches {0..1} matches {	-- Age commenced
+												value matches {
+													C_DV_QUANTITY <
+														property = <[openehr::128]>
+														list = <
+															["1"] = <
+																units = <"a">
+															>
+															["2"] = <
+																units = <"mo">
+															>
+														>
+													>
+												}
+											}
+											CLUSTER[at0030] occurrences matches {0..1} matches {	-- Consumption
+												items cardinality matches {0..*; unordered} matches {
+													ELEMENT[at0033] occurrences matches {0..1} matches {	-- Average weekly consumption
+														value matches {
+															DV_COUNT matches {*}
+															C_DV_QUANTITY <
+																property = <[openehr::124]>
+																list = <
+																	["1"] = <
+																		units = <"gm">
+																	>
+																	["2"] = <
+																		units = <"oz(avdp)">
+																	>
+																>
+															>
+														}
+													}
+													ELEMENT[at0009] occurrences matches {0..1} matches {	-- Average daily consumption
+														value matches {
+															DV_COUNT matches {*}
+															C_DV_QUANTITY <
+																property = <[openehr::124]>
+																list = <
+																	["1"] = <
+																		units = <"gm">
+																	>
+																	["2"] = <
+																		units = <"oz(avdp)">
+																	>
+																>
+															>
+														}
+													}
+													ELEMENT[at0034] occurrences matches {0..1} matches {	-- Maximal daily consumption
+														value matches {
+															DV_COUNT matches {*}
+															C_DV_QUANTITY <
+																property = <[openehr::124]>
+																list = <
+																	["1"] = <
+																		units = <"gm">
+																	>
+																	["2"] = <
+																		units = <"oz(avdp)">
+																	>
+																>
+															>
+														}
+													}
+													ELEMENT[at0.41] occurrences matches {0..1} matches {	-- Total cigarette consumption
+														value matches {
+															DV_COUNT matches {*}
+														}
+													}
+												}
+											}
+											ELEMENT[at0012] occurrences matches {0..1} matches {	-- Date ceased
+												value matches {
+													DV_DATE matches {
+														value matches {yyyy-??-??}
+													}
+												}
+											}
+											ELEMENT[at0013] occurrences matches {0..1} matches {	-- Age ceased
+												value matches {
+													C_DV_QUANTITY <
+														property = <[openehr::128]>
+														list = <
+															["1"] = <
+																units = <"a">
+															>
+															["2"] = <
+																units = <"mo">
+															>
+														>
+													>
+												}
+											}
+											ELEMENT[at0014] occurrences matches {0..1} matches {	-- Comment
+												value matches {
+													DV_TEXT matches {*}
+												}
+											}
+										}
+									}
+									CLUSTER[at0015] occurrences matches {0..1} matches {	-- Changing smoking status
+										items cardinality matches {0..*; unordered} matches {
+											allow_archetype CLUSTER occurrences matches {0..1} matches {
+												include
+													archetype_id/value matches {/change\.v2/}
+												exclude
+													archetype_id/value matches {/.*/}
+											}
+										}
+									}
+									CLUSTER[at0016] occurrences matches {0..1} matches {	-- Previous attempts to quit smoking
+										items cardinality matches {0..*; unordered} matches {
+											ELEMENT[at0017] occurrences matches {0..1} matches {	-- Location
+												value matches {
+													DV_TEXT matches {*}
+												}
+											}
+											ELEMENT[at0019] occurrences matches {0..1} matches {	-- Date of attempt
+												value matches {
+													DV_DATE_TIME matches {
+														value matches {yyyy-??-??T??:??:??}
+													}
+												}
+											}
+											ELEMENT[at0020] occurrences matches {0..1} matches {	-- Description of attempt
+												value matches {
+													DV_TEXT matches {*}
+												}
+											}
+											CLUSTER[at0018] occurrences matches {0..1} matches {	-- Therapeutic intervention
+												items cardinality matches {0..*; unordered} matches {
+													ELEMENT[at0022] occurrences matches {0..1} matches {	-- Agent
+														value matches {
+															DV_TEXT matches {*}
+														}
+													}
+													CLUSTER[at0245] occurrences matches {0..1} matches {	-- Used optimally
+														items cardinality matches {0..*; unordered} matches {
+															allow_archetype CLUSTER occurrences matches {0..1} matches {
+																include
+																	archetype_id/value matches {/checklist_item-general\.v5/}
+																exclude
+																	archetype_id/value matches {/.*/}
+															}
+														}
+													}
+													ELEMENT[at0024] occurrences matches {0..1} matches {	-- Comment
+														value matches {
+															DV_TEXT matches {*}
+														}
+													}
+												}
+											}
+											ELEMENT[at0021] occurrences matches {0..1} matches {	-- Outcome
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0035, 	-- Failed
+															at0036, 	-- Successful 
+															at0037]	-- Successful but relapsed
+														}
+													}
+												}
+											}
+										}
+									}
+									CLUSTER[at0.42] occurrences matches {0..1} matches {	-- Exposure to tobacco smoke
+										items cardinality matches {0..*; unordered} matches {
+											ELEMENT[at0.43] occurrences matches {0..1} matches {	-- Household members smoke
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0.44, 	-- Current
+															at0.45, 	-- In past
+															at0.62]	-- None
+														}
+													}
+												}
+											}
+											ELEMENT[at0.46] occurrences matches {0..1} matches {	-- Workplace exposure
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0.47, 	-- Current
+															at0.48, 	-- In past
+															at0.62]	-- None
+														}
+													}
+												}
+											}
+										}
+									}
+									CLUSTER[at0.51] occurrences matches {0..1} matches {	-- Cessation advice/referral
+										items cardinality matches {0..*; unordered} matches {
+											ELEMENT[at0.54] occurrences matches {0..1} matches {	-- Cessation advice status
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0.55, 	-- Offered
+															at0.56, 	-- Requested
+															at0.57, 	-- Accepted
+															at0.58]	-- Refused
+														}
+													}
+												}
+											}
+											ELEMENT[at0.61] occurrences matches {0..1} matches {	-- Cessation referral status
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0.55, 	-- Offered
+															at0.56, 	-- Requested
+															at0.57, 	-- Accepted
+															at0.58]	-- Refused
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	terminologies_available = <"SNOMED-CT", ...>
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0.38"] = <
+					text = <"Cigarette">
+					description = <"*">
+				>
+				["at0.39"] = <
+					text = <"Cigar">
+					description = <"*">
+				>
+				["at0.40"] = <
+					text = <"Pipe">
+					description = <"*">
+				>
+				["at0.41"] = <
+					text = <"Total cigarette consumption">
+					description = <"Total cigarette consumption in pack years to date - 1 pack year = 20 cigarettes per day for 1 year">
+				>
+				["at0.42"] = <
+					text = <"Exposure to tobacco smoke">
+					description = <"Details about exposure to passive smoke">
+				>
+				["at0.43"] = <
+					text = <"Household members smoke">
+					description = <"Is there any exposure to smoke at home">
+				>
+				["at0.44"] = <
+					text = <"Current">
+					description = <"*">
+				>
+				["at0.45"] = <
+					text = <"In past">
+					description = <"*">
+				>
+				["at0.46"] = <
+					text = <"Workplace exposure">
+					description = <"Is there any exposure to smoke at work">
+				>
+				["at0.47"] = <
+					text = <"Current">
+					description = <"*">
+				>
+				["at0.48"] = <
+					text = <"In past">
+					description = <"*">
+				>
+				["at0.49"] = <
+					text = <"Stopped > 1 ago">
+					description = <"*">
+				>
+				["at0.50"] = <
+					text = <"Stopped < 1 year ago">
+					description = <"*">
+				>
+				["at0.51"] = <
+					text = <"Cessation advice/referral">
+					description = <"Details about advice or referral to give up smoking">
+				>
+				["at0.52"] = <
+					text = <"Cessation advice offered">
+					description = <"True if cessation advice has been offered">
+				>
+				["at0.53"] = <
+					text = <"New element">
+					description = <"*">
+				>
+				["at0.54"] = <
+					text = <"Cessation advice status">
+					description = <"Has advice on stopping been offered">
+				>
+				["at0.55"] = <
+					text = <"Offered">
+					description = <"*">
+				>
+				["at0.56"] = <
+					text = <"Requested">
+					description = <"*">
+				>
+				["at0.57"] = <
+					text = <"Accepted">
+					description = <"*">
+				>
+				["at0.58"] = <
+					text = <"Refused">
+					description = <"*">
+				>
+				["at0.59"] = <
+					text = <"Date of offer">
+					description = <"*">
+				>
+				["at0.60"] = <
+					text = <"Cessation referral offered">
+					description = <"True if a referral has be offered">
+				>
+				["at0.61"] = <
+					text = <"Cessation referral status">
+					description = <"Has a referral been offered and/or accepted">
+				>
+				["at0.62"] = <
+					text = <"None">
+					description = <"*">
+				>
+				["at0.63"] = <
+					text = <"Current non-smoker">
+					description = <"Has stopped smoking within the past 12 months">
+				>
+				["at0.64"] = <
+					text = <"Non-smoker - history unknown">
+					description = <"*">
+				>
+				["at0.65"] = <
+					text = <"Unknown">
+					description = <"*">
+				>
+				["at0000"] = <
+					text = <"Substance use">
+					description = <"For recording substances used by the person
+REF: Smoking Cessation Guidelines for Australian General Practice - http://www.health.gov.au/internet/wcms/publishing.nsf/Content/health-pubhlth-publicat-document-smoking_cessation-cnt.htm/$FILE/smoking_cessation.pdf">
+				>
+				["at0000.1"] = <
+					text = <"Tobacco use">
+					description = <"For recording tobacco use by the person
+REF: Smoking Cessation Guidelines for Australian General Practice - http://www.health.gov.au/internet/wcms/publishing.nsf/Content/health-pubhlth-publicat-document-smoking_cessation-cnt.htm/$FILE/smoking_cessation.pdf!">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Substance name">
+					description = <"Name of substance being used by person">
+				>
+				["at0005"] = <
+					text = <"Status">
+					description = <"The person's status as a substance user. 'Current non smoker' is from NHS Scotland">
+				>
+				["at0006"] = <
+					text = <"Details of Tobacco use">
+					description = <"Details about the use of the tobacco">
+				>
+				["at0007"] = <
+					text = <"Form">
+					description = <"Form or type of substance">
+				>
+				["at0008"] = <
+					text = <"Regularity of use">
+					description = <"Regularity of use">
+				>
+				["at0009"] = <
+					text = <"Average daily consumption">
+					description = <"Average number of cigarettes or cigars,  or weight of pipe tobacco, smoked in 24 hours.">
+				>
+				["at0010"] = <
+					text = <"Date commenced">
+					description = <"The date when use commenced">
+				>
+				["at0011"] = <
+					text = <"Age commenced">
+					description = <"Age when use commenced">
+				>
+				["at0012"] = <
+					text = <"Date ceased">
+					description = <"Date when use ceased">
+				>
+				["at0013"] = <
+					text = <"Age ceased">
+					description = <"Age when use ceased">
+				>
+				["at0014"] = <
+					text = <"Comment">
+					description = <"Other information on substance use">
+				>
+				["at0015"] = <
+					text = <"Changing smoking status">
+					description = <"Readiness for person to change their use of substance">
+				>
+				["at0016"] = <
+					text = <"Previous attempts to quit smoking">
+					description = <"Details about previous attempts to cease using substance">
+				>
+				["at0017"] = <
+					text = <"Location">
+					description = <"Place where attempt to cease use occurred eg home or name of institution">
+				>
+				["at0018"] = <
+					text = <"Therapeutic intervention">
+					description = <"Use of therapeutic agent to assist in ceasing use of substance">
+				>
+				["at0019"] = <
+					text = <"Date of attempt">
+					description = <"Date of attempt">
+				>
+				["at0020"] = <
+					text = <"Description of attempt">
+					description = <"Description of details of attempt">
+				>
+				["at0021"] = <
+					text = <"Outcome">
+					description = <"Outcome of attempt to cease smoking">
+				>
+				["at0022"] = <
+					text = <"Agent">
+					description = <"Name of agent used">
+				>
+				["at0023"] = <
+					text = <"Used optimally">
+					description = <"Was the agent used optimally?">
+				>
+				["at0024"] = <
+					text = <"Comment">
+					description = <"Comment about the effect of the agent on the attempt">
+				>
+				["at0025"] = <
+					text = <"Never smoked">
+					description = <"May have tried smoking once or twice">
+				>
+				["at0026"] = <
+					text = <"Ex-smoker">
+					description = <"Has not smoked for at least 12 months ">
+				>
+				["at0027"] = <
+					text = <"Current smoker">
+					description = <"Person is currently using substance">
+				>
+				["at0028"] = <
+					text = <"Regular">
+					description = <"Regular use">
+				>
+				["at0029"] = <
+					text = <"Occasional">
+					description = <"Occasional use">
+				>
+				["at0030"] = <
+					text = <"Consumption">
+					description = <"Amount of substance">
+				>
+				["at0033"] = <
+					text = <"Average weekly consumption">
+					description = <"Average number of cigarettes or cigars, or weight of pipe tobacco, used in 7 days.">
+				>
+				["at0034"] = <
+					text = <"Maximal daily consumption">
+					description = <"Maximal number of cigarettes or cigars, or weight of pipe tobacco, smoked in a  day">
+				>
+				["at0035"] = <
+					text = <"Failed">
+					description = <"*">
+				>
+				["at0036"] = <
+					text = <"Successful ">
+					description = <"*">
+				>
+				["at0037"] = <
+					text = <"Successful but relapsed">
+					description = <"*">
+				>
+				["at0238"] = <
+					text = <"Administration">
+					description = <"The method of administration of the substance.">
+				>
+				["at0239"] = <
+					text = <"Smoke">
+					description = <"*">
+				>
+				["at0240"] = <
+					text = <"Ingest">
+					description = <"*">
+				>
+				["at0241"] = <
+					text = <"Inject">
+					description = <"*">
+				>
+				["at0242"] = <
+					text = <"Buccal">
+					description = <"*">
+				>
+				["at0243"] = <
+					text = <"Inhale">
+					description = <"*">
+				>
+				["at0244"] = <
+					text = <"Absorb">
+					description = <"*">
+				>
+				["at0245"] = <
+					text = <"Used optimally">
+					description = <"Was the agent used optimally?">
+				>
+			>
+		>
+	>
+

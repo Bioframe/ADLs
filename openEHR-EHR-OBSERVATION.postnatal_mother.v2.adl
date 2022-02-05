@@ -1,0 +1,1191 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.postnatal_mother.v2
+
+concept
+	[at0000]	-- Postnatal assessment of mother
+language
+	original_language = <[ISO_639-1::en]>
+description
+	original_author = <
+		["name"] = <"Heather Leslie">
+		["organisation"] = <"Ocean Informatics">
+		["date"] = <"1/05/2007">
+		["email"] = <"heather.leslie@oceaninformatics.biz">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"g">
+			use = <"g">
+			keywords = <"postnatal", "mother", "lochia", "feeding", "postpartum", "breast">
+			misuse = <"g">
+		>
+	>
+	lifecycle_state = <"Initial">
+	other_contributors = <>
+
+definition
+	OBSERVATION[at0000] matches {	-- Postnatal assessment of mother
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									CLUSTER[at0004] occurrences matches {0..1} matches {	-- Normal Statements
+										items cardinality matches {0..*; unordered} matches {
+											ELEMENT[at0005] occurrences matches {0..1} matches {	-- Normal Statement
+												value matches {
+													DV_TEXT matches {*}
+												}
+											}
+										}
+									}
+									CLUSTER[at0006] occurrences matches {0..1} matches {	-- Findings
+										items cardinality matches {0..*; unordered} matches {
+											CLUSTER[at0007] occurrences matches {0..1} matches {	-- Feeding
+												items cardinality matches {0..*; unordered} matches {
+													ELEMENT[at0021] occurrences matches {0..1} matches {	-- Method
+														value matches {
+															DV_CODED_TEXT matches {
+																defining_code matches {
+																	[local::
+																	at0022, 	-- Breastfeeding only
+																	at0023, 	-- Bottlefeeding only
+																	at0024, 	-- Combination of breastfeeding and bottlefeeding
+																	at0025, 	-- Breastfeeding with occasional supplementary feeds
+																	at0041, 	-- Tube feeding
+																	at0042, 	-- Cup feeding
+																	at0043]	-- Syringe feeding
+																}
+															}
+														}
+													}
+													ELEMENT[at0044] occurrences matches {0..1} matches {	-- Method comment
+														value matches {
+															DV_TEXT matches {*}
+														}
+													}
+													ELEMENT[at0019] occurrences matches {0..1} matches {	-- Establishment of method
+														value matches {
+															DV_CODED_TEXT matches {
+																defining_code matches {
+																	[local::
+																	at0026, 	-- Becoming established
+																	at0027, 	-- Well established
+																	at0028, 	-- Not established
+																	at0045, 	-- Expressing - by hand
+																	at0046]	-- Expressing - pump
+																}
+															}
+														}
+													}
+													ELEMENT[at0030] occurrences matches {0..1} matches {	-- Complications or concerns
+														value matches {
+															DV_TEXT matches {*}
+														}
+													}
+													ELEMENT[at0038] occurrences matches {0..1} matches {	-- Breastmilk status
+														value matches {
+															DV_CODED_TEXT matches {
+																defining_code matches {
+																	[local::
+																	at0039, 	-- Colostrum
+																	at0040, 	-- Breastmilk
+																	at0067]	-- Nil production
+																}
+															}
+														}
+													}
+													CLUSTER[at0047] occurrences matches {0..1} matches {	-- Breasts and nipples
+														items cardinality matches {0..*; unordered} matches {
+															CLUSTER[at0052] occurrences matches {0..1} matches {	-- Right breast
+																items cardinality matches {0..*; unordered} matches {
+																	ELEMENT[at0053] occurrences matches {0..1} matches {	-- Breast description
+																		value matches {
+																			DV_TEXT matches {*}
+																		}
+																	}
+																	ELEMENT[at0054] occurrences matches {0..1} matches {	-- Milk production
+																		value matches {
+																			DV_TEXT matches {*}
+																		}
+																	}
+																	CLUSTER[at0055] occurrences matches {0..1} matches {	-- Nipple
+																		items cardinality matches {0..*; unordered} matches {
+																			ELEMENT[at0056] occurrences matches {0..1} matches {	-- Nipple status
+																				value matches {
+																					DV_CODED_TEXT matches {
+																						defining_code matches {
+																							[local::
+																							at0058, 	-- Bleeding
+																							at0059, 	-- Cracked
+																							at0060, 	-- Blanched
+																							at0061, 	-- Blisters
+																							at0062, 	-- Sore
+																							at0063, 	-- Healing
+																							at0145, 	-- No abnormality detected
+																							at0146]	-- Comfortable/intact
+																						}
+																					}
+																				}
+																			}
+																			ELEMENT[at0064] occurrences matches {0..1} matches {	-- Nipple comment
+																				value matches {
+																					DV_TEXT matches {*}
+																				}
+																			}
+																		}
+																	}
+																}
+															}
+															CLUSTER[at0050] occurrences matches {0..1} matches {	-- Left breast
+																items cardinality matches {0..*; unordered} matches {
+																	ELEMENT[at0048] occurrences matches {0..1} matches {	-- Breast description
+																		value matches {
+																			DV_TEXT matches {*}
+																		}
+																	}
+																	ELEMENT[at0049] occurrences matches {0..1} matches {	-- Milk production
+																		value matches {
+																			DV_TEXT matches {*}
+																		}
+																	}
+																	CLUSTER[at0051] occurrences matches {0..1} matches {	-- Nipple
+																		items cardinality matches {0..*; unordered} matches {
+																			ELEMENT[at0065] occurrences matches {0..1} matches {	-- Nipple comment
+																				value matches {
+																					DV_TEXT matches {*}
+																				}
+																			}
+																			use_node ELEMENT /data[at0001]/events[at0002]/data[at0003]/items[at0006]/items[at0007]/items[at0047]/items[at0052]/items[at0055]/items[at0056]
+																		}
+																	}
+																}
+															}
+															CLUSTER[at0148] occurrences matches {0..1} matches {	-- Nipple shields
+																items cardinality matches {0..*; unordered} matches {
+																	ELEMENT[at0066] occurrences matches {0..1} matches {	-- Nipple shields used
+																		value matches {
+																			DV_BOOLEAN matches {
+																				value matches {True, False}
+																			}
+																		}
+																	}
+																	ELEMENT[at0147] occurrences matches {0..1} matches {	-- Disadvantages discussed
+																		value matches {
+																			DV_BOOLEAN matches {
+																				value matches {True, False}
+																			}
+																		}
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+											CLUSTER[at0009] occurrences matches {0..1} matches {	-- Urination
+												items cardinality matches {0..*; unordered} matches {
+													CLUSTER[at0155] occurrences matches {0..1} matches {	-- Normal statements
+														items cardinality matches {0..*; unordered} matches {
+															ELEMENT[at0156] occurrences matches {0..1} matches {	-- Normal statement
+																value matches {
+																	DV_TEXT matches {*}
+																}
+															}
+														}
+													}
+													ELEMENT[at0020] occurrences matches {0..1} matches {	-- Voided within first 6 hours
+														value matches {
+															DV_BOOLEAN matches {
+																value matches {True}
+															}
+														}
+													}
+													CLUSTER[at0069] occurrences matches {0..1} matches {	-- Catheterisation
+														items cardinality matches {0..*; unordered} matches {
+															ELEMENT[at0068] occurrences matches {0..1} matches {	-- Currently catheterised
+																value matches {
+																	DV_BOOLEAN matches {
+																		value matches {True, False}
+																	}
+																}
+															}
+															ELEMENT[at0070] occurrences matches {0..1} matches {	-- Type of catheter
+																value matches {
+																	DV_TEXT matches {*}
+																}
+															}
+														}
+													}
+													ELEMENT[at0143] occurrences matches {0..1} matches {	-- Any incontinence?
+														value matches {
+															DV_BOOLEAN matches {
+																value matches {True, False}
+															}
+														}
+													}
+													ELEMENT[at0029] occurrences matches {0..1} matches {	-- Description of issue
+														value matches {
+															DV_TEXT matches {*}
+														}
+													}
+													ELEMENT[at0158] occurrences matches {0..1} matches {	-- Actions taken if no urine passed
+														value matches {
+															DV_TEXT matches {*}
+														}
+													}
+												}
+											}
+											CLUSTER[at0031] occurrences matches {0..1} matches {	-- Bowels
+												items cardinality matches {0..*; unordered} matches {
+													ELEMENT[at0072] occurrences matches {0..1} matches {	-- Bowels open
+														value matches {
+															DV_BOOLEAN matches {
+																value matches {True, False}
+															}
+														}
+													}
+													ELEMENT[at0142] occurrences matches {0..1} matches {	-- Any incontinence?
+														value matches {
+															DV_BOOLEAN matches {
+																value matches {True, False}
+															}
+														}
+													}
+													ELEMENT[at0144] occurrences matches {0..1} matches {	-- Time since last bowel movement
+														value matches {
+															C_DV_QUANTITY <
+																property = <[openehr::128]>
+																list = <
+																	["1"] = <
+																		units = <"d">
+																	>
+																	["2"] = <
+																		units = <"h">
+																	>
+																	["3"] = <
+																		units = <"min">
+																	>
+																>
+															>
+														}
+													}
+													ELEMENT[at0140] occurrences matches {0..1} matches {	-- Bowels comment
+														value matches {
+															DV_TEXT matches {*}
+														}
+													}
+													CLUSTER[at0141] occurrences matches {0..1} matches {	-- Haemorrhoids
+														items cardinality matches {0..*; unordered} matches {
+															ELEMENT[at0073] occurrences matches {0..1} matches {	-- Haemorrhoids present
+																value matches {
+																	DV_BOOLEAN matches {
+																		value matches {True, False}
+																	}
+																}
+															}
+															ELEMENT[at0074] occurrences matches {0..1} matches {	-- Haemorrhoids comment
+																value matches {
+																	DV_TEXT matches {*}
+																}
+															}
+														}
+													}
+												}
+											}
+											CLUSTER[at0080] occurrences matches {0..1} matches {	-- Perineum
+												items cardinality matches {0..*; unordered} matches {
+													ELEMENT[at0081] occurrences matches {0..*} matches {	-- Perineal damage
+														value matches {
+															DV_CODED_TEXT matches {
+																defining_code matches {
+																	[local::
+																	at0083, 	-- Abrasions
+																	at0084, 	-- Lacerations
+																	at0085, 	-- Tearing
+																	at0086]	-- Stitches
+																}
+															}
+														}
+													}
+													ELEMENT[at0149] occurrences matches {0..1} matches {	-- Degree of damage
+														value matches {
+															DV_CODED_TEXT matches {
+																defining_code matches {
+																	[local::
+																	at0150, 	-- 1st degree
+																	at0151, 	-- 2nd degree
+																	at0152, 	-- 3rd degree
+																	at0153]	-- 4th degree
+																}
+															}
+														}
+													}
+													ELEMENT[at0095] occurrences matches {0..1} matches {	-- Perineal damage comment
+														value matches {
+															DV_TEXT matches {*}
+														}
+													}
+													ELEMENT[at0087] occurrences matches {0..1} matches {	-- Perineal status
+														value matches {
+															DV_CODED_TEXT matches {
+																defining_code matches {
+																	[local::
+																	at0088, 	-- Satisfactory
+																	at0089, 	-- Healing
+																	at0090, 	-- Clean and dry
+																	at0091, 	-- Smelly or offensive
+																	at0092, 	-- Discharging
+																	at0093]	-- Breaking down
+																}
+															}
+														}
+													}
+													ELEMENT[at0094] occurrences matches {0..1} matches {	-- Perineal status comment
+														value matches {
+															DV_TEXT matches {*}
+														}
+													}
+													CLUSTER[at0096] occurrences matches {0..1} matches {	-- Treatment or follow-up
+														items cardinality matches {0..*; unordered} matches {
+															ELEMENT[at0105] occurrences matches {0..1} matches {	-- Analgesia required
+																value matches {
+																	DV_BOOLEAN matches {
+																		value matches {True, False}
+																	}
+																}
+															}
+															ELEMENT[at0097] occurrences matches {0..1} matches {	-- Treatment or follow-up
+																value matches {
+																	DV_CODED_TEXT matches {
+																		defining_code matches {
+																			[local::
+																			at0098, 	-- Swabbed
+																			at0099, 	-- Oral antibiotics
+																			at0100, 	-- IV antibiotics
+																			at0101, 	-- Surgical dressing
+																			at0102, 	-- Further repair
+																			at0103]	-- Referral
+																		}
+																	}
+																}
+															}
+															ELEMENT[at0104] occurrences matches {0..1} matches {	-- Comment
+																value matches {
+																	DV_TEXT matches {*}
+																}
+															}
+														}
+													}
+												}
+											}
+											CLUSTER[at0106] occurrences matches {0..*} matches {	-- Incision
+												items cardinality matches {0..*; unordered} matches {
+													ELEMENT[at0139] occurrences matches {0..1} matches {	-- Location on body
+														value matches {
+															DV_TEXT matches {*}
+														}
+													}
+													ELEMENT[at0107] occurrences matches {0..*} matches {	-- Status of incision
+														value matches {
+															DV_CODED_TEXT matches {
+																defining_code matches {
+																	[local::
+																	at0108, 	-- Satisfactory
+																	at0109, 	-- Clean and dry
+																	at0110, 	-- Healing
+																	at0111, 	-- Discharging
+																	at0112, 	-- Smelly or offensive
+																	at0113, 	-- Breaking down
+																	at0114, 	-- Inflamed
+																	at0115, 	-- Redness
+																	at0116]	-- Soreness
+																}
+															}
+														}
+													}
+													ELEMENT[at0117] occurrences matches {0..1} matches {	-- Incision comment
+														value matches {
+															DV_TEXT matches {*}
+														}
+													}
+													CLUSTER[at0118] occurrences matches {0..1} matches {	-- Suture or repair
+														items cardinality matches {0..*; unordered} matches {
+															ELEMENT[at0119] occurrences matches {0..1} matches {	-- Type of suture/repair
+																value matches {
+																	DV_CODED_TEXT matches {
+																		defining_code matches {
+																			[local::
+																			at0134, 	-- Surgical clips
+																			at0159, 	-- Vicryl
+																			at0160, 	-- Silk
+																			at0161, 	-- Prolene
+																			at0162]	-- Dexon
+																		}
+																	}
+																}
+															}
+															ELEMENT[at0121] occurrences matches {0..1} matches {	-- Suture/repair comment
+																value matches {
+																	DV_TEXT matches {*}
+																}
+															}
+														}
+													}
+													CLUSTER[at0135] occurrences matches {0..1} matches {	-- Drainage
+														items cardinality matches {0..*; unordered} matches {
+															ELEMENT[at0136] occurrences matches {0..1} matches {	-- Type of drain
+																value matches {
+																	DV_TEXT matches {*}
+																}
+															}
+															ELEMENT[at0137] occurrences matches {0..1} matches {	-- Drain contents description
+																value matches {
+																	DV_TEXT matches {*}
+																}
+															}
+															ELEMENT[at0138] occurrences matches {0..1} matches {	-- Drain contents quantity
+																value matches {
+																	C_DV_QUANTITY <
+																		property = <[openehr::129]>
+																		list = <
+																			["1"] = <
+																				units = <"ml">
+																			>
+																			["2"] = <
+																				units = <"l">
+																			>
+																			["3"] = <
+																				units = <"cl">
+																			>
+																			["4"] = <
+																				units = <"fl oz">
+																			>
+																		>
+																	>
+																}
+															}
+															ELEMENT[at0163] occurrences matches {0..1} matches {	-- Date and time of drain removal
+																value matches {
+																	DV_DATE_TIME matches {
+																		value matches {yyyy-mm-ddTHH:MM:SS}
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+											CLUSTER[at0166] occurrences matches {0..1} matches {	-- Post partum haemorrhage
+												items cardinality matches {0..*; unordered} matches {
+													ELEMENT[at0075] occurrences matches {0..1} matches {	-- Primary PPH?
+														value matches {
+															DV_BOOLEAN matches {
+																value matches {True, False}
+															}
+														}
+													}
+													ELEMENT[at0076] occurrences matches {0..1} matches {	-- Secondary PPH?
+														value matches {
+															DV_BOOLEAN matches {
+																value matches {True, False}
+															}
+														}
+													}
+													ELEMENT[at0167] occurrences matches {0..1} matches {	-- PPH comment
+														value matches {
+															DV_TEXT matches {*}
+														}
+													}
+												}
+											}
+											CLUSTER[at0011] occurrences matches {0..1} matches {	-- Lochia
+												items cardinality matches {0..*; unordered} matches {
+													CLUSTER[at0164] occurrences matches {0..1} matches {	-- Normal statements
+														items cardinality matches {0..*; unordered} matches {
+															ELEMENT[at0165] occurrences matches {0..1} matches {	-- Normal statement
+																value matches {
+																	DV_TEXT matches {*}
+																}
+															}
+														}
+													}
+													ELEMENT[at0037] occurrences matches {0..1} matches {	-- Amount
+														value matches {
+															DV_TEXT matches {*}
+														}
+													}
+													ELEMENT[at0077] occurrences matches {0..1} matches {	-- Clotting?
+														value matches {
+															DV_BOOLEAN matches {
+																value matches {True, False}
+															}
+														}
+													}
+													ELEMENT[at0010] occurrences matches {0..1} matches {	-- Colour
+														value matches {
+															DV_TEXT matches {*}
+														}
+													}
+													ELEMENT[at0012] occurrences matches {0..1} matches {	-- Odour
+														value matches {
+															DV_TEXT matches {
+																value matches {"None", "Malodourous"}
+															}
+														}
+													}
+												}
+											}
+											CLUSTER[at0032] occurrences matches {0..1} matches {	-- Mobilisation
+												items cardinality matches {0..*; unordered} matches {
+													ELEMENT[at0033] occurrences matches {0..1} matches {	-- Status
+														value matches {
+															DV_CODED_TEXT matches {
+																defining_code matches {
+																	[local::
+																	at0034, 	-- Mobilising normally
+																	at0035, 	-- Mobilising with some difficulty
+																	at0036]	-- Not able to mobilise
+																}
+															}
+														}
+													}
+													ELEMENT[at0079] occurrences matches {0..1} matches {	-- Mobilisation plan
+														value matches {
+															DV_TEXT matches {*}
+														}
+													}
+													use_node ELEMENT /data[at0001]/events[at0002]/data[at0003]/items[at0006]/items[at0009]/items[at0029]
+												}
+											}
+											CLUSTER[at0168] occurrences matches {0..1} matches {	-- Thromboprophylaxis
+												items cardinality matches {0..*; unordered} matches {
+													ELEMENT[at0169] occurrences matches {0..1} matches {	-- Assessment made
+														value matches {
+															DV_BOOLEAN matches {
+																value matches {True, False}
+															}
+														}
+													}
+													ELEMENT[at0170] occurrences matches {0..1} matches {	-- Actions taken
+														value matches {
+															DV_TEXT matches {*}
+														}
+													}
+												}
+											}
+										}
+									}
+									CLUSTER[at0154] occurrences matches {0..1} matches {	-- Pain
+										items cardinality matches {0..*; unordered} matches {
+											allow_archetype CLUSTER occurrences matches {0..*} matches {
+												include
+													archetype_id/value matches {/symptom-pain\.v7/}
+													archetype_id/value matches {/symptom-pain\.v7/}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					description = <"Record of postnatal details related to mother">
+					text = <"Postnatal assessment of mother">
+				>
+				["at0001"] = <
+					description = <"@ internal @">
+					text = <"Event Series">
+				>
+				["at0002"] = <
+					description = <"*">
+					text = <"Any event">
+				>
+				["at0003"] = <
+					description = <"@ internal @">
+					text = <"Tree">
+				>
+				["at0004"] = <
+					description = <"*">
+					text = <"Normal Statements">
+				>
+				["at0005"] = <
+					description = <"*">
+					text = <"Normal Statement">
+				>
+				["at0006"] = <
+					description = <"*">
+					text = <"Findings">
+				>
+				["at0007"] = <
+					description = <"*">
+					text = <"Feeding">
+				>
+				["at0009"] = <
+					description = <"*">
+					text = <"Urination">
+				>
+				["at0010"] = <
+					description = <"*">
+					text = <"Colour">
+				>
+				["at0011"] = <
+					description = <"*">
+					text = <"Lochia">
+				>
+				["at0012"] = <
+					description = <"Odour of Lochia">
+					text = <"Odour">
+				>
+				["at0019"] = <
+					description = <"*">
+					text = <"Establishment of method">
+				>
+				["at0020"] = <
+					description = <"Voided within first 6 hours after birth">
+					text = <"Voided within first 6 hours">
+				>
+				["at0021"] = <
+					description = <"*">
+					text = <"Method">
+				>
+				["at0022"] = <
+					description = <"*">
+					text = <"Breastfeeding only">
+				>
+				["at0023"] = <
+					description = <"*">
+					text = <"Bottlefeeding only">
+				>
+				["at0024"] = <
+					description = <"*">
+					text = <"Combination of breastfeeding and bottlefeeding">
+				>
+				["at0025"] = <
+					description = <"*">
+					text = <"Breastfeeding with occasional supplementary feeds">
+				>
+				["at0026"] = <
+					description = <"*">
+					text = <"Becoming established">
+				>
+				["at0027"] = <
+					description = <"*">
+					text = <"Well established">
+				>
+				["at0028"] = <
+					description = <"*">
+					text = <"Not established">
+				>
+				["at0029"] = <
+					description = <"Description of any issues arising - difficulty urinating, etc">
+					text = <"Description of issue">
+				>
+				["at0030"] = <
+					description = <"E.g. problems with latching, production, inverted nipples...">
+					text = <"Complications or concerns">
+				>
+				["at0031"] = <
+					description = <"*">
+					text = <"Bowels">
+				>
+				["at0032"] = <
+					description = <"*">
+					text = <"Mobilisation">
+				>
+				["at0033"] = <
+					description = <"*">
+					text = <"Status">
+				>
+				["at0034"] = <
+					description = <"*">
+					text = <"Mobilising normally">
+				>
+				["at0035"] = <
+					description = <"*">
+					text = <"Mobilising with some difficulty">
+				>
+				["at0036"] = <
+					description = <"*">
+					text = <"Not able to mobilise">
+				>
+				["at0037"] = <
+					description = <"*">
+					text = <"Amount">
+				>
+				["at0038"] = <
+					description = <"*">
+					text = <"Breastmilk status">
+				>
+				["at0039"] = <
+					description = <"*">
+					text = <"Colostrum">
+				>
+				["at0040"] = <
+					description = <"*">
+					text = <"Breastmilk">
+				>
+				["at0041"] = <
+					description = <"*">
+					text = <"Tube feeding">
+				>
+				["at0042"] = <
+					description = <"*">
+					text = <"Cup feeding">
+				>
+				["at0043"] = <
+					description = <"*">
+					text = <"Syringe feeding">
+				>
+				["at0044"] = <
+					description = <"Comments on technique, best position, latching etc - and any problems">
+					text = <"Method comment">
+				>
+				["at0045"] = <
+					description = <"*">
+					text = <"Expressing - by hand">
+				>
+				["at0046"] = <
+					description = <"*">
+					text = <"Expressing - pump">
+				>
+				["at0047"] = <
+					description = <"*">
+					text = <"Breasts and nipples">
+				>
+				["at0048"] = <
+					description = <"E.g. soft, comfortable, hard, sore etc">
+					text = <"Breast description">
+				>
+				["at0049"] = <
+					description = <"Good flow? Reduced? None? Is milk flowing normally into the breasts? Is one breast larger than the other? etc">
+					text = <"Milk production">
+				>
+				["at0050"] = <
+					description = <"*">
+					text = <"Left breast">
+				>
+				["at0051"] = <
+					description = <"*">
+					text = <"Nipple">
+				>
+				["at0052"] = <
+					description = <"*">
+					text = <"Right breast">
+				>
+				["at0053"] = <
+					description = <"E.g. soft, comfortable, hard, sore etc">
+					text = <"Breast description">
+				>
+				["at0054"] = <
+					description = <"Good flow? Reduced? None? Is milk flowing normally into the breasts? Is one breast larger than the other? etc">
+					text = <"Milk production">
+				>
+				["at0055"] = <
+					description = <"*">
+					text = <"Nipple">
+				>
+				["at0056"] = <
+					description = <"The status of the nipple">
+					text = <"Nipple status">
+				>
+				["at0058"] = <
+					description = <"*">
+					text = <"Bleeding">
+				>
+				["at0059"] = <
+					description = <"*">
+					text = <"Cracked">
+				>
+				["at0060"] = <
+					description = <"*">
+					text = <"Blanched">
+				>
+				["at0061"] = <
+					description = <"*">
+					text = <"Blisters">
+				>
+				["at0062"] = <
+					description = <"*">
+					text = <"Sore">
+				>
+				["at0063"] = <
+					description = <"*">
+					text = <"Healing">
+				>
+				["at0064"] = <
+					description = <"*">
+					text = <"Nipple comment">
+				>
+				["at0065"] = <
+					description = <"*">
+					text = <"Nipple comment">
+				>
+				["at0066"] = <
+					description = <"True if nipple shields are being used">
+					text = <"Nipple shields used">
+				>
+				["at0067"] = <
+					description = <"*">
+					text = <"Nil production">
+				>
+				["at0068"] = <
+					description = <"*">
+					text = <"Currently catheterised">
+				>
+				["at0069"] = <
+					description = <"*">
+					text = <"Catheterisation">
+				>
+				["at0070"] = <
+					description = <"*">
+					text = <"Type of catheter">
+				>
+				["at0072"] = <
+					description = <"Bowls open since delivery">
+					text = <"Bowels open">
+				>
+				["at0073"] = <
+					description = <"*">
+					text = <"Haemorrhoids present">
+				>
+				["at0074"] = <
+					description = <"Any relevant comments">
+					text = <"Haemorrhoids comment">
+				>
+				["at0075"] = <
+					description = <"True if PPH occurred within 24 hours of birth">
+					text = <"Primary PPH?">
+				>
+				["at0076"] = <
+					description = <"True if PPH occurred after 24 hours of birth">
+					text = <"Secondary PPH?">
+				>
+				["at0077"] = <
+					description = <"True if clots are present in lochia">
+					text = <"Clotting?">
+				>
+				["at0079"] = <
+					description = <"Any plans, referrals or advice given regarding improving mobility">
+					text = <"Mobilisation plan">
+				>
+				["at0080"] = <
+					description = <"*">
+					text = <"Perineum">
+				>
+				["at0081"] = <
+					description = <"Any damage done to the perineum during birth">
+					text = <"Perineal damage">
+				>
+				["at0083"] = <
+					description = <"*">
+					text = <"Abrasions">
+				>
+				["at0084"] = <
+					description = <"*">
+					text = <"Lacerations">
+				>
+				["at0085"] = <
+					description = <"*">
+					text = <"Tearing">
+				>
+				["at0086"] = <
+					description = <"*">
+					text = <"Stitches">
+				>
+				["at0087"] = <
+					description = <"The current status of the perineum">
+					text = <"Perineal status">
+				>
+				["at0088"] = <
+					description = <"*">
+					text = <"Satisfactory">
+				>
+				["at0089"] = <
+					description = <"*">
+					text = <"Healing">
+				>
+				["at0090"] = <
+					description = <"*">
+					text = <"Clean and dry">
+				>
+				["at0091"] = <
+					description = <"*">
+					text = <"Smelly or offensive">
+				>
+				["at0092"] = <
+					description = <"*">
+					text = <"Discharging">
+				>
+				["at0093"] = <
+					description = <"*">
+					text = <"Breaking down">
+				>
+				["at0094"] = <
+					description = <"*">
+					text = <"Perineal status comment">
+				>
+				["at0095"] = <
+					description = <"*">
+					text = <"Perineal damage comment">
+				>
+				["at0096"] = <
+					description = <"*">
+					text = <"Treatment or follow-up">
+				>
+				["at0097"] = <
+					description = <"*">
+					text = <"Treatment or follow-up">
+				>
+				["at0098"] = <
+					description = <"*">
+					text = <"Swabbed">
+				>
+				["at0099"] = <
+					description = <"*">
+					text = <"Oral antibiotics">
+				>
+				["at0100"] = <
+					description = <"*">
+					text = <"IV antibiotics">
+				>
+				["at0101"] = <
+					description = <"*">
+					text = <"Surgical dressing">
+				>
+				["at0102"] = <
+					description = <"*">
+					text = <"Further repair">
+				>
+				["at0103"] = <
+					description = <"*">
+					text = <"Referral">
+				>
+				["at0104"] = <
+					description = <"*">
+					text = <"Comment">
+				>
+				["at0105"] = <
+					description = <"*">
+					text = <"Analgesia required">
+				>
+				["at0106"] = <
+					description = <"*">
+					text = <"Incision">
+				>
+				["at0107"] = <
+					description = <"The status of any incisions made during labour/birth">
+					text = <"Status of incision">
+				>
+				["at0108"] = <
+					description = <"*">
+					text = <"Satisfactory">
+				>
+				["at0109"] = <
+					description = <"*">
+					text = <"Clean and dry">
+				>
+				["at0110"] = <
+					description = <"*">
+					text = <"Healing">
+				>
+				["at0111"] = <
+					description = <"*">
+					text = <"Discharging">
+				>
+				["at0112"] = <
+					description = <"*">
+					text = <"Smelly or offensive">
+				>
+				["at0113"] = <
+					description = <"*">
+					text = <"Breaking down">
+				>
+				["at0114"] = <
+					description = <"*">
+					text = <"Inflamed">
+				>
+				["at0115"] = <
+					description = <"*">
+					text = <"Redness">
+				>
+				["at0116"] = <
+					description = <"*">
+					text = <"Soreness">
+				>
+				["at0117"] = <
+					description = <"Any comments about the incision">
+					text = <"Incision comment">
+				>
+				["at0118"] = <
+					description = <"*">
+					text = <"Suture or repair">
+				>
+				["at0119"] = <
+					description = <"Type of suture/repair">
+					text = <"Type of suture/repair">
+				>
+				["at0121"] = <
+					description = <"Any comments - including about removal of sutures, etc">
+					text = <"Suture/repair comment">
+				>
+				["at0134"] = <
+					description = <"*">
+					text = <"Surgical clips">
+				>
+				["at0135"] = <
+					description = <"*">
+					text = <"Drainage">
+				>
+				["at0136"] = <
+					description = <"*">
+					text = <"Type of drain">
+				>
+				["at0137"] = <
+					description = <"*">
+					text = <"Drain contents description">
+				>
+				["at0138"] = <
+					description = <"*">
+					text = <"Drain contents quantity">
+				>
+				["at0139"] = <
+					description = <"*">
+					text = <"Location on body">
+				>
+				["at0140"] = <
+					description = <"Any complications/comments re: tears, damage, parasites etc">
+					text = <"Bowels comment">
+				>
+				["at0141"] = <
+					description = <"*">
+					text = <"Haemorrhoids">
+				>
+				["at0142"] = <
+					description = <"*">
+					text = <"Any incontinence?">
+				>
+				["at0143"] = <
+					description = <"*">
+					text = <"Any incontinence?">
+				>
+				["at0144"] = <
+					description = <"*">
+					text = <"Time since last bowel movement">
+				>
+				["at0145"] = <
+					description = <"*">
+					text = <"No abnormality detected">
+				>
+				["at0146"] = <
+					description = <"*">
+					text = <"Comfortable/intact">
+				>
+				["at0147"] = <
+					description = <"True if the disadvantages of nipple shields have been highlighted/discussed with woman">
+					text = <"Disadvantages discussed">
+				>
+				["at0148"] = <
+					description = <"*">
+					text = <"Nipple shields">
+				>
+				["at0149"] = <
+					description = <"*">
+					text = <"Degree of damage">
+				>
+				["at0150"] = <
+					description = <"*">
+					text = <"1st degree">
+				>
+				["at0151"] = <
+					description = <"*">
+					text = <"2nd degree">
+				>
+				["at0152"] = <
+					description = <"*">
+					text = <"3rd degree">
+				>
+				["at0153"] = <
+					description = <"*">
+					text = <"4th degree">
+				>
+				["at0154"] = <
+					description = <"*">
+					text = <"Pain">
+				>
+				["at0155"] = <
+					description = <"*">
+					text = <"Normal statements">
+				>
+				["at0156"] = <
+					description = <"Normal statements about urination">
+					text = <"Normal statement">
+				>
+				["at0158"] = <
+					description = <"E.g. catheterised">
+					text = <"Actions taken if no urine passed">
+				>
+				["at0159"] = <
+					description = <"*">
+					text = <"Vicryl">
+				>
+				["at0160"] = <
+					description = <"*">
+					text = <"Silk">
+				>
+				["at0161"] = <
+					description = <"*">
+					text = <"Prolene">
+				>
+				["at0162"] = <
+					description = <"*">
+					text = <"Dexon">
+				>
+				["at0163"] = <
+					description = <"*">
+					text = <"Date and time of drain removal">
+				>
+				["at0164"] = <
+					description = <"*">
+					text = <"Normal statements">
+				>
+				["at0165"] = <
+					description = <"*">
+					text = <"Normal statement">
+				>
+				["at0166"] = <
+					description = <"*">
+					text = <"Post partum haemorrhage">
+				>
+				["at0167"] = <
+					description = <"Any comments about a post partum haemorrhage">
+					text = <"PPH comment">
+				>
+				["at0168"] = <
+					description = <"*">
+					text = <"Thromboprophylaxis">
+				>
+				["at0169"] = <
+					description = <"True if an assessment of the need for thromboprophylaxis has been made during this check">
+					text = <"Assessment made">
+				>
+				["at0170"] = <
+					description = <"Any actions taken. Medications will be recorded in the medication section of the template">
+					text = <"Actions taken">
+				>
+			>
+		>
+	>
+

@@ -1,0 +1,205 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.palpation_breast.v1
+
+concept
+	[at0000]	-- Palpation of breast and nipple
+language
+	original_language = <[ISO_639-1::en]>
+description
+	original_author = <
+		["organisation"] = <"NHS CFH">
+		["name"] = <"D B Hutchinson">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"D">
+			use = <"D">
+			misuse = <"D">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <>
+
+definition
+	OBSERVATION[at0000] matches {	-- Palpation of breast and nipple
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TABLE[at0003] matches {	-- Table
+								rotated matches {True}
+								number_key_columns matches {|1|}
+								rows cardinality matches {0..1; unordered} matches {
+									CLUSTER[at0019] occurrences matches {0..1} matches {	-- row
+										items cardinality matches {7; unordered} matches {
+											ELEMENT[at0005] occurrences matches {0..1} matches {	-- row_head
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0004, -- Left
+															at0006]	-- Right
+														}
+													}
+												}
+											}
+											ELEMENT[at0013] occurrences matches {0..1} matches {	-- New element
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {[local::]}
+													}
+												}
+											}
+											ELEMENT[at0014] occurrences matches {0..1} matches {	-- Presence of mass?
+												value matches {
+													DV_BOOLEAN matches {
+														value matches {True, False}
+													}
+												}
+											}
+											ELEMENT[at0015] occurrences matches {0..*} matches {	-- New element
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {[local::]}
+													}
+												}
+											}
+											ELEMENT[at0016] occurrences matches {0..*} matches {	-- Location of mass
+												value matches {
+													DV_TEXT matches {*}
+												}
+											}
+											ELEMENT[at0017] occurrences matches {0..1} matches {	-- 2
+												value matches {
+													DV_BOOLEAN matches {
+														value matches {True, False}
+													}
+												}
+											}
+											ELEMENT[at0018] occurrences matches {0..1} matches {	-- Description of nipple discharge
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {[local::]}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+						state matches {
+							ITEM_TREE[at0007] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0008] occurrences matches {0..1} matches {	-- Position
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0009, 	-- Standing
+													at0010, 	-- Sitting
+													at0011, 	-- Supine, arms by side
+													at0012]	-- Supine, ipsilateral arm abducted, flexed
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					description = <"Record of palpation of breast and nipple">
+					text = <"Palpation of breast and nipple">
+				>
+				["at0001"] = <
+					description = <"@ internal @">
+					text = <"Event Series">
+				>
+				["at0002"] = <
+					description = <"*">
+					text = <"Any event">
+				>
+				["at0003"] = <
+					description = <"@ internal @">
+					text = <"Table">
+				>
+				["at0004"] = <
+					description = <"*">
+					text = <"Left">
+				>
+				["at0005"] = <
+					description = <"*">
+					text = <"row_head">
+				>
+				["at0006"] = <
+					description = <"*">
+					text = <"Right">
+				>
+				["at0007"] = <
+					description = <"@ internal @">
+					text = <"Tree">
+				>
+				["at0008"] = <
+					description = <"*">
+					text = <"Position">
+				>
+				["at0009"] = <
+					description = <"*">
+					text = <"Standing">
+				>
+				["at0010"] = <
+					description = <"*">
+					text = <"Sitting">
+				>
+				["at0011"] = <
+					description = <"*">
+					text = <"Supine, arms by side">
+				>
+				["at0012"] = <
+					description = <"*">
+					text = <"Supine, ipsilateral arm abducted, flexed">
+				>
+				["at0013"] = <
+					description = <"*">
+					text = <"New element">
+				>
+				["at0014"] = <
+					description = <"True if present">
+					text = <"Presence of mass?">
+				>
+				["at0015"] = <
+					description = <"*">
+					text = <"New element">
+				>
+				["at0016"] = <
+					description = <"*">
+					text = <"Location of mass">
+				>
+				["at0017"] = <
+					description = <"True if present">
+					text = <"2">
+				>
+				["at0018"] = <
+					description = <"*">
+					text = <"Description of nipple discharge">
+				>
+				["at0019"] = <
+					description = <"@ internal @">
+					text = <"row">
+				>
+			>
+		>
+	>
+

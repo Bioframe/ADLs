@@ -1,0 +1,965 @@
+﻿archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.feeding.v3
+
+concept
+	[at0000]	-- Feeding
+language
+	original_language = <[ISO_639-1::en]>
+description
+	original_author = <
+		["organisation"] = <"NHS CFH">
+		["name"] = <"D B Hutchinson">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"c">
+			use = <"c">
+			misuse = <"c">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <>
+	other_details = <
+		["references"] = <"">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- Feeding
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0029] occurrences matches {0..1} matches {	-- Description
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0037] occurrences matches {0..1} matches {	-- Nutrition Type
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0038, 	-- Milk Diet
+													at0039, 	-- Solids Diet
+													at0040, 	-- Nutritional Supplement
+													at0041]	    -- Total Parenteral Nutrition
+												}
+											}
+										}
+									}
+									ELEMENT[at0030] occurrences matches {0..1} matches {	-- Milk Diet Type
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0031, 	-- Breast Fed
+													at0032, 	-- Formula milk
+													at0033, 	-- Mixed
+													at0034, 	-- Expressed Breast Milk
+													at0035, 	-- Cow's Milk
+													at0036]	    -- Lactose Free Milk
+												}
+											}
+										}
+									}
+									CLUSTER[at0028] occurrences matches {0..1} matches {	-- Breast feeding
+										items cardinality matches {0..2; unordered} matches {
+											ELEMENT[at0022] occurrences matches {0..1} matches {	-- Proportion
+												value matches {
+													DV_PROPORTION matches {
+														type matches {2}
+													}
+												}
+											}
+											ELEMENT[at0024] occurrences matches {0..1} matches {	-- Time taken
+												value matches {
+													C_DV_QUANTITY <
+														property = <[openehr::128]>
+														list = <
+															["1"] = <
+																units = <"min">
+																magnitude = <|>=0.0|>
+																precision = <|0|>
+															>
+														>
+													>
+												}
+											}
+										}
+									}
+									CLUSTER[at0016] occurrences matches {0..1} matches {	-- Milk Diet
+										items cardinality matches {0..*; unordered} matches {
+											ELEMENT[at0017] occurrences matches {0..1} matches {	-- Type of feeding
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0019, 	-- Bottle
+															at0020, 	-- Nasogastric tube
+															at0021, 	-- Gastrostomy tube
+															at0027, 	-- Spoon
+															at0048, 	-- Beaker
+															at0050, 	-- Cup
+															at0051]	-- Enteral tube
+														}
+													}
+												}
+											}
+											ELEMENT[at0052] occurrences matches {0..1} matches {	-- Usual Teat Type
+												value matches {
+													DV_TEXT matches {*}
+												}
+											}
+											ELEMENT[at0042] occurrences matches {0..1} matches {	-- Milk Formula Name
+												value matches {
+													DV_TEXT matches {*}
+												}
+											}
+											ELEMENT[at0043] occurrences matches {0..1} matches {	-- Temperature of Feed
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0044, 	-- Room Temperature
+															at0045, 	-- Warm
+															at0046]	-- Cold
+														}
+													}
+												}
+											}
+											ELEMENT[at0023] occurrences matches {0..1} matches {	-- Volume by this method
+												value matches {
+													C_DV_QUANTITY <
+														property = <[openehr::129]>
+														list = <
+															["1"] = <
+																units = <"ml">
+																magnitude = <|>=0.0|>
+																precision = <|0|>
+															>
+														>
+													>
+												}
+											}
+											ELEMENT[at0026] occurrences matches {0..1} matches {	-- Content
+												value matches {
+													DV_TEXT matches {*}
+												}
+											}
+											ELEMENT[at0053] occurrences matches {0..1} matches {	-- Additional Milk Diet Information
+												value matches {
+													DV_TEXT matches {*}
+												}
+											}
+											use_node ELEMENT /data[at0001]/events[at0002]/data[at0003]/items[at0028]/items[at0022]
+											use_node ELEMENT /data[at0001]/events[at0002]/data[at0003]/items[at0028]/items[at0024]
+										}
+									}
+									CLUSTER[at0004] occurrences matches {0..1} matches {	-- Function
+										items cardinality matches {0..*; unordered} matches {
+											ELEMENT[at0010] occurrences matches {0..1} matches {	-- Description
+												value matches {
+													DV_TEXT matches {*}
+												}
+											}
+											ELEMENT[at0005] occurrences matches {0..1} matches {	-- Sucking
+												value matches {
+													0|[local::at0006], 	-- unable to suck
+													1|[local::at0007], 	-- some ability
+													2|[local::at0008], 	-- reduced sucking
+													3|[local::at0009]  	-- normal
+												}
+											}
+											ELEMENT[at0011] occurrences matches {0..1} matches {	-- Swallowing
+												value matches {
+													0|[local::at0012], 	-- Unable to swallow
+													1|[local::at0013], 	-- Some ability to swallow
+													2|[local::at0014], 	-- Reduced swallow
+													3|[local::at0015]; 	-- Normal
+													0  	-- assumed value
+												}
+											}
+										}
+									}
+									CLUSTER[at0054] occurrences matches {0..1} matches {	-- Solids Diet
+										items cardinality matches {0..*; unordered} matches {
+											ELEMENT[at0055] occurrences matches {0..1} matches {	-- Usual Solids Diet Type
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0056, 	-- Normal Diet
+															at0057, 	-- Toddler Diet
+															at0058, 	-- Infant Appropriate Solids
+															at0059]	-- Weaning Solids
+														}
+													}
+												}
+											}
+											ELEMENT[at0060] occurrences matches {0..1} matches {	-- Preferred Foods
+												value matches {
+													DV_TEXT matches {*}
+												}
+											}
+											ELEMENT[at0061] occurrences matches {0..1} matches {	-- Disliked Foods
+												value matches {
+													DV_TEXT matches {*}
+												}
+											}
+											ELEMENT[at0062] occurrences matches {0..1} matches {	-- Required Food Consistency
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0063, 	-- Normal Consistency
+															at0064, 	-- Lumpy
+															at0065]	-- Purée
+														}
+													}
+												}
+											}
+											ELEMENT[at0066] occurrences matches {0..1} matches {	-- Feeding Help Required
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0067, 	-- Fed by Adult
+															at0068, 	-- Feeds Self
+															at0069]	-- Needs Some Help
+														}
+													}
+												}
+											}
+											ELEMENT[at0070] occurrences matches {0..1} matches {	-- Eating Utensils
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0071, 	-- Fork
+															at0072, 	-- Knife and Fork
+															at0073, 	-- Spoon
+															at0074]	-- Uses Fingers
+														}
+													}
+												}
+											}
+											ELEMENT[at0075] occurrences matches {0..1} matches {	-- Additional Solids Diet Information
+												value matches {
+													DV_TEXT matches {*}
+												}
+											}
+											use_node ELEMENT occurrences matches {0..1} /data[at0001]/events[at0002]/data[at0003]/items[at0016]/items[at0023]
+											use_node ELEMENT occurrences matches {0..1} /data[at0001]/events[at0002]/data[at0003]/items[at0028]/items[at0022]
+											use_node ELEMENT occurrences matches {0..1} /data[at0001]/events[at0002]/data[at0003]/items[at0028]/items[at0024]
+										}
+									}
+									CLUSTER[at0076] occurrences matches {0..1} matches {	-- Usual Drinks Other Than Milk
+										items cardinality matches {0..*; unordered} matches {
+											ELEMENT[at0077] occurrences matches {0..1} matches {	-- Preferred Drinks
+												value matches {
+													DV_TEXT matches {*}
+												}
+											}
+											ELEMENT[at0078] occurrences matches {0..1} matches {	-- Disliked Drinks
+												value matches {
+													DV_TEXT matches {*}
+												}
+											}
+											ELEMENT[at0079] occurrences matches {0..1} matches {	-- Drinks from
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0048, 	-- Beaker
+															at0019, 	-- Bottle
+															at0050]	-- Cup
+														}
+													}
+												}
+											}
+											ELEMENT[at0080] occurrences matches {0..1} matches {	-- Additional Other Drinks Information
+												value matches {
+													DV_TEXT matches {*}
+												}
+											}
+										}
+									}
+									CLUSTER[at0081] occurrences matches {0..1} matches {	-- Additional Nutrition Information
+										items cardinality matches {0..*; unordered} matches {
+											ELEMENT[at0082] occurrences matches {0..1} matches {	-- Usual Feeding Complaints
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0083, 	-- Reflux
+															at0084]	-- Vomiting
+														}
+													}
+												}
+											}
+											ELEMENT[at0085] occurrences matches {0..1} matches {	-- Religious, Cultural or Lifestyle Dietary Preferences
+												value matches {
+													DV_TEXT matches {*}
+												}
+											}
+											ELEMENT[at0086] occurrences matches {0..1} matches {	-- Special Feeding Aids
+												value matches {
+													DV_TEXT matches {*}
+												}
+											}
+											ELEMENT[at0087] occurrences matches {0..1} matches {	-- Recent Changes to Nutrition
+												value matches {
+													DV_TEXT matches {*}
+												}
+											}
+											ELEMENT[at0088] occurrences matches {0..1} matches {	-- Additional Nutrition Information
+												value matches {
+													DV_TEXT matches {*}
+												}
+											}
+										}
+									}
+									CLUSTER[at0089] occurrences matches {0..1} matches {	-- Specific details about feeds
+										items cardinality matches {0..*; unordered} matches {
+											CLUSTER[at0092] occurrences matches {0..1} matches {	-- Usual Feed Times and Volumes
+												items cardinality matches {0..*; unordered} matches {
+													CLUSTER[at0090] occurrences matches {0..1} matches {	-- Each Feed is Oral, Same Volume and at Even Intervals
+														items cardinality matches {0..*; unordered} matches {
+															allow_archetype CLUSTER occurrences matches {0..*} matches {
+																include
+																	archetype_id/value matches {/checklist_item-general-cvs1\.v3/}
+															}
+														}
+													}
+													ELEMENT[at0091] occurrences matches {0..1} matches {	-- Feed Volumes
+														value matches {
+															C_DV_QUANTITY <
+																property = <[openehr::129]>
+																list = <
+																	["1"] = <
+																		units = <"ml">
+																	>
+																>
+															>
+														}
+													}
+													ELEMENT[at0093] occurrences matches {0..1} matches {	-- Feed Intervals
+														value matches {
+															C_DV_QUANTITY <
+																property = <[openehr::128]>
+																list = <
+																	["1"] = <
+																		units = <"h">
+																	>
+																	["2"] = <
+																		units = <"min">
+																	>
+																>
+															>
+														}
+													}
+													CLUSTER[at0098] occurrences matches {0..*} matches {	-- Details about each usual feed
+														items cardinality matches {0..*; unordered} matches {
+															ELEMENT[at0099] occurrences matches {0..1} matches {	-- Number of feeds per day
+																value matches {
+																	DV_COUNT matches {*}
+																}
+															}
+															CLUSTER[at0113] occurrences matches {0..*} matches {	-- Individual feed details
+																items cardinality matches {0..*; unordered} matches {
+																	ELEMENT[at0100] occurrences matches {0..1} matches {	-- Feed number
+																		value matches {
+																			DV_COUNT matches {*}
+																		}
+																	}
+																	ELEMENT[at0101] occurrences matches {0..1} matches {	-- Feed Route
+																		value matches {
+																			DV_CODED_TEXT matches {
+																				defining_code matches {
+																					[local::
+																					at0102, 	-- Oral
+																					at0103, 	-- Enteral Tube Pump
+																					at0104]	-- Enteral Tube Bolus
+																				}
+																			}
+																		}
+																	}
+																	ELEMENT[at0105] occurrences matches {0..1} matches {	-- Feed Time
+																		value matches {
+																			DV_TIME matches {
+																				value matches {HH:??:??}
+																			}
+																		}
+																	}
+																	ELEMENT[at0106] occurrences matches {0..1} matches {	-- Feed Total Volume
+																		value matches {
+																			C_DV_QUANTITY <
+																				property = <[openehr::129]>
+																				list = <
+																					["1"] = <
+																						units = <"ml">
+																					>
+																				>
+																			>
+																		}
+																	}
+																	ELEMENT[at0107] occurrences matches {0..1} matches {	-- Feed Rate
+																		value matches {
+																			C_DV_QUANTITY <
+																			>
+																		}
+																	}
+																}
+															}
+														}
+													}
+													ELEMENT[at0096] occurrences matches {0..1} matches {	-- Total Regular 24 Hour Feed Volume
+														value matches {
+															C_DV_QUANTITY <
+																property = <[openehr::129]>
+																list = <
+																	["1"] = <
+																		units = <"ml">
+																	>
+																>
+															>
+														}
+													}
+													ELEMENT[at0097] occurrences matches {0..1} matches {	-- Regular Feed Volume per kg per 24 Hours
+														value matches {
+															C_DV_QUANTITY <
+															>
+														}
+													}
+												}
+											}
+											CLUSTER[at0108] occurrences matches {0..1} matches {	-- Feed Times and Volumes within Last 24 Hours
+												items cardinality matches {0..*; unordered} matches {
+													CLUSTER[at0109] occurrences matches {0..1} matches {	-- Feeds within Last 24 Hours Oral, Same Volume, Even Intervals
+														items cardinality matches {0..*; unordered} matches {
+															allow_archetype CLUSTER occurrences matches {0..*} matches {
+																include
+																	archetype_id/value matches {/checklist_item-general-cvs1\.v3/}
+															}
+														}
+													}
+													CLUSTER[at0110] occurrences matches {0..1} matches {	-- Details of feeds within the last 24 hours
+														items cardinality matches {0..*; unordered} matches {
+															CLUSTER[at0114] occurrences matches {0..*} matches {	-- Individual feed details
+																items cardinality matches {0..*; unordered} matches {
+																	use_node ELEMENT occurrences matches {0..*} /data[at0001]/events[at0002]/data[at0003]/items[at0089]/items[at0092]/items[at0098]/items[at0113]/items[at0100]
+																	use_node ELEMENT occurrences matches {0..1} /data[at0001]/events[at0002]/data[at0003]/items[at0089]/items[at0092]/items[at0098]/items[at0113]/items[at0101]
+																	use_node ELEMENT occurrences matches {0..1} /data[at0001]/events[at0002]/data[at0003]/items[at0089]/items[at0092]/items[at0098]/items[at0113]/items[at0105]
+																	use_node ELEMENT occurrences matches {0..1} /data[at0001]/events[at0002]/data[at0003]/items[at0089]/items[at0092]/items[at0098]/items[at0113]/items[at0106]
+																	use_node ELEMENT occurrences matches {0..1} /data[at0001]/events[at0002]/data[at0003]/items[at0089]/items[at0092]/items[at0098]/items[at0113]/items[at0107]
+																}
+															}
+															use_node ELEMENT occurrences matches {0..1} /data[at0001]/events[at0002]/data[at0003]/items[at0089]/items[at0092]/items[at0098]/items[at0099]
+														}
+													}
+													ELEMENT[at0111] occurrences matches {0..1} matches {	-- Total Feed Volume within Last 24 Hours
+														value matches {
+															C_DV_QUANTITY <
+																property = <[openehr::129]>
+																list = <
+																	["1"] = <
+																		units = <"ml">
+																	>
+																>
+															>
+														}
+													}
+													ELEMENT[at0112] occurrences matches {0..1} matches {	-- Total Feed Volume per kg within Last 24 Hours
+														value matches {
+															C_DV_QUANTITY <
+																property = <[openehr::129]>
+																list = <
+																	["1"] = <
+																		units = <"ml">
+																	>
+																>
+															>
+														}
+													}
+													use_node ELEMENT occurrences matches {0..1} /data[at0001]/events[at0002]/data[at0003]/items[at0089]/items[at0092]/items[at0091]
+													use_node ELEMENT occurrences matches {0..1} /data[at0001]/events[at0002]/data[at0003]/items[at0089]/items[at0092]/items[at0093]
+												}
+											}
+											ELEMENT[at0095] occurrences matches {0..1} matches {	-- Current Weight
+												value matches {
+													C_DV_QUANTITY <
+														property = <[openehr::124]>
+														list = <
+															["1"] = <
+																units = <"kg">
+															>
+															["2"] = <
+																units = <"gm">
+															>
+														>
+													>
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Feeding">
+					description = <"Information about the feeding of the person">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Function">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"Sucking">
+					description = <"The ability to suck">
+				>
+				["at0006"] = <
+					text = <"unable to suck">
+					description = <"No ability to suck">
+				>
+				["at0007"] = <
+					text = <"some ability">
+					description = <"Can make sucking action but not effective">
+				>
+				["at0008"] = <
+					text = <"reduced sucking">
+					description = <"Can suck effectively but not sufficient for needs">
+				>
+				["at0009"] = <
+					text = <"normal">
+					description = <"Able to suck normally">
+				>
+				["at0010"] = <
+					text = <"Description">
+					description = <"Description of feeding">
+				>
+				["at0011"] = <
+					text = <"Swallowing">
+					description = <"Ability to swallow">
+				>
+				["at0012"] = <
+					text = <"Unable to swallow">
+					description = <"Not able to pass food to the back of mouth and swallow">
+				>
+				["at0013"] = <
+					text = <"Some ability to swallow">
+					description = <"Some ability to swallow but very limited and/or does not protect airway">
+				>
+				["at0014"] = <
+					text = <"Reduced swallow">
+					description = <"Able to swallow but not sufficient for needs or major risk of aspiration">
+				>
+				["at0015"] = <
+					text = <"Normal">
+					description = <"Can swallow normally">
+				>
+				["at0016"] = <
+					text = <"Milk Diet">
+					description = <"The method of feeding">
+				>
+				["at0017"] = <
+					text = <"Type of feeding">
+					description = <"Type of feeding">
+				>
+				["at0019"] = <
+					text = <"Bottle">
+					description = <"Feeding from the bottle">
+				>
+				["at0020"] = <
+					text = <"Nasogastric tube">
+					description = <"Feeding by naso-gastric tube">
+				>
+				["at0021"] = <
+					text = <"Gastrostomy tube">
+					description = <"Feeding by gastrostomy tube">
+				>
+				["at0022"] = <
+					text = <"Proportion">
+					description = <"The proportion by this method">
+				>
+				["at0023"] = <
+					text = <"Volume by this method">
+					description = <"Volume delivered by this method">
+				>
+				["at0024"] = <
+					text = <"Time taken">
+					description = <"Time feeding by this method">
+				>
+				["at0026"] = <
+					text = <"Content">
+					description = <"The milk or other food delivered">
+				>
+				["at0027"] = <
+					text = <"Spoon">
+					description = <"Feeding by spoon or similar">
+				>
+				["at0028"] = <
+					text = <"Breast feeding">
+					description = <"Record about breast feeding">
+				>
+				["at0029"] = <
+					text = <"Description">
+					description = <"*">
+				>
+				["at0030"] = <
+					text = <"Milk Diet Type">
+					description = <"The content of the feeding">
+				>
+				["at0031"] = <
+					text = <"Breast Fed">
+					description = <"Only breast milk">
+				>
+				["at0032"] = <
+					text = <"Formula milk">
+					description = <"Only baby formula">
+				>
+				["at0033"] = <
+					text = <"Mixed">
+					description = <"Breast and formular mixed">
+				>
+				["at0034"] = <
+					text = <"Expressed Breast Milk">
+					description = <"*">
+				>
+				["at0035"] = <
+					text = <"Cow's Milk">
+					description = <"*">
+				>
+				["at0036"] = <
+					text = <"Lactose Free Milk">
+					description = <"*">
+				>
+				["at0037"] = <
+					text = <"Nutrition Type">
+					description = <"*">
+				>
+				["at0038"] = <
+					text = <"Milk Diet">
+					description = <"*">
+				>
+				["at0039"] = <
+					text = <"Solids Diet">
+					description = <"*">
+				>
+				["at0040"] = <
+					text = <"Nutritional Supplement">
+					description = <"*">
+				>
+				["at0041"] = <
+					text = <"Total Parenteral Nutrition">
+					description = <"*">
+				>
+				["at0042"] = <
+					text = <"Milk Formula Name">
+					description = <"The name of the formula used">
+				>
+				["at0043"] = <
+					text = <"Temperature of Feed">
+					description = <"The temperature of the feed">
+				>
+				["at0044"] = <
+					text = <"Room Temperature">
+					description = <"*">
+				>
+				["at0045"] = <
+					text = <"Warm">
+					description = <"*">
+				>
+				["at0046"] = <
+					text = <"Cold">
+					description = <"*">
+				>
+				["at0048"] = <
+					text = <"Beaker">
+					description = <"*">
+				>
+				["at0050"] = <
+					text = <"Cup">
+					description = <"*">
+				>
+				["at0051"] = <
+					text = <"Enteral tube">
+					description = <"*">
+				>
+				["at0052"] = <
+					text = <"Usual Teat Type">
+					description = <"The type of teat used">
+				>
+				["at0053"] = <
+					text = <"Additional Milk Diet Information">
+					description = <"Any additional information">
+				>
+				["at0054"] = <
+					text = <"Solids Diet">
+					description = <"Details about a solids diet">
+				>
+				["at0055"] = <
+					text = <"Usual Solids Diet Type">
+					description = <"Details about the usual solids diet">
+				>
+				["at0056"] = <
+					text = <"Normal Diet">
+					description = <"*">
+				>
+				["at0057"] = <
+					text = <"Toddler Diet">
+					description = <"*">
+				>
+				["at0058"] = <
+					text = <"Infant Appropriate Solids">
+					description = <"*">
+				>
+				["at0059"] = <
+					text = <"Weaning Solids">
+					description = <"*">
+				>
+				["at0060"] = <
+					text = <"Preferred Foods">
+					description = <"Any preferred foods">
+				>
+				["at0061"] = <
+					text = <"Disliked Foods">
+					description = <"Any disliked foods">
+				>
+				["at0062"] = <
+					text = <"Required Food Consistency">
+					description = <"The consistenmcy of the food">
+				>
+				["at0063"] = <
+					text = <"Normal Consistency">
+					description = <"*">
+				>
+				["at0064"] = <
+					text = <"Lumpy">
+					description = <"*">
+				>
+				["at0065"] = <
+					text = <"Purée">
+					description = <"*">
+				>
+				["at0066"] = <
+					text = <"Feeding Help Required">
+					description = <"Any feeding help required">
+				>
+				["at0067"] = <
+					text = <"Fed by Adult">
+					description = <"*">
+				>
+				["at0068"] = <
+					text = <"Feeds Self">
+					description = <"*">
+				>
+				["at0069"] = <
+					text = <"Needs Some Help">
+					description = <"*">
+				>
+				["at0070"] = <
+					text = <"Eating Utensils">
+					description = <"The utensils used to feed">
+				>
+				["at0071"] = <
+					text = <"Fork">
+					description = <"*">
+				>
+				["at0072"] = <
+					text = <"Knife and Fork">
+					description = <"*">
+				>
+				["at0073"] = <
+					text = <"Spoon">
+					description = <"*">
+				>
+				["at0074"] = <
+					text = <"Uses Fingers">
+					description = <"*">
+				>
+				["at0075"] = <
+					text = <"Additional Solids Diet Information">
+					description = <"Any additional information">
+				>
+				["at0076"] = <
+					text = <"Usual Drinks Other Than Milk">
+					description = <"Details about other drinks">
+				>
+				["at0077"] = <
+					text = <"Preferred Drinks">
+					description = <"Any preferred drinks">
+				>
+				["at0078"] = <
+					text = <"Disliked Drinks">
+					description = <"Any disliked drinks">
+				>
+				["at0079"] = <
+					text = <"Drinks from">
+					description = <"The receptacle used for drinks">
+				>
+				["at0080"] = <
+					text = <"Additional Other Drinks Information">
+					description = <"Any other information">
+				>
+				["at0081"] = <
+					text = <"Additional Nutrition Information">
+					description = <"Any additional information on nutrition">
+				>
+				["at0082"] = <
+					text = <"Usual Feeding Complaints">
+					description = <"Any feeding complaints">
+				>
+				["at0083"] = <
+					text = <"Reflux">
+					description = <"*">
+				>
+				["at0084"] = <
+					text = <"Vomiting">
+					description = <"*">
+				>
+				["at0085"] = <
+					text = <"Religious, Cultural or Lifestyle Dietary Preferences">
+					description = <"Any specific preferences">
+				>
+				["at0086"] = <
+					text = <"Special Feeding Aids">
+					description = <"Details of feeding aids">
+				>
+				["at0087"] = <
+					text = <"Recent Changes to Nutrition">
+					description = <"Any significant changes to nutrition">
+				>
+				["at0088"] = <
+					text = <"Additional Nutrition Information">
+					description = <"Any additional information">
+				>
+				["at0089"] = <
+					text = <"Specific details about feeds">
+					description = <"*">
+				>
+				["at0090"] = <
+					text = <"Each Feed is Oral, Same Volume and at Even Intervals">
+					description = <"*">
+				>
+				["at0091"] = <
+					text = <"Feed Volumes">
+					description = <"The volume of the feed">
+				>
+				["at0092"] = <
+					text = <"Usual Feed Times and Volumes">
+					description = <"*">
+				>
+				["at0093"] = <
+					text = <"Feed Intervals">
+					description = <"*">
+				>
+				["at0095"] = <
+					text = <"Current Weight">
+					description = <"*">
+				>
+				["at0096"] = <
+					text = <"Total Regular 24 Hour Feed Volume">
+					description = <"*">
+				>
+				["at0097"] = <
+					text = <"Regular Feed Volume per kg per 24 Hours">
+					description = <"*">
+				>
+				["at0098"] = <
+					text = <"Details about each usual feed">
+					description = <"*">
+				>
+				["at0099"] = <
+					text = <"Number of feeds per day">
+					description = <"The usual number of feeds per day">
+				>
+				["at0100"] = <
+					text = <"Feed number">
+					description = <"The number of the feed - to allow multiple entries for each feed">
+				>
+				["at0101"] = <
+					text = <"Feed Route">
+					description = <"*">
+				>
+				["at0102"] = <
+					text = <"Oral">
+					description = <"*">
+				>
+				["at0103"] = <
+					text = <"Enteral Tube Pump">
+					description = <"*">
+				>
+				["at0104"] = <
+					text = <"Enteral Tube Bolus">
+					description = <"*">
+				>
+				["at0105"] = <
+					text = <"Feed Time">
+					description = <"*">
+				>
+				["at0106"] = <
+					text = <"Feed Total Volume">
+					description = <"*">
+				>
+				["at0107"] = <
+					text = <"Feed Rate">
+					description = <"*">
+				>
+				["at0108"] = <
+					text = <"Feed Times and Volumes within Last 24 Hours">
+					description = <"*">
+				>
+				["at0109"] = <
+					text = <"Feeds within Last 24 Hours Oral, Same Volume, Even Intervals">
+					description = <"*">
+				>
+				["at0110"] = <
+					text = <"Details of feeds within the last 24 hours">
+					description = <"*">
+				>
+				["at0111"] = <
+					text = <"Total Feed Volume within Last 24 Hours">
+					description = <"*">
+				>
+				["at0112"] = <
+					text = <"Total Feed Volume per kg within Last 24 Hours">
+					description = <"*">
+				>
+				["at0113"] = <
+					text = <"Individual feed details">
+					description = <"To record details about each individual feed">
+				>
+				["at0114"] = <
+					text = <"Individual feed details">
+					description = <"To record details about each individual feed">
+				>
+			>
+		>
+	>
+

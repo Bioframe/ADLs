@@ -1,0 +1,390 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.visual_acuity.v3
+
+concept
+	[at0000]	-- Visual acuity
+language
+	original_language = <[ISO_639-1::en]>
+description
+	original_author = <
+		["organisation"] = <"NHS CFH">
+		["name"] = <"D B Hutchinson">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"Recording visual acuity with and without aids">
+			use = <"S">
+			misuse = <"A">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <>
+	other_details = <
+		["references"] = <"">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- Visual acuity
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0018] occurrences matches {0..1} matches {	-- Laterality
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0019, 	-- Left
+													at0020, 	-- Right
+													at0021, 	-- Bilateral
+													at0022, 	-- Unilateral left
+													at0023, 	-- Unilateral right
+													at0024]	-- Unilateral
+												}
+											}
+										}
+									}
+									CLUSTER[at0045] occurrences matches {0..1} matches {	-- Snellens Score
+										items cardinality matches {0..*; unordered} matches {
+											ELEMENT[at0026] occurrences matches {0..1} matches {	-- Snellens Score
+												value matches {
+													0|[local::at0027], 	-- 6/4
+													1|[local::at0028], 	-- 6/5
+													2|[local::at0029], 	-- 6/6
+													3|[local::at0030], 	-- 6/9
+													4|[local::at0031], 	-- 6/12
+													5|[local::at0032], 	-- 6/18
+													6|[local::at0033], 	-- 6/24
+													7|[local::at0034], 	-- 6/36
+													8|[local::at0035]; 	-- 6/60
+													0  	-- assumed value
+												}
+											}
+											ELEMENT[at0036] occurrences matches {0..1} matches {	-- Snellens Score +/- Option
+												value matches {
+													0|[local::at0037], 	-- 1
+													1|[local::at0038], 	-- 2
+													2|[local::at0039], 	-- 3
+													3|[local::at0040], 	-- 4
+													4|[local::at0041], 	-- 5
+													5|[local::at0042], 	-- 6
+													6|[local::at0043], 	-- 7
+													7|[local::at0044]; 	-- 8
+													0  	-- assumed value
+												}
+											}
+											CLUSTER[at0046] occurrences matches {0..1} matches {	-- Snellens Score less than 6 60
+												items cardinality matches {0..*; unordered} matches {
+													allow_archetype CLUSTER occurrences matches {0..*} matches {
+														include
+															archetype_id/value matches {/checklist_item-general-cvs1\.v3/}
+													}
+												}
+											}
+										}
+									}
+									ELEMENT[at0047] occurrences matches {0..1} matches {	-- LogMar Score
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::380]>
+												list = <
+													["1"] = <
+														units = <"?">
+														magnitude = <|<=1.0|>
+														precision = <|3|>
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0048] occurrences matches {0..1} matches {	-- Visual assessment
+										value matches {
+											0|[local::at0049], 	-- Count fingers
+											1|[local::at0050], 	-- Hand movement
+											2|[local::at0051], 	-- Light perception
+											3|[local::at0052]; 	-- Blind
+											0  	-- assumed value
+										}
+									}
+								}
+							}
+						}
+						state matches {
+							ITEM_LIST[at0004] matches {	-- List
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0005] occurrences matches {0..1} matches {	-- Use of visual aids
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0006, 	-- Aided
+													at0007]	-- Unaided
+												}
+											}
+										}
+									}
+									ELEMENT[at0008] occurrences matches {0..*} matches {	-- Type of visual aid
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0009, 	-- Spectacles
+													at0010, 	-- Contact lenses
+													at0011]	-- Pinhole
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_LIST[at0012] matches {	-- List
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0013] occurrences matches {0..1} matches {	-- Method
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+					ELEMENT[at0014] occurrences matches {0..1} matches {	-- Test distance
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0015, 	-- Tested at 6 Metres 
+									at0016, 	-- Tested at 3 Metres
+									at0017]	-- Tested at 30 Centimetres
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	terminologies_available = <"SNOMED-CT", ...>
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Visual acuity">
+					description = <"The functional acuity of vision, aided and unaided">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"List">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"Use of visual aids">
+					description = <"Aids applied to vision">
+				>
+				["at0006"] = <
+					text = <"Aided">
+					description = <"Tested with the use of usual visual aids">
+				>
+				["at0007"] = <
+					text = <"Unaided">
+					description = <"Tested without the use of any visual aids">
+				>
+				["at0008"] = <
+					text = <"Type of visual aid">
+					description = <"The type of visual aid used">
+				>
+				["at0009"] = <
+					text = <"Spectacles">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"Contact lenses">
+					description = <"*">
+				>
+				["at0011"] = <
+					text = <"Pinhole">
+					description = <"*">
+				>
+				["at0012"] = <
+					text = <"List">
+					description = <"@ internal @">
+				>
+				["at0013"] = <
+					text = <"Method">
+					description = <"Description of the method used">
+				>
+				["at0014"] = <
+					text = <"Test distance">
+					description = <"Distance of subject to test">
+				>
+				["at0015"] = <
+					text = <"Tested at 6 Metres ">
+					description = <"*">
+				>
+				["at0016"] = <
+					text = <"Tested at 3 Metres">
+					description = <"*">
+				>
+				["at0017"] = <
+					text = <"Tested at 30 Centimetres">
+					description = <"*">
+				>
+				["at0018"] = <
+					text = <"Laterality">
+					description = <"The laterality of the visual acuity">
+				>
+				["at0019"] = <
+					text = <"Left">
+					description = <"But the right has not been examined and so is not precluded">
+				>
+				["at0020"] = <
+					text = <"Right">
+					description = <"But the left has not been examined and so is not precluded">
+				>
+				["at0021"] = <
+					text = <"Bilateral">
+					description = <"*">
+				>
+				["at0022"] = <
+					text = <"Unilateral left">
+					description = <"Specifically Left only ">
+				>
+				["at0023"] = <
+					text = <"Unilateral right">
+					description = <"Specifically Right only ">
+				>
+				["at0024"] = <
+					text = <"Unilateral">
+					description = <"*">
+				>
+				["at0026"] = <
+					text = <"Snellens Score">
+					description = <"A measure of visual acuity">
+				>
+				["at0027"] = <
+					text = <"6/4">
+					description = <"Able to read what a person with normal vision can read at 6 metres at 4 metres">
+				>
+				["at0028"] = <
+					text = <"6/5">
+					description = <"Able to read what a person with normal vision can read at 6 metres at 5 metres">
+				>
+				["at0029"] = <
+					text = <"6/6">
+					description = <"Normal vision">
+				>
+				["at0030"] = <
+					text = <"6/9">
+					description = <"Able to read what a person with normal vision can read at 6 metres at 9 metres">
+				>
+				["at0031"] = <
+					text = <"6/12">
+					description = <"Able to read what a person with normal vision can read at 6 metres at 12 metres">
+				>
+				["at0032"] = <
+					text = <"6/18">
+					description = <"Able to read what a person with normal vision can read at 6 metres at 18 metres">
+				>
+				["at0033"] = <
+					text = <"6/24">
+					description = <"Able to read what a person with normal vision can read at 6 metres at 24 metres">
+				>
+				["at0034"] = <
+					text = <"6/36">
+					description = <"Able to read what a person with normal vision can read at 6 metres at 36 metres">
+				>
+				["at0035"] = <
+					text = <"6/60">
+					description = <"Able to read what a person with normal vision can read at 6 metres at 60 metres">
+				>
+				["at0036"] = <
+					text = <"Snellens Score +/- Option">
+					description = <"*">
+				>
+				["at0037"] = <
+					text = <"1">
+					description = <"*">
+				>
+				["at0038"] = <
+					text = <"2">
+					description = <"*">
+				>
+				["at0039"] = <
+					text = <"3">
+					description = <"*">
+				>
+				["at0040"] = <
+					text = <"4">
+					description = <"*">
+				>
+				["at0041"] = <
+					text = <"5">
+					description = <"*">
+				>
+				["at0042"] = <
+					text = <"6">
+					description = <"*">
+				>
+				["at0043"] = <
+					text = <"7">
+					description = <"*">
+				>
+				["at0044"] = <
+					text = <"8">
+					description = <"*">
+				>
+				["at0045"] = <
+					text = <"Snellens Score">
+					description = <"*">
+				>
+				["at0046"] = <
+					text = <"Snellens Score less than 6 60">
+					description = <"*">
+				>
+				["at0047"] = <
+					text = <"LogMar Score">
+					description = <"*">
+				>
+				["at0048"] = <
+					text = <"Visual assessment">
+					description = <"*">
+				>
+				["at0049"] = <
+					text = <"Count fingers">
+					description = <"*">
+				>
+				["at0050"] = <
+					text = <"Hand movement">
+					description = <"*">
+				>
+				["at0051"] = <
+					text = <"Light perception">
+					description = <"*">
+				>
+				["at0052"] = <
+					text = <"Blind">
+					description = <"*">
+				>
+			>
+		>
+	>
+

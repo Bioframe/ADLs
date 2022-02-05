@@ -1,0 +1,238 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.heart_rate.v3
+
+concept
+	[at0000]	-- Heart rate
+language
+	original_language = <[ISO_639-1::en]>
+description
+	original_author = <
+		["name"] = <"Sam Heard">
+		["organisation"] = <"Ocean Informatics">
+		["email"] = <"sam.heard@oceaninformatics.biz">
+		["date"] = <"26/03/2006">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the rate and rhythm of the heart">
+			use = <"For generic recording of heart rate, particularly electrical rate.">
+			keywords = <"rate", "heart rate", "rhythm">
+			misuse = <"Use pulse to record the mechanical rate of the heart (OSBSERVATION.heart_rate-pulse.v1)">
+		>
+	>
+	lifecycle_state = <"Initial">
+	other_contributors = <>
+	other_details = <
+		["references"] = <"">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- Heart rate
+		data matches {
+			HISTORY[at0002] matches {	-- history
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0003] occurrences matches {0..*} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0001] matches {	-- structure
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {	-- Rate
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::382]>
+												list = <
+													["1"] = <
+														units = <"/min">
+														magnitude = <|>=0.0|>
+														precision = <|0|>
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0005] occurrences matches {0..1} matches {	-- Rhythm
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0006, 	-- Regular
+													at0007, 	-- Irregular
+													at0008]	-- Irregularly irregular
+												}
+											}
+										}
+									}
+									ELEMENT[at0009] occurrences matches {0..1} matches {	-- Description
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									CLUSTER[at1011] occurrences matches {0..1} matches {	-- Present
+										items cardinality matches {0..*; unordered} matches {
+											allow_archetype CLUSTER occurrences matches {0..*} matches {
+												include
+													archetype_id/value matches {/checklist_item-general-cvs5\.v3/}
+											}
+										}
+									}
+									CLUSTER[at1007] occurrences matches {0..1} matches {	-- Normal statements
+										items cardinality matches {0..*; unordered} matches {
+											ELEMENT[at1004] occurrences matches {0..1} matches {	-- Normal statements 
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at1008, 	-- Normal sinus rhythm
+															at1009, 	-- Normal rate and rhythm
+															at1010]	-- Normal
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+						state matches {
+							ITEM_LIST[at0012] matches {	-- List
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0013] occurrences matches {0..1} matches {	-- Position
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at1000, 	-- Lying
+													at1001, 	-- Sitting
+													at1002, 	-- Reclining
+													at1003; 	-- Standing
+													at1001]	-- assumed value
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_LIST[at0010] matches {	-- List
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0011] occurrences matches {0..1} matches {	-- Device
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	terminologies_available = <"SNOMED-CT", ...>
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Heart rate">
+					description = <"The rate the heart is beating - either mechanically or electrically">
+				>
+				["at0001"] = <
+					text = <"structure">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"history">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0004"] = <
+					text = <"Rate">
+					description = <"The rate of the heart as beats per minute">
+				>
+				["at0005"] = <
+					text = <"Rhythm">
+					description = <"The rhythm of the heart beat">
+				>
+				["at0006"] = <
+					text = <"Regular">
+					description = <"Regular heart beat">
+				>
+				["at0007"] = <
+					text = <"Irregular">
+					description = <"The heart is irregular">
+				>
+				["at0008"] = <
+					text = <"Irregularly irregular">
+					description = <"Irregular in a chaotic manner">
+				>
+				["at0009"] = <
+					text = <"Description">
+					description = <"The description of the rate and rythm">
+				>
+				["at0010"] = <
+					text = <"List">
+					description = <"@ internal @">
+				>
+				["at0011"] = <
+					text = <"Device">
+					description = <"Device by which the heart rate was measured">
+				>
+				["at0012"] = <
+					text = <"List">
+					description = <"@ internal @">
+				>
+				["at0013"] = <
+					text = <"Position">
+					description = <"The position of the patient when the heart rate was measured">
+				>
+				["at1000"] = <
+					text = <"Lying">
+					description = <"Lying prone">
+				>
+				["at1001"] = <
+					text = <"Sitting">
+					description = <"Sitting on bed or chair">
+				>
+				["at1002"] = <
+					text = <"Reclining">
+					description = <"Person reclining at 45 degrees with legs raised">
+				>
+				["at1003"] = <
+					text = <"Standing">
+					description = <"Standing upright">
+				>
+				["at1004"] = <
+					text = <"Normal statements ">
+					description = <"The heart rate is abnormal">
+				>
+				["at1007"] = <
+					text = <"Normal statements">
+					description = <"Normal statements about the heart rate">
+				>
+				["at1008"] = <
+					text = <"Normal sinus rhythm">
+					description = <"The heart is beating in a normal manner">
+				>
+				["at1009"] = <
+					text = <"Normal rate and rhythm">
+					description = <"The heart is beating normally">
+				>
+				["at1010"] = <
+					text = <"Normal">
+					description = <"The heart rate is normal">
+				>
+				["at1011"] = <
+					text = <"Present">
+					description = <"*">
+				>
+			>
+		>
+	>
+

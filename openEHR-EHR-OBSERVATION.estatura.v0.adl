@@ -1,0 +1,106 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.estatura.v0
+
+concept
+	[at0000]	-- Estatura
+language
+	original_language = <[ISO_639-1::pt]>
+description
+	original_author = <
+		["name"] = <"Elaine Barbosa de Figueiredo">
+		["email"] = <"ebfigueiredo@anhembi.br">
+		["organisation"] = <"UNIFACCAMP, CTI Renato Archer e Universidade Anhembi Morumbi (UAM)">
+		["date"] = <"2021-11-15">
+	>
+	details = <
+		["pt"] = <
+			language = <[ISO_639-1::pt]>
+			purpose = <"Compor o miniarquétipo da Estatura">
+			use = <"Quaisquer Formulários/Prontuários que utilize esse conceito
+">
+			misuse = <"">
+			copyright = <"">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <"Rodrigo Bonacin", "Mariangela Dametto", "Ferrúcio Franco Rosa">
+	other_details = <
+		["MD5-CAM-1.0.1"] = <"4E25F5713007C7B79677F23079D6B16D">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- Estatura
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									CLUSTER[at0004] occurrences matches {0..1} matches {	-- Estatura(m)
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0005] occurrences matches {0..1} matches {	-- Estatura(m)
+												value matches {
+													C_DV_QUANTITY <
+														property = <[openehr::122]>
+														list = <
+															["1"] = <
+																units = <"m">
+																magnitude = <|>=0.0|>
+															>
+															["2"] = <
+																units = <"cm">
+																magnitude = <|>=0.0|>
+															>
+															["3"] = <
+																units = <"mm">
+																magnitude = <|>=0.0|>
+															>
+														>
+													>
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["pt"] = <
+			items = <
+				["at0000"] = <
+					text = <"Estatura">
+					description = <"unknown">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Estatura(m)">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"Estatura(m)">
+					description = <"Body height measure / Body height measure (observable entity) / Body height	C0005890	SNOMEDCT_US	50373000
+SNOMEDCT_US	1153637007
+NCI	C164634">
+				>
+			>
+		>
+	>

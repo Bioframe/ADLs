@@ -1,0 +1,54 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-SECTION.dados_antropometricos.v0
+
+concept
+	[at0000]	-- Dados antropometricos
+language
+	original_language = <[ISO_639-1::pt]>
+description
+	original_author = <
+		["name"] = <"Elaine Barbosa de Figueiredo">
+		["email"] = <"ebfigueiredo@anhembi.com">
+		["organisation"] = <"UNIFACCAMP, CTI Renato Archer e Universidade Anhembi">
+		["date"] = <"2021-11-15">
+	>
+	details = <
+		["pt"] = <
+			language = <[ISO_639-1::pt]>
+			purpose = <"Definir o Arquétipo de Seção  Dados Antropométricos">
+			use = <"Formulários/ Prontuários da Nutrição  ">
+			misuse = <"">
+			copyright = <"">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <"Rodrigo Bonacin", "Mariangela Dametto", "Ferrúcio Franco Rosa">
+	other_details = <
+		["MD5-CAM-1.0.1"] = <"92A3A1B84BD4A80F05C3AE4B22786E56">
+	>
+
+definition
+	SECTION[at0000] matches {	-- Dados antropometricos
+		items cardinality matches {0..*; unordered} matches {
+			allow_archetype OBSERVATION[at0001] occurrences matches {0..*} matches {	-- DadosAntropométricos
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["pt"] = <
+			items = <
+				["at0000"] = <
+					text = <"Dados antropometricos">
+					description = <"unknown">
+				>
+				["at0001"] = <
+					text = <"DadosAntropométricos">
+					description = <"*">
+				>
+			>
+		>
+	>

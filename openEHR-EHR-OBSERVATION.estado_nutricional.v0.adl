@@ -1,0 +1,127 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.estado_nutricional.v0
+
+concept
+	[at0000]	-- Estado nutricional
+language
+	original_language = <[ISO_639-1::pt]>
+description
+	original_author = <
+		["name"] = <"Elaine Barbosa de Figueiredo">
+		["email"] = <"ebfigueiredo@anhembi.br">
+		["organisation"] = <"UNIFACCAMP, CTI Renato Archer e Universidade Anhembi Morumbi (UAM)">
+		["date"] = <"2021-11-11">
+	>
+	details = <
+		["pt"] = <
+			language = <[ISO_639-1::pt]>
+			purpose = <"Deifinir o conceito de Estado Nutricional para os prontuários da Nutrição">
+			use = <"Nos formulários Prontuários da Nutrição">
+			misuse = <"">
+			copyright = <"">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <"Rodrigo Bonacin", "Mariangela Dametto", "Ferrucio Franco Rosa">
+	other_details = <
+		["MD5-CAM-1.0.1"] = <"FBD1177149D92224E0EA2C449E7148A8">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- Estado nutricional
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									CLUSTER[at0004] occurrences matches {0..1} matches {	-- Estado Nutricional
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0005] occurrences matches {0..1} matches {	-- Saudável
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0006, 	-- SIM
+															at0007]	-- NÃO
+														}
+													}
+												}
+											}
+											ELEMENT[at0008] occurrences matches {0..1} matches {	-- Antropometria
+												value matches {
+													DV_TEXT matches {*}
+												}
+											}
+											ELEMENT[at0009] occurrences matches {0..1} matches {	-- Bioimpedancia
+												value matches {
+													DV_TEXT matches {*}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["pt"] = <
+			items = <
+				["at0000"] = <
+					text = <"Estado nutricional">
+					description = <"unknown">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Estado Nutricional">
+					description = <"NUtritional Status C0392209 SNOMEDCT 87276001 NCI C17993 
+NCI_NCI-GLOSS CDR0000463734">
+				>
+				["at0005"] = <
+					text = <"Saudável">
+					description = <"Health Status C0018759 SNOMEDCT_US 406221003 NCI C16669">
+				>
+				["at0006"] = <
+					text = <"SIM">
+					description = <"Yes (indicator) 	C1705108	NCI	C49488	\"The affirmative response to a question. (NCI) (NCI)
+The affirmative response to a question. (NCI)\"">
+				>
+				["at0007"] = <
+					text = <"NÃO">
+					description = <"Não	no / No (qualifier value)	C1298908 \"SNOMEDCT_US \"373067005
+ 
+NCI C49487\"	\"The non-affirmative response to a question. (NCI) (NCI)
+The non-affirmative response to a question. (NCI)
+Word pronounced incorrectly (LNC)
+(J0400=1 thru 4) (LNC)\"">
+				>
+				["at0008"] = <
+					text = <"Antropometria">
+					description = <"Nutritional Anthropometry	C1518512	NCI	C15826		The study of nutritional effects upon the size, weight, and proportions of the human body. (NCI)">
+				>
+				["at0009"] = <
+					text = <"Bioimpedancia">
+					description = <"bioimpedance spectroscopy	C2958857	SNOMEDCT_US	897048005
+NCI	C172556">
+				>
+			>
+		>
+	>

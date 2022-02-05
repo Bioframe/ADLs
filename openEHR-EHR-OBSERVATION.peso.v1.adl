@@ -1,0 +1,106 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.peso.v1
+
+concept
+	[at0000]	-- Peso
+language
+	original_language = <[ISO_639-1::pt]>
+description
+	original_author = <
+		["name"] = <"Elaine Barbosa de Figueiredo">
+		["email"] = <"ebfigueiredo@anhembi.br">
+		["organisation"] = <"UNIFACCAMP, CTI Renato Archer e Universidade Anhembi Morumbi (UAM)">
+		["date"] = <"2021-11-15">
+	>
+	details = <
+		["pt"] = <
+			language = <[ISO_639-1::pt]>
+			purpose = <"Conceituar Peso
+">
+			use = <"Quaisquer Formulários/Prontuários ou Seções que utilizem o indicador">
+			misuse = <"">
+			copyright = <"">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <"Rodrigo Bonacin", "Mariangela Dametto", "Ferrúcio Franco Rosa">
+	other_details = <
+		["MD5-CAM-1.0.1"] = <"F89531F1A9A4EAF546C21ED40EC523F7">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- Peso
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									CLUSTER[at0004] occurrences matches {0..1} matches {	-- Peso(kg)
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0005] occurrences matches {0..1} matches {	-- Peso
+												value matches {
+													C_DV_QUANTITY <
+														property = <[openehr::124]>
+														list = <
+															["1"] = <
+																units = <"kg">
+																magnitude = <|>=0.0|>
+															>
+															["2"] = <
+																units = <"gm">
+																magnitude = <|>=0.0|>
+															>
+															["3"] = <
+																units = <"mg">
+																magnitude = <|>=0.0|>
+															>
+														>
+													>
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["pt"] = <
+			items = <
+				["at0000"] = <
+					text = <"Peso">
+					description = <"unknown">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Peso(kg)">
+					description = <"Weights / Weights (qualifier value)	C0043100	SNOMEDCT_US	272102008 NCI	C25208
+
+">
+				>
+				["at0005"] = <
+					text = <"Peso">
+					description = <"Weights / Weights (qualifier value)	C0043100	SNOMEDCT_US	272102008 NCI	C25208">
+				>
+			>
+		>
+	>

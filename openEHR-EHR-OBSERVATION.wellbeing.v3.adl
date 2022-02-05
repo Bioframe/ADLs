@@ -1,0 +1,373 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.wellbeing.v3
+
+concept
+	[at0000]	-- Wellbeing
+language
+	original_language = <[ISO_639-1::en]>
+description
+	original_author = <
+		["organisation"] = <"NHS CFH">
+		["name"] = <"D B Hutchinson">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"R">
+			use = <"R">
+			misuse = <"R">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <>
+	other_details = <
+		["references"] = <"">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- Wellbeing
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									CLUSTER[at0004] occurrences matches {0..1} matches {	-- Normal Statements
+										items cardinality matches {0..*; unordered} matches {
+											ELEMENT[at0005] occurrences matches {0..1} matches {	-- Normal Statement
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {[local::]}
+													}
+												}
+											}
+										}
+									}
+									CLUSTER[at0006] occurrences matches {0..1} matches {	-- Findings
+										items cardinality matches {0..*; unordered} matches {
+											ELEMENT[at0007] occurrences matches {0..1} matches {	-- Energy levels
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0008, 	-- Reduced
+															at0009, 	-- Normal
+															at0010]	-- Increased
+														}
+													}
+												}
+											}
+											ELEMENT[at0025] occurrences matches {0..1} matches {	-- Coping skills
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0026, 	-- Coping well
+															at0027, 	-- Difficulty coping
+															at0028]	-- Inability to cope
+														}
+													}
+												}
+											}
+											CLUSTER[at0012] occurrences matches {0..1} matches {	-- Sleep
+												items cardinality matches {0..*; unordered} matches {
+													CLUSTER[at0023] occurrences matches {0..1} matches {	-- Amount
+														items cardinality matches {0..*; unordered} matches {
+															ELEMENT[at0011] occurrences matches {0..1} matches {	-- Description
+																value matches {
+																	DV_CODED_TEXT matches {
+																		defining_code matches {
+																			[local::
+																			at0013, 	-- Reduced
+																			at0014, 	-- Normal
+																			at0015]	-- Increased
+																		}
+																	}
+																}
+															}
+															ELEMENT[at0024] occurrences matches {0..1} matches {	-- Amount
+																value matches {
+																	C_DV_QUANTITY <
+																		property = <[openehr::128]>
+																		list = <
+																			["1"] = <
+																				units = <"d">
+																			>
+																			["2"] = <
+																				units = <"h">
+																			>
+																			["3"] = <
+																				units = <"min">
+																			>
+																		>
+																	>
+																}
+															}
+														}
+													}
+													ELEMENT[at0016] occurrences matches {0..1} matches {	-- Sleep pattern
+														value matches {
+															0|[local::at0019], 	-- Normal sleep pattern
+															1|[local::at0020], 	-- Mildly disturbed
+															2|[local::at0021], 	-- Moderately disturbed
+															3|[local::at0022]  	-- Excessively disturbed
+														}
+													}
+													CLUSTER[at0043] occurrences matches {0..1} matches {	-- Child detail
+														items cardinality matches {0..*; unordered} matches {
+															ELEMENT[at0037] occurrences matches {0..1} matches {	-- Sleeps in
+																value matches {
+																	DV_CODED_TEXT matches {
+																		defining_code matches {
+																			[local::
+																			at0038, 	-- Bed
+																			at0039, 	-- Cot
+																			at0040]	-- Basinette
+																		}
+																	}
+																}
+															}
+															CLUSTER[at0041] occurrences matches {0..1} matches {	-- Cot Sides Required
+																items cardinality matches {0..*; unordered} matches {
+																	allow_archetype CLUSTER occurrences matches {0..*} matches {
+																		include
+																			archetype_id/value matches {/checklist_item-general-cvs1\.v3/}
+																	}
+																	ELEMENT[at0042] occurrences matches {0..1} matches {	-- Any Favourite Toys or Comforters
+																		value matches {
+																			DV_TEXT matches {*}
+																		}
+																	}
+																	ELEMENT[at0044] occurrences matches {0..1} matches {	-- Usual Sleeping Routine
+																		value matches {
+																			DV_TEXT matches {*}
+																		}
+																	}
+																	ELEMENT[at0045] occurrences matches {0..1} matches {	-- Recent Changes to Sleeping Routine
+																		value matches {
+																			DV_TEXT matches {*}
+																		}
+																	}
+																}
+															}
+														}
+													}
+													ELEMENT[at0046] occurrences matches {0..1} matches {	-- Additional Sleeping Information
+														value matches {
+															DV_TEXT matches {*}
+														}
+													}
+												}
+											}
+											ELEMENT[at0029] occurrences matches {0..1} matches {	-- Emotional status
+												value matches {
+													DV_TEXT matches {*}
+												}
+											}
+										}
+									}
+									CLUSTER[at0033] occurrences matches {0..1} matches {	-- Nutrition status
+										items cardinality matches {0..*; unordered} matches {
+											ELEMENT[at0034] occurrences matches {0..1} matches {	-- Appetite
+												value matches {
+													DV_TEXT matches {*}
+												}
+											}
+											ELEMENT[at0035] occurrences matches {0..1} matches {	-- Food availability or supply
+												value matches {
+													DV_TEXT matches {*}
+												}
+											}
+											ELEMENT[at0036] occurrences matches {0..1} matches {	-- Fluid intake
+												value matches {
+													DV_TEXT matches {*}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Wellbeing">
+					description = <"Record of statements by person about their general wellbeing">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Normal Statements">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"Normal Statement">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"Findings">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"Energy levels">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"Reduced">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"Normal">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"Increased">
+					description = <"*">
+				>
+				["at0011"] = <
+					text = <"Description">
+					description = <"General description of amount of sleep">
+				>
+				["at0012"] = <
+					text = <"Sleep">
+					description = <"*">
+				>
+				["at0013"] = <
+					text = <"Reduced">
+					description = <"*">
+				>
+				["at0014"] = <
+					text = <"Normal">
+					description = <"*">
+				>
+				["at0015"] = <
+					text = <"Increased">
+					description = <"*">
+				>
+				["at0016"] = <
+					text = <"Sleep pattern">
+					description = <"*">
+				>
+				["at0019"] = <
+					text = <"Normal sleep pattern">
+					description = <"*">
+				>
+				["at0020"] = <
+					text = <"Mildly disturbed">
+					description = <"*">
+				>
+				["at0021"] = <
+					text = <"Moderately disturbed">
+					description = <"*">
+				>
+				["at0022"] = <
+					text = <"Excessively disturbed">
+					description = <"*">
+				>
+				["at0023"] = <
+					text = <"Amount">
+					description = <"*">
+				>
+				["at0024"] = <
+					text = <"Amount">
+					description = <"*">
+				>
+				["at0025"] = <
+					text = <"Coping skills">
+					description = <"Ability to cope with current life situation">
+				>
+				["at0026"] = <
+					text = <"Coping well">
+					description = <"*">
+				>
+				["at0027"] = <
+					text = <"Difficulty coping">
+					description = <"*">
+				>
+				["at0028"] = <
+					text = <"Inability to cope">
+					description = <"*">
+				>
+				["at0029"] = <
+					text = <"Emotional status">
+					description = <"Description of current emotional status">
+				>
+				["at0033"] = <
+					text = <"Nutrition status">
+					description = <"*">
+				>
+				["at0034"] = <
+					text = <"Appetite">
+					description = <"*">
+				>
+				["at0035"] = <
+					text = <"Food availability or supply">
+					description = <"*">
+				>
+				["at0036"] = <
+					text = <"Fluid intake">
+					description = <"*">
+				>
+				["at0037"] = <
+					text = <"Sleeps in">
+					description = <"Details of type of bed">
+				>
+				["at0038"] = <
+					text = <"Bed">
+					description = <"*">
+				>
+				["at0039"] = <
+					text = <"Cot">
+					description = <"*">
+				>
+				["at0040"] = <
+					text = <"Basinette">
+					description = <"*">
+				>
+				["at0041"] = <
+					text = <"Cot Sides Required">
+					description = <"Details on whether cot sides are required to ensure safety">
+				>
+				["at0042"] = <
+					text = <"Any Favourite Toys or Comforters">
+					description = <"Details of any favourite toys required for sleeping">
+				>
+				["at0043"] = <
+					text = <"Child detail">
+					description = <"More detail usually specific to children">
+				>
+				["at0044"] = <
+					text = <"Usual Sleeping Routine">
+					description = <"Details of the usual pattern of sleep">
+				>
+				["at0045"] = <
+					text = <"Recent Changes to Sleeping Routine">
+					description = <"Have there been any significant changes to the sleeping pattern">
+				>
+				["at0046"] = <
+					text = <"Additional Sleeping Information">
+					description = <"Any other general information on sleep">
+				>
+			>
+		>
+	>
+

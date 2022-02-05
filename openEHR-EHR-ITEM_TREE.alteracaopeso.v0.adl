@@ -1,0 +1,111 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-ITEM_TREE.alteracaopeso.v0
+
+concept
+	[at0000]	-- Alteracaopeso
+language
+	original_language = <[ISO_639-1::pt]>
+description
+	original_author = <
+		["name"] = <"">
+	>
+	details = <
+		["pt"] = <
+			language = <[ISO_639-1::pt]>
+			purpose = <"">
+			use = <"">
+			misuse = <"">
+			copyright = <"">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <>
+	other_details = <
+		["MD5-CAM-1.0.1"] = <"08290457ED910985FD095F9D6C529AC4">
+	>
+
+definition
+	ITEM_TREE[at0000] occurrences matches {0..*} matches {	-- Alteracaopeso
+		items cardinality matches {0..*; unordered} matches {
+			CLUSTER[at0002] occurrences matches {0..1} matches {	-- Alteração | Peso
+				items cardinality matches {1..*; unordered} matches {
+					ELEMENT[at0003] occurrences matches {0..1} matches {	-- Ganho de Peso
+						value matches {
+							C_DV_QUANTITY <
+								property = <[openehr::124]>
+								list = <
+									["1"] = <
+										units = <"kg">
+									>
+									["2"] = <
+										units = <"gm">
+									>
+									["3"] = <
+										units = <"mg">
+									>
+								>
+							>
+						}
+					}
+					ELEMENT[at0004] occurrences matches {0..1} matches {	-- Perda de Peso
+						value matches {
+							C_DV_QUANTITY <
+								property = <[openehr::124]>
+								list = <
+									["1"] = <
+										units = <"kg">
+									>
+									["2"] = <
+										units = <"gm">
+									>
+									["3"] = <
+										units = <"mg">
+									>
+								>
+							>
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["pt"] = <
+			items = <
+				["at0000"] = <
+					text = <"Alteracaopeso">
+					description = <"unknown">
+				>
+				["at0002"] = <
+					text = <"Alteração | Peso">
+					description = <"Weight change / Weight change (observable entity)	C0005911
+SNOMEDCT_US	248346009
+">
+				>
+				["at0003"] = <
+					text = <"Ganho de Peso">
+					description = <"Weight Gain	C0043094
+SNOMEDCT_US	8943002
+SNOMEDCT_US	816159004
+SNOMEDCT_US	262286000
+SNOMEDCT_US	161831008
+NCI	C62754
+NCI_CDISC SEND-BGTESTCD
+NCI_CDISC SEND-BGTEST
+NCI_CDISC | NCI_NICHD C62754
+NCI_CTCAE E12224">
+				>
+				["at0004"] = <
+					text = <"Perda de Peso">
+					description = <"*ght decreased	C1262477
+SNOMEDCT_US	89362005
+SNOMEDCT_US	262285001
+SNOMEDCT_US	161832001
+NCI | NCI_caDSR | NCI_GDC | NCI_NICHD 	C3445
+NCI_CTCAE	E12228">
+				>
+			>
+		>
+	>

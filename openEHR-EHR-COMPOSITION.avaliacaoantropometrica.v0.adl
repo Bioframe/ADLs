@@ -1,0 +1,124 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-COMPOSITION.avaliacaoantropometrica.v0
+
+concept
+	[at0000]	-- Avaliacaoantropometrica
+language
+	original_language = <[ISO_639-1::pt]>
+description
+	original_author = <
+		["name"] = <"">
+	>
+	details = <
+		["pt"] = <
+			language = <[ISO_639-1::pt]>
+			purpose = <"">
+			use = <"">
+			misuse = <"">
+			copyright = <"">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <>
+	other_details = <
+		["MD5-CAM-1.0.1"] = <"0EF2B21FC6A2191A104BF30A10B5F904">
+	>
+
+definition
+	COMPOSITION[at0000] matches {	-- Avaliacaoantropometrica
+		category matches {
+			DV_CODED_TEXT matches {
+				defining_code matches {[openehr::433]}
+			}
+		}
+		context matches {
+			EVENT_CONTEXT matches {
+				other_context matches {
+					ITEM_TREE[at0009] matches {*}
+				}
+			}
+		}
+		content cardinality matches {0..*; unordered} matches {
+			allow_archetype SECTION[at0001] occurrences matches {0..*} matches {	-- SECTION
+				include
+					archetype_id/value matches {/.*/}
+			}
+			allow_archetype OBSERVATION[at0004] occurrences matches {0..*} matches {	-- Logo
+				include
+					archetype_id/value matches {/.*/}
+			}
+			allow_archetype OBSERVATION[at0006] occurrences matches {0..*} matches {	-- OBSERVATION
+				include
+					archetype_id/value matches {/.*/}
+			}
+			allow_archetype OBSERVATION[at0005] occurrences matches {0..*} matches {	-- OBSERVATION
+				include
+					archetype_id/value matches {/.*/}
+			}
+			allow_archetype OBSERVATION[at0007] occurrences matches {0..*} matches {	-- OBSERVATION
+				include
+					archetype_id/value matches {/.*/}
+			}
+			allow_archetype SECTION[at0002] occurrences matches {0..*} matches {	-- SECTION
+				include
+					archetype_id/value matches {/.*/}
+			}
+			allow_archetype SECTION[at0003] occurrences matches {0..*} matches {	-- SECTION
+				include
+					archetype_id/value matches {/.*/}
+			}
+			allow_archetype OBSERVATION[at0008] occurrences matches {0..*} matches {	-- Diagnostico
+				include
+					archetype_id/value matches {/.*/}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["pt"] = <
+			items = <
+				["at0000"] = <
+					text = <"Avaliacaoantropometrica">
+					description = <"unknown">
+				>
+				["at0001"] = <
+					text = <"SECTION">
+					description = <"*">
+				>
+				["at0002"] = <
+					text = <"SECTION">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"SECTION">
+					description = <"*">
+				>
+				["at0004"] = <
+					text = <"Logo">
+					description = <"Image (C1704922) codigo vocabulário destino NCI (C48179) Semantic Types: Intellectual Product
+Definitions - Any record of an imaging event whether physical or electronic. (NCI)">
+				>
+				["at0005"] = <
+					text = <"OBSERVATION">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"OBSERVATION">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"OBSERVATION">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"Diagnostico">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+			>
+		>
+	>

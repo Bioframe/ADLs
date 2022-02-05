@@ -1,0 +1,269 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.imc_por_idade.v0
+
+concept
+	[at0000]	-- Imc por idade
+language
+	original_language = <[ISO_639-1::pt]>
+description
+	original_author = <
+		["name"] = <"Elaine Barbosa de Figueiredo">
+		["email"] = <"ebfigueiredo@anhembi.br">
+		["organisation"] = <"UNIFACCAMP, CTI Renato Archer e Universidade Anhembi Morumbi">
+		["date"] = <"2021-11-14">
+	>
+	details = <
+		["pt"] = <
+			language = <[ISO_639-1::pt]>
+			purpose = <"Desenvolver o conceito de Índice de Massa Corpórea por Idade segundo a Organização mundial de Saúde (WHO,2007) para a Nutrição ">
+			use = <"Formulários/Prontuários para a Nutrição ">
+			misuse = <"">
+			copyright = <"">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <"Rodrigo Bonacin", "Mariangela Dametto", "Ferrúcio Franco Rosa">
+	other_details = <
+		["MD5-CAM-1.0.1"] = <"E5C982382A8FE6C8820CF0DFBE41B7C9">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- Imc por idade
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; ordered} matches {
+									CLUSTER[at0004] occurrences matches {0..1} matches {	-- IMC/I
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0005] occurrences matches {0..1} matches {	-- Sexo
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0006, 	-- Masculino
+															at0007]	-- Feminino
+														}
+													}
+												}
+											}
+											CLUSTER[at0008] occurrences matches {0..1} matches {	-- IMC_FaixaEtaria
+												items cardinality matches {1..*; unordered} matches {
+													ELEMENT[at0013] occurrences matches {0..1} matches {	-- Score Z
+														value matches {
+															DV_TEXT matches {*}
+														}
+													}
+													ELEMENT[at0009] occurrences matches {0..1} matches {	-- Altura|Estatura
+														value matches {
+															C_DV_QUANTITY <
+																property = <[openehr::122]>
+																list = <
+																	["1"] = <
+																		units = <"m">
+																		magnitude = <|>=0.0|>
+																	>
+																	["2"] = <
+																		units = <"cm">
+																		magnitude = <|>=0.0|>
+																	>
+																	["3"] = <
+																		units = <"mm">
+																		magnitude = <|>=0.0|>
+																	>
+																>
+															>
+														}
+													}
+													ELEMENT[at0010] occurrences matches {0..1} matches {	-- Peso
+														value matches {
+															C_DV_QUANTITY <
+																property = <[openehr::124]>
+																list = <
+																	["1"] = <
+																		units = <"kg">
+																		magnitude = <|>=0.0|>
+																	>
+																	["2"] = <
+																		units = <"gm">
+																		magnitude = <|>=0.0|>
+																	>
+																	["3"] = <
+																		units = <"mg">
+																		magnitude = <|>=0.0|>
+																	>
+																>
+															>
+														}
+													}
+													ELEMENT[at0011] occurrences matches {0..1} matches {	-- Idade
+														value matches {
+															C_DV_QUANTITY <
+																property = <[openehr::128]>
+																list = <
+																	["1"] = <
+																		units = <"a">
+																		magnitude = <|>=0.0|>
+																	>
+																	["2"] = <
+																		units = <"mo">
+																		magnitude = <|>=0.0|>
+																	>
+																	["3"] = <
+																		units = <"d">
+																		magnitude = <|>=0.0|>
+																	>
+																>
+															>
+														}
+													}
+													ELEMENT[at0022] occurrences matches {0..1} matches {	-- IMC
+														value matches {
+															C_DV_QUANTITY <
+															>
+														}
+													}
+													ELEMENT[at0012] occurrences matches {0..1} matches {	-- FaixaEtária
+														value matches {
+															DV_CODED_TEXT matches {
+																defining_code matches {
+																	[local::
+																	at0014, 	-- Recém Nascido
+																	at0015, 	-- Infância
+																	at0016, 	-- Primeira Infância
+																	at0017, 	-- Criança
+																	at0018, 	-- Adolescente
+																	at0019, 	-- Adulto Jovem
+																	at0020, 	-- Adulto
+																	at0021]	-- Idoso
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["pt"] = <
+			items = <
+				["at0000"] = <
+					text = <"Imc por idade">
+					description = <"unknown">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"IMC/I">
+					description = <"Body mass index for age z-score	C5547463	SNOMEDCT_US	1153596006">
+				>
+				["at0005"] = <
+					text = <"Sexo">
+					description = <"Sex	C1522384	SNOMEDCT_US	57312000 NCI | NCI_caDSR | NCI_CDISC | NCI_FDA | NCI_PCDC ...	C28421">
+				>
+				["at0006"] = <
+					text = <"Masculino">
+					description = <"Male	C0086582	SNOMEDCT_US	248153007 SNOMEDCT_US	10052007 NCI	C20197">
+				>
+				["at0007"] = <
+					text = <"Feminino">
+					description = <"Female	C0086287	SNOMEDCT_US	248152002 SNOMEDCT_US 1086007 NCI	C46110  NCI C16576">
+				>
+				["at0008"] = <
+					text = <"IMC_FaixaEtaria">
+					description = <"Body mass index for age z-score	C5547463	SNOMEDCT_US	1153596006
+Weights / Weights (qualifier value)	C0043100	SNOMEDCT_US	272102008
+Body height measure / Body height measure (observable entity) / Body height	C0005890	SNOMEDCT_US	50373000
+Body mass index / Body mass index (observable entity) / BMI - Body mass index / Quetelet index	C1305855	SNOMEDCT_US	60621009
+">
+				>
+				["at0009"] = <
+					text = <"Altura|Estatura">
+					description = <"Body height measure / Body height measure (observable entity) / Body height	C0005890	SNOMEDCT_US	50373000
+">
+				>
+				["at0010"] = <
+					text = <"Peso">
+					description = <"Weights / Weights (qualifier value)	C0043100	SNOMEDCT_US	272102008
+">
+				>
+				["at0011"] = <
+					text = <"Idade">
+					description = <"Current chronological age (observable entity) / Age / Age (qualifier value) / Age - descriptor	C0001779	SNOMEDCT_US 
+424144002 / 
+397669002 / 
+NCI	C25150
+NCI_CDISC SEND-STSPRMCD /
+SEND-STSPRM">
+				>
+				["at0012"] = <
+					text = <"FaixaEtária">
+					description = <"Human Age Group	C0027362	NCI	C20587
+">
+				>
+				["at0013"] = <
+					text = <"Score Z">
+					description = <"*">
+				>
+				["at0014"] = <
+					text = <"Recém Nascido">
+					description = <"Infant, Newborn	C0021289	SNOMEDCT_US	133933007 NCI	C16731">
+				>
+				["at0015"] = <
+					text = <"Infância">
+					description = <"Infant 	C0021270	SNOMEDCT_US	133931009">
+				>
+				["at0016"] = <
+					text = <"Primeira Infância">
+					description = <"Early childhood	C0599196	SNOMEDCT_US	713152004 NCI	C89346">
+				>
+				["at0017"] = <
+					text = <"Criança">
+					description = <"Child	C0008059	SNOMEDCT_US	67822003 SNOMEDCT_US	410601007 NCI	C16423">
+				>
+				["at0018"] = <
+					text = <"Adolescente">
+					description = <"Adolescent (age group) 	C0205653	SNOMEDCT_US	133937008 NCI	C27954 ">
+				>
+				["at0019"] = <
+					text = <"Adulto Jovem">
+					description = <"Young Adult	 C0238598	NCI	C91107">
+				>
+				["at0020"] = <
+					text = <"Adulto">
+					description = <"Adult 18-65 Years Old	C1706730	NCI	C49685">
+				>
+				["at0021"] = <
+					text = <"Idoso">
+					description = <"Elderly (population group)	C0001792	SNOMEDCT_US	49808004 SNOMEDCT_US	105436006 NCI	C16268">
+				>
+				["at0022"] = <
+					text = <"IMC">
+					description = <"Body mass index / Body mass index (observable entity) / BMI - Body mass index / Quetelet index	C1305855	SNOMEDCT_US	60621009
+">
+				>
+			>
+		>
+	>

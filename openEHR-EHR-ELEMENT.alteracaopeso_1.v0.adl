@@ -1,0 +1,40 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-ELEMENT.alteracaopeso_1.v0
+
+concept
+	[at0000]	-- Alteracaopeso 1
+language
+	original_language = <[ISO_639-1::pt]>
+description
+	original_author = <
+		["name"] = <"">
+	>
+	details = <
+		["pt"] = <
+			language = <[ISO_639-1::pt]>
+			purpose = <"">
+			use = <"">
+			misuse = <"">
+			copyright = <"">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <>
+	other_details = <
+		["MD5-CAM-1.0.1"] = <"022339ECC0421360BB4C1A61C4A25165">
+	>
+
+definition
+	ELEMENT[at0000] matches {*}
+
+ontology
+	term_definitions = <
+		["pt"] = <
+			items = <
+				["at0000"] = <
+					text = <"Alteracaopeso 1">
+					description = <"unknown">
+				>
+			>
+		>
+	>

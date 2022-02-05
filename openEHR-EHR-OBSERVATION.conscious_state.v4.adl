@@ -1,0 +1,174 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.conscious_state.v4
+
+concept
+	[at0000]	-- Conscious state
+language
+	original_language = <[ISO_639-1::en]>
+description
+	original_author = <
+		["organisation"] = <"NHS CFH">
+		["name"] = <"D B Hutchinson">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"Simple way to measure and record the level of consciousness of a patient">
+			use = <"Helpful for use by paramedics or non-trained  people in the first aid or emergency assessment of a patient.">
+			misuse = <"Not for long term assessment of consciousness - use Glasgow Coma Scale instead">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <>
+	other_details = <
+		["references"] = <"">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- Conscious state
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {	-- Description
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0013] occurrences matches {0..1} matches {	-- Statements regarding conscious state
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0014, 	-- Unconscious
+													at0015, 	-- Reduced Consciousness
+													at0016, 	-- Confused
+													at0017, 	-- Disorientated
+													at0018, 	-- Stupor
+													at0019, 	-- Lethargic
+													at0020, 	-- Alert
+													at0021, 	-- Comatose
+													at0022, 	-- Drowsy
+													at0023]	-- Sleepy/ing
+												}
+											}
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0006] occurrences matches {0..1} matches {	-- AVPU Response
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0007, 	-- Alert
+													at0008, 	-- Voice
+													at0009, 	-- Pain
+													at0010]	-- Unreponsive
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					comment = <"The first version was modelled as a list.  This is modelled as a Tree">
+					text = <"Conscious state">
+					description = <"Record simple assessment of conscious state">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Description">
+					description = <"Clinical description of conscious state">
+				>
+				["at0006"] = <
+					text = <"AVPU Response">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"Alert">
+					description = <"Alert">
+				>
+				["at0008"] = <
+					text = <"Voice">
+					description = <"Voice">
+				>
+				["at0009"] = <
+					text = <"Pain">
+					description = <"Pain">
+				>
+				["at0010"] = <
+					text = <"Unreponsive">
+					description = <"Unreponsive">
+				>
+				["at0013"] = <
+					text = <"Statements regarding conscious state">
+					description = <"Statements describing conscious state">
+				>
+				["at0014"] = <
+					text = <"Unconscious">
+					description = <"*">
+				>
+				["at0015"] = <
+					text = <"Reduced Consciousness">
+					description = <"*">
+				>
+				["at0016"] = <
+					text = <"Confused">
+					description = <"*">
+				>
+				["at0017"] = <
+					text = <"Disorientated">
+					description = <"*">
+				>
+				["at0018"] = <
+					text = <"Stupor">
+					description = <"*">
+				>
+				["at0019"] = <
+					text = <"Lethargic">
+					description = <"*">
+				>
+				["at0020"] = <
+					text = <"Alert">
+					description = <"*">
+				>
+				["at0021"] = <
+					text = <"Comatose">
+					description = <"*">
+				>
+				["at0022"] = <
+					text = <"Drowsy">
+					description = <"*">
+				>
+				["at0023"] = <
+					text = <"Sleepy/ing">
+					description = <"*">
+				>
+			>
+		>
+	>

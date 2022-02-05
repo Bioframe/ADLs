@@ -1,0 +1,56 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-SECTION.cabecalho.v0
+
+concept
+	[at0000]	-- Cabecalho
+language
+	original_language = <[ISO_639-1::pt]>
+description
+	original_author = <
+		["name"] = <"">
+	>
+	details = <
+		["pt"] = <
+			language = <[ISO_639-1::pt]>
+			purpose = <"">
+			use = <"">
+			misuse = <"">
+			copyright = <"">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <>
+	other_details = <
+		["MD5-CAM-1.0.1"] = <"408D162FF27D2438B14885692AB3CF30">
+	>
+
+definition
+	SECTION[at0000] matches {	-- Cabecalho
+		items cardinality matches {0..*; unordered} matches {
+			allow_archetype SECTION[at0001] occurrences matches {0..*} matches {	-- SECTION
+				include
+					archetype_id/value matches {/.*/}
+			}
+			SECTION[at0002] occurrences matches {0..1} matches {*}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["pt"] = <
+			items = <
+				["at0000"] = <
+					text = <"Cabecalho">
+					description = <"unknown">
+				>
+				["at0001"] = <
+					text = <"SECTION">
+					description = <"*">
+				>
+				["at0002"] = <
+					text = <"Section">
+					description = <"*">
+				>
+			>
+		>
+	>

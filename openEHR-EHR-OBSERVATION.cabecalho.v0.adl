@@ -1,0 +1,222 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.cabecalho.v0
+
+concept
+	[at0000]	-- Cabecalho
+language
+	original_language = <[ISO_639-1::pt]>
+description
+	original_author = <
+		["name"] = <"">
+	>
+	details = <
+		["pt"] = <
+			language = <[ISO_639-1::pt]>
+			purpose = <"Descrever os dados de cabeçalho dos formulários e/ou prontuários do Boldrini">
+			use = <"cabeçalho dos formulários">
+			misuse = <"">
+			copyright = <"">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <>
+	other_details = <
+		["MD5-CAM-1.0.1"] = <"26325C34C17E82E7CBB869C008DC868C">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- Cabecalho
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {	-- Nome
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0005] occurrences matches {0..1} matches {	-- Prontuário
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0006] occurrences matches {0..1} matches {	-- Data de Nascimento
+										value matches {
+											DV_DATE matches {*}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["pt"] = <
+			items = <
+				["at0000"] = <
+					text = <"Cabecalho">
+					description = <"Descreve os dados de cabeçalho dos formulários do Boldrini, comum a todos os formulários">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Nome">
+					description = <"Nome - Name C0027365 SNOMEDCT_US (703503000) ">
+				>
+				["at0005"] = <
+					text = <"Prontuário">
+					description = <"Medical Records Medical record, device (physical object)/ Medical record, device C0025102 SNOMEDCT_US 129465004">
+				>
+				["at0006"] = <
+					text = <"Data de Nascimento">
+					description = <"Patient date of birth C0421451 SNOMEDCT_US 184099003 ">
+				>
+			>
+		>
+		["en-ca"] = <
+			items = <
+				["at0000"] = <
+					text = <"*Cabecalho(pt)">
+					description = <"*Descreve os dados de cabeçalho dos formulários do Boldrini, comum a todos os formulários(pt)">
+				>
+				["at0001"] = <
+					text = <"*Event Series(pt)">
+					description = <"*@ internal @(pt)">
+				>
+				["at0002"] = <
+					text = <"*Any event(pt)">
+					description = <"**(pt)">
+				>
+				["at0003"] = <
+					text = <"*Tree(pt)">
+					description = <"*@ internal @(pt)">
+				>
+				["at0004"] = <
+					text = <"*Nome(pt)">
+					description = <"*Nome - Name C0027365 SNOMEDCT_US (703503000) (pt)">
+				>
+				["at0005"] = <
+					text = <"*Prontuário(pt)">
+					description = <"*Medical Records Medical record, device (physical object)/ Medical record, device C0025102 SNOMEDCT_US 129465004(pt)">
+				>
+				["at0006"] = <
+					text = <"*Data de Nascimento(pt)">
+					description = <"*Patient date of birth C0421451 SNOMEDCT_US 184099003 (pt)">
+				>
+			>
+		>
+		["en-gb"] = <
+			items = <
+				["at0000"] = <
+					text = <"*Cabecalho(pt)">
+					description = <"*Descreve os dados de cabeçalho dos formulários do Boldrini, comum a todos os formulários(pt)">
+				>
+				["at0001"] = <
+					text = <"*Event Series(pt)">
+					description = <"*@ internal @(pt)">
+				>
+				["at0002"] = <
+					text = <"*Any event(pt)">
+					description = <"**(pt)">
+				>
+				["at0003"] = <
+					text = <"*Tree(pt)">
+					description = <"*@ internal @(pt)">
+				>
+				["at0004"] = <
+					text = <"*Nome(pt)">
+					description = <"*Nome - Name C0027365 SNOMEDCT_US (703503000) (pt)">
+				>
+				["at0005"] = <
+					text = <"*Prontuário(pt)">
+					description = <"*Medical Records Medical record, device (physical object)/ Medical record, device C0025102 SNOMEDCT_US 129465004(pt)">
+				>
+				["at0006"] = <
+					text = <"*Data de Nascimento(pt)">
+					description = <"*Patient date of birth C0421451 SNOMEDCT_US 184099003 (pt)">
+				>
+			>
+		>
+		["en-us"] = <
+			items = <
+				["at0000"] = <
+					text = <"*Cabecalho(pt)">
+					description = <"*Descreve os dados de cabeçalho dos formulários do Boldrini, comum a todos os formulários(pt)">
+				>
+				["at0001"] = <
+					text = <"*Event Series(pt)">
+					description = <"*@ internal @(pt)">
+				>
+				["at0002"] = <
+					text = <"*Any event(pt)">
+					description = <"**(pt)">
+				>
+				["at0003"] = <
+					text = <"*Tree(pt)">
+					description = <"*@ internal @(pt)">
+				>
+				["at0004"] = <
+					text = <"*Nome(pt)">
+					description = <"*Nome - Name C0027365 SNOMEDCT_US (703503000) (pt)">
+				>
+				["at0005"] = <
+					text = <"*Prontuário(pt)">
+					description = <"*Medical Records Medical record, device (physical object)/ Medical record, device C0025102 SNOMEDCT_US 129465004(pt)">
+				>
+				["at0006"] = <
+					text = <"*Data de Nascimento(pt)">
+					description = <"*Patient date of birth C0421451 SNOMEDCT_US 184099003 (pt)">
+				>
+			>
+		>
+		["es"] = <
+			items = <
+				["at0000"] = <
+					text = <"*Cabecalho(pt)">
+					description = <"*Descreve os dados de cabeçalho dos formulários do Boldrini, comum a todos os formulários(pt)">
+				>
+				["at0001"] = <
+					text = <"*Event Series(pt)">
+					description = <"*@ internal @(pt)">
+				>
+				["at0002"] = <
+					text = <"*Any event(pt)">
+					description = <"**(pt)">
+				>
+				["at0003"] = <
+					text = <"*Tree(pt)">
+					description = <"*@ internal @(pt)">
+				>
+				["at0004"] = <
+					text = <"*Nome(pt)">
+					description = <"*Nome - Name C0027365 SNOMEDCT_US (703503000) (pt)">
+				>
+				["at0005"] = <
+					text = <"*Prontuário(pt)">
+					description = <"*Medical Records Medical record, device (physical object)/ Medical record, device C0025102 SNOMEDCT_US 129465004(pt)">
+				>
+				["at0006"] = <
+					text = <"*Data de Nascimento(pt)">
+					description = <"*Patient date of birth C0421451 SNOMEDCT_US 184099003 (pt)">
+				>
+			>
+		>
+	>
